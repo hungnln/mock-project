@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Danh sách nộp bài</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<input type="hidden" name="courseID" id="courseID" th:value="${CourseSelected.courseId}">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Danh sách thành
+                                viên</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/admin}" class="text-muted text-hover-primary">Bảng điều khiển</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>
+                                <!--end::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted" th:text="${CourseSelected.fullName}"></li>
+                                <!--end::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark">Thành viên</li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Card-->
+                        <div class="card">
+                            <!--begin::Card header-->
+                            <div class="card-header border-0 pt-6">
+                                <!--begin::Card title-->
+                                <div class="card-title">
+                                    <!--begin::Search-->
+                                    <div class="d-flex align-items-center position-relative my-1">
+                                        <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+                                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                                  fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+															<path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                                  fill="#000000" fill-rule="nonzero"/>
+														</g>
+													</svg>
+												</span>
+                                        <!--end::Svg Icon-->
+                                        <input type="text" data-kt-user-table-filter="search"
+                                               class="form-control form-control-solid w-250px ps-14"
+                                               placeholder="Tìm kiếm thành viên"/>
+                                    </div>
+                                    <!--end::Search-->
+                                </div>
+                                <!--begin::Card title-->
+                            </div>
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0">
+                                <!--begin::Table-->
+                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                    <!--begin::Table row-->
+                                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                        <th class="w-10px pe-2">
+                                        </th>
+                                        <th class="min-w-125px">Thành viên</th>
+                                        <th class="min-w-100pxpx">Vai trò</th>
+                                        <th class="min-w-1px"></th>
+                                        <th class="min-w-125px">Điểm</th>
+                                        <th class="min-w-125px">Thời gian nộp bài</th>
+                                        <th class="text-end min-w-100px">Hành động</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="text-gray-600 fw-bold">
+                                    <!--begin::Table row-->
+                                    <tr th:each="ass,iState : ${LIST_AssGrade}">
+                                        <!--begin::Checkbox-->
+                                        <td>
+                                        </td>
+                                        <!--end::Checkbox-->
+                                        <!--begin::User=-->
+                                        <td class="d-flex align-items-center">
+                                            <!--begin:: Avatar -->
+                                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                <a href="#">
+                                                    <div class="symbol-label fs-3"
+                                                         th:classappend="${CLASS_IMG[iState.index % 5]}">
+
+                                                        <img src="assets/media/avatars/150-1.jpg" alt="Emma Smith"
+                                                             th:alt="|${ass.user.lastName} ${ass.user.firstName}|" class="w-100"
+                                                             th:if="${ass.user.image != null}"/>
+                                                        <span th:text="${ass.user.firstName.substring(0,1)}"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <!--end::Avatar-->
+                                            <!--begin::User details-->
+                                            <div class="d-flex flex-column">
+                                                <a href="#"
+                                                   class="text-gray-800 text-hover-primary mb-1"
+                                                   th:text="${ass.user.lastName} + ' '+${ass.user.firstName}"></a>
+                                                <span th:text="*{ass.user.email}"></span>
+                                            </div>
+                                            <!--begin::User details-->
+                                        </td>
+                                        <!--end::User=-->
+                                        <!--begin::Role=-->
+                                        <td th:text="*{ass.user.role.roleName}"></td>
+                                        <!--end::Role=-->
+                                        <!--begin::Last login=-->
+                                        <td></td>
+                                        <!--end::Last login=-->
+                                        <!--begin::Two step=-->
+                                        <td>
+                                            <div class="badge badge-light-success fw-bolder" th:if="${ass.gradeScore != -1}" th:text="|*{ass.gradeScore} điểm|">
+
+                                            </div>
+                                            <div class="badge badge-danger fw-bolder" th:if="*{ass.gradeScore == -1}">Chưa chấm điểm
+                                            </div>
+                                        </td>
+                                        <!--end::Two step=-->
+                                        <!--begin::Joined-->
+                                        <td th:text="${#dates.format(ass.timeCreated,'dd-MM-yyyy , hh:mm')}"></td>
+                                        <!--begin::Joined-->
+                                        <!--begin::Action=-->
+                                        <td class="text-end">
+                                            <a th:href="@{/teacher/grade(id=${ass.assignmentSubmissionId})}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">Chấm bài</a>
+
+                                        </td>
+                                        <!--end::Action=-->
+                                    </tr>
+                                    <!--end::Table row-->
+
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/enrolments/enrolments.js}"></script>
+<script th:src="@{/js/enrolments/addEnrolment.js}"></script>
+<script th:src="@{/js/enrolments/deleteEnrolment.js}"></script>
+</body>
+</html>

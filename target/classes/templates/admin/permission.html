@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Phân Quyền</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Phân quyền thành
+                                viên</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a href="/afterLogin" class="text-muted text-hover-primary">Bảng điều khiển</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">Quản lý phân quyền</li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark">Phân quyền</li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Card-->
+                        <div class="card card-flush">
+                            <!--begin::Card header-->
+                            <div class="card-header mt-6">
+                                <!--begin::Card title-->
+                                <div class="card-title">
+                                    <!--begin::Search-->
+                                    <div class="d-flex align-items-center position-relative my-1 me-5">
+                                        <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+                                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"></rect>
+															<path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                                  fill="#000000" fill-rule="nonzero"
+                                                                  opacity="0.3"></path>
+															<path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                                  fill="#000000" fill-rule="nonzero"></path>
+														</g>
+													</svg>
+												</span>
+                                        <!--end::Svg Icon-->
+                                        <input type="text" data-kt-permissions-table-filter="search"
+                                               class="form-control form-control-solid w-250px ps-15"
+                                               placeholder="Tìm kiếm ">
+                                    </div>
+                                    <!--end::Search-->
+                                </div>
+                                <!--end::Card title-->
+
+                            </div>
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0">
+                                <!--begin::Table-->
+                                <div id="kt_permissions_table_wrapper"
+                                     class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0 dataTable no-footer"
+                                               id="kt_permissions_table" role="grid">
+                                            <!--begin::Table head-->
+                                            <thead>
+                                            <!--begin::Table row-->
+                                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0"
+                                                role="row">
+                                                <th class="min-w-150px sorting" tabindex="0"
+                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
+                                                    style="width: 164.983px;"
+                                                    aria-label="Name: activate to sort column ascending">Tên thành viên
+                                                </th>
+                                                <th class="min-w-125px sorting" tabindex="0"
+                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
+                                                    style="width: 139.3px;"
+                                                    aria-label="Created Date: activate to sort column ascending">Tên tài khoản
+                                                </th>
+                                                <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
+                                                    style="width: 455.65px;" aria-label="Assigned to">Vai trò
+                                                </th>
+                                                <th class="text-end min-w-100px sorting_disabled" rowspan="1"
+                                                    colspan="1" style="width: 106.567px;" aria-label="Actions">Hành động
+                                                </th>
+                                            </tr>
+                                            <!--end::Table row-->
+                                            </thead>
+                                            <!--end::Table head-->
+                                            <!--begin::Table body-->
+                                            <tbody class="fw-bold text-gray-600">
+                                            <th:block th:each="user, iState : ${LIST_USER}">
+                                                <tr class="" th:classappend="${iState.index % 2 == 0 ? 'even': 'odd'}">
+                                                    <!--begin::Name=-->
+                                                    <td th:text="|*{user.lastName} *{user.firstName}|"></td>
+                                                    <!--end::Name=-->
+                                                    <!--begin::Username-->
+                                                    <td th:text="*{user.username}"></td>
+                                                    <!--end::Username-->
+                                                    <!--begin::Assigned to=-->
+                                                    <td>
+                                                        <span th:if="*{user.role.roleName.equals('Admin')}"
+                                                              class="badge badge-light-primary fs-7 m-1">Administrator</span>
+                                                        <span th:if="*{user.role.roleName.equals('Teacher')}"
+                                                              class="badge badge-light-danger fs-7 m-1">Teacher</span>
+                                                        <span th:if="*{user.role.roleName.equals('Student')}"
+                                                              class="badge badge-light-success fs-7 m-1">Student</span>
+                                                    </td>
+                                                    <!--end::Assigned to=-->
+                                                    <!--begin::Action=-->
+                                                    <td class="text-end">
+                                                        <!--begin::Update-->
+                                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3 btn-update" th:if="${user.username != userLogin.username}"
+                                                                data-bs-toggle="modal" th:data="${user.username}" th:data-role="${user.role.roleName}"
+                                                                data-bs-target="#kt_modal_update_permission">
+                                                            <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
+                                                            <span class="svg-icon svg-icon-3">
+																			<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>
+																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+																			</svg>
+																		</span>
+                                                            <!--end::Svg Icon-->
+                                                        </button>
+                                                        <!--end::Update-->
+                                                    </td>
+                                                    <!--end::Action=-->
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                            <!--end::Table body-->
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+                        <!--begin::Modals-->
+                        <!--begin::Modal - Update permissions-->
+                        <div class="modal fade" id="kt_modal_update_permission" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bolder">Cập nhật phân quyền</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                             data-kt-permissions-modal-action="close">
+                                            <!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+                                            <span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+															<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+                                                               fill="#000000">
+																<rect fill="#000000" x="0" y="7" width="16" height="2"
+                                                                      rx="1"></rect>
+																<rect fill="#000000" opacity="0.5"
+                                                                      transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)"
+                                                                      x="0" y="7" width="16" height="2" rx="1"></rect>
+															</g>
+														</svg>
+													</span>
+                                            <!--end::Svg Icon-->
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                        <!--begin::Notice-->
+                                        <!--begin::Notice-->
+                                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">
+                                            <!--begin::Icon-->
+                                            <!--begin::Svg Icon | path: icons/duotone/Code/Warning-1-circle.svg-->
+                                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12"
+                                                                    r="10"></circle>
+															<rect fill="#000000" x="11" y="7" width="2" height="8"
+                                                                  rx="1"></rect>
+															<rect fill="#000000" x="11" y="16" width="2" height="2"
+                                                                  rx="1"></rect>
+														</svg>
+													</span>
+                                            <!--end::Svg Icon-->
+                                            <!--end::Icon-->
+                                            <!--begin::Wrapper-->
+                                            <div class="d-flex flex-stack flex-grow-1">
+                                                <!--begin::Content-->
+                                                <div class="fw-bold">
+                                                    <div class="fs-6 text-gray-600">
+                                                        <strong class="me-1">Chú ý!</strong>Khi thay đổi phân quyền,
+                                                        Bạn sẽ thay đổi chức năng của thành viên.
+                                                        Hãy đảm bảo rằng bạn hoàn toàn chắc chắn trước khi thực hiện.
+                                                    </div>
+                                                </div>
+                                                <!--end::Content-->
+                                            </div>
+                                            <!--end::Wrapper-->
+                                        </div>
+                                        <!--end::Notice-->
+                                        <!--end::Notice-->
+                                        <!--begin::Form-->
+                                        <form id="kt_modal_update_permission_form"
+                                              class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+
+                                                <div class="mb-7 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required fw-bold fs-6 mb-5">Vai trò</label>
+                                                    <input type="hidden" name="roleUpdate" id="roleUpdate">
+                                                    <!--end::Label-->
+                                                    <!--begin::Roles-->
+                                                    <!--begin::Input row-->
+                                                    <th:block th:each="role, iState : ${LIST_ROLE}">
+                                                        <!--begin::Input row-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Radio-->
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <!--begin::Input-->
+                                                                <input class="form-check-input me-3" name="user_role" type="radio" th:value="*{role.roleName}" th:id="*{role.roleName}">
+                                                                <!--end::Input-->
+                                                                <!--begin::Label-->
+                                                                <label class="form-check-label" th:for="*{role.roleName}">
+                                                                    <div class="fw-bolder text-gray-800" th:text="*{role.roleName}"></div>
+                                                                    <div class="text-gray-600" th:text="*{role.roleDescription}"></div>
+                                                                </label>
+                                                                <!--end::Label-->
+                                                            </div>
+                                                            <!--end::Radio-->
+                                                        </div>
+                                                        <!--end::Input row-->
+                                                        <div class="separator separator-dashed my-5"></div>
+
+                                                    </th:block>
+
+                                                    <!--end::Roles-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Actions-->
+                                            <div class="text-center pt-15">
+                                                <button type="reset" class="btn btn-white me-3"
+                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ
+                                                </button>
+                                                <button type="submit" class="btn btn-primary"
+                                                        data-kt-permissions-modal-action="submit">
+                                                    <span class="indicator-label">Cập nhật</span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
+															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                            <div></div>
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - Update permissions-->
+                        <!--end::Modals-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<!--<script th:src="@{/js/list.js}"></script>-->
+<script th:src="@{/js/permission/update-permission.js}"></script>
+</body>
+</html>

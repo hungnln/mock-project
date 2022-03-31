@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title th:text="|Thêm câu hỏi cho ${courseModule.name} |" th:if="${addQuestion}"></title>
+    <title th:text="|Sửa câu hỏi cho ${courseModule.name} |" th:if="${!addQuestion}"></title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
+                                th:text="|Thêm ${questionName}|" th:if="${addQuestion}"></h1>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
+                                th:text="|Sửa ${questionName}|" th:if="${!addQuestion}"></h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
+                                        khiển</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted"
+                                    th:text="${courseModule.courseSections.courseSectionName}"></li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark" th:text="${courseModule.name}"></li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Module - ADD-->
+                        <form action="" class="form mb-15 fv-plugins-bootstrap5 fv-plugins-framework"
+                              method="post" id="kt_add_question">
+                            <input type="hidden" name="quizID" id="quizID" th:value="${courseModule.quiz.quizId}">
+                            <input type="hidden" name="questionID" id="questionID" th:if="${!addQuestion}" th:value="${question.questionId}">
+                            <input type="hidden" name="qType" id="qType" th:value="${!addQuestion ? question.questionType  :param.question_type}">
+                            <input type="hidden" name="moduleID" id="moduleID" th:value="${courseModule.courseModuleId}">
+                            <!-- Header-->
+                            <div class="card">
+                                <!--begin::Body-->
+                                <div class="card-body p-lg-17">
+                                    <!--begin::Layout-->
+                                    <div class="d-flex flex-column flex-lg-row mb-0">
+                                        <!--begin::Content-->
+                                        <div class="flex-lg-row-fluid me-0">
+                                            <!--begin::Form-->
+                                            <!--begin:Title-->
+                                            <div class="mb-10">
+                                                <!--begin::Title-->
+                                                <h1 class="text-dark mb-3">
+                                                    <img th:src="@{|/img/Plus.svg|}"
+                                                         class="m-lg-4"
+                                                         th:text="|Thêm ${questionName} mới vào ${courseModule.name}|" th:if="${addQuestion}">
+                                                </h1>
+                                                <h1 class="text-dark mb-3">
+                                                    <img th:src="@{|/img/Plus.svg|}"
+                                                         class="m-lg-4"
+                                                         th:text="|Sửa ${questionName} của ${courseModule.name}|" th:if="${!addQuestion}">
+                                                </h1>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end:Title-->
+                                            <!--begin::Question Name-->
+                                            <div class="row mb-5">
+                                                <!--begin::Col-->
+                                                <div class="col-md-12 fv-row fv-plugins-icon-container">
+                                                    <!--end::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2"
+                                                           th:text="|Tên câu hỏi|"></label>
+                                                    <!--end::Label-->
+                                                    <!--end::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="" name="name" th:if="${question==null}">
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="" name="name" th:if="${question!=null}"
+                                                           th:value="${question.questionName}">
+                                                    <!--end::Input-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Question Text-->
+                                            <div class="d-flex flex-column mb-9 fv-row fv-plugins-icon-container">
+                                                <label class="fs-6 fw-bold mb-2">Nội dung câu hỏi</label>
+                                                <textarea class="form-control form-control-solid" rows="4"
+                                                          name="questionText" placeholder=""
+                                                          th:text="${!addQuestion ? question.questionText : ''}"></textarea>
+                                            </div>
+                                            <!-- Default Mark -->
+                                            <div class="row mb-5">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">Số điểm của câu
+                                                    hỏi</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8">
+                                                    <!--begin::Row-->
+                                                    <div class="row">
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                                                            <input type="text" name="defaultMark"
+                                                                   class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                   placeholder="Nhập số điểm"
+                                                                   th:value="${!addQuestion ? question.defaultMark : '1'}">
+                                                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Row-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <div class="separator separator-dashed my-5"></div>
+
+                                            <th:block th:if="${question_type.contains('QuestionMultichoice')}">
+                                                <th:block
+                                                        th:replace="~{/layout/questionChild::QuestionMultichoice}"></th:block>
+                                            </th:block>
+                                            <th:block th:if="${question_type.contains('QuestionTrueFalse')}">
+                                                <th:block
+                                                        th:replace="~{/layout/questionChild::QuestionTrueFalse}"></th:block>
+                                            </th:block>
+                                            <th:block th:if="${question_type.contains('QuestionEssay')}">
+                                                <th:block
+                                                        th:replace="~{/layout/questionChild::QuestionEssay}"></th:block>
+                                            </th:block>
+
+                                            <!--end::Form-->
+
+                                        </div>
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Layout-->
+
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--  Footer Button -->
+                            <div class="card mt-5">
+                                <!--begin::Body-->
+                                <div class="card-body p-lg-17" style="padding-bottom: 0 !important; padding-top: 0 !important;">
+                                    <!--begin::Layout-->
+                                    <div class="d-flex flex-column flex-lg-row mb-17">
+                                        <!--begin::Content-->
+                                        <div class="flex-lg-row-fluid me-0">
+                                            <!--begin::Separator-->
+                                            <div class="separator mb-8"></div>
+                                            <!--end::Separator-->
+                                            <!-- Button-->
+                                            <div class="row md-5">
+                                                <!--begin::Submit-->
+                                                <a th:href="@{/teacher/viewModule(id=${courseModule.courseModuleId})}"
+                                                   class="col-md-6 btn btn-light" id="kt_module_cancel_button">
+                                                    <!--begin::Indicator-->
+                                                    <span class="indicator-label">Hủy bỏ</span>
+                                                    <!--end::Indicator-->
+                                                </a>
+                                                <!--end::Submit-->
+                                                <!--begin::Submit-->
+                                                <button type="submit" class="col-md-6 btn btn-primary"
+                                                        id="kt_question_submit_button">
+                                                    <!--begin::Indicator-->
+                                                    <span class="indicator-label" th:text="|Thêm câu hỏi|"
+                                                          th:if="${addQuestion}"></span>
+                                                    <span class="indicator-label" th:text="|Sửa câu hỏi|"
+                                                          th:if="${!addQuestion}"></span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                    <!--end::Indicator-->
+                                                </button>
+                                                <!--end::Submit-->
+                                            </div>
+                                        </div>
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Layout-->
+
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                        </form>
+                        <!--end::Form - Apply-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{|/js/question/${question_type}.js|}"></script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <div th:replace="~{/layout/include:: head/link}"></div>
+  <title th:text="|Thêm tài nguyên ${param.type}|" th:if="${addPage}"></title>
+  <title th:text="|Sửa tài nguyên ${param.type}|" th:if="${!addPage}"></title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+  <!--begin::Page-->
+  <div class="page d-flex flex-row flex-column-fluid">
+    <!--begin::Aside-->
+    <div th:replace="~{/layout/aside::aside}"></div>
+    <!--end::Aside-->
+    <!--begin::Wrapper-->
+    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+      <!--begin::Header-->
+      <div th:replace="~{/layout/header::header}"></div>
+      <!--end::Header-->
+      <!--begin::Content-->
+      <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Toolbar-->
+        <div class="toolbar" id="kt_toolbar">
+          <!--begin::Container-->
+          <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-place="true" data-kt-place-mode="prepend"
+                 data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                 class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+              <!--begin::Title-->
+              <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3" th:text="|Thêm tài nguyên ${param.type}|" th:if="${addPage}"></h1>
+              <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3" th:text="|Sửa tài nguyên ${param.type}|" th:if="${!addPage}"></h1>
+              <!--end::Title-->
+              <!--begin::Separator-->
+              <span class="h-20px border-gray-200 border-start mx-4"></span>
+              <!--end::Separator-->
+              <!--begin::Breadcrumb-->
+              <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">
+                  <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
+                    khiển</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                  <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                  <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted" th:text="${courseSection.course.fullName}"></li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                  <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-dark" th:text="${courseSection.courseSectionName}"></li>
+                <!--end::Item-->
+              </ul>
+              <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::Toolbar-->
+        <!--begin::Post-->
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+          <!--begin::Container-->
+          <div id="kt_content_container" class="container">
+            <!--begin::Module - ADD-->
+            <div class="card">
+              <!--begin::Body-->
+              <div class="card-body p-lg-17">
+                <!--begin::Layout-->
+                <div class="d-flex flex-column flex-lg-row mb-17">
+                  <!--begin::Content-->
+                  <div class="flex-lg-row-fluid me-0">
+                    <!--begin::Form-->
+                    <form action="" class="form mb-15 fv-plugins-bootstrap5 fv-plugins-framework"
+                          method="post" id="kt_careers_form">
+                      <input type="hidden" name="courseModuleID" id="courseModuleID" th:if="${courseModule!= null}" th:value="${courseModule.courseModuleId}">
+                      <input type="hidden" name="sectionID" id="sectionID" th:value="${courseSection.courseSectionId}">
+                      <input type="hidden" name="typeName" id="typeName" th:value="${param.type}">
+                      <input type="hidden" name="courseID" id="courseID" th:value="${courseSection.course.courseId}">
+                      <!--begin:Title-->
+                      <div class="mb-10">
+                        <!--begin::Title-->
+                        <h1 class="text-dark mb-3">
+                          <img th:src="@{|/img/${param.type}.svg|}"
+                               class="m-lg-4"
+                               th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|">
+                        </h1>
+                        <!--end::Title-->
+                      </div>
+                      <!--end:Title-->
+                      <!--begin::Input group-->
+                      <div class="row mb-5">
+                        <!--begin::Col-->
+                        <div class="col-md-12 fv-row fv-plugins-icon-container">
+                          <!--end::Label-->
+                          <label class="required fs-5 fw-bold mb-2" th:text="|Tên ${param.type}|"></label>
+                          <!--end::Label-->
+                          <!--end::Input-->
+                          <input type="text" class="form-control form-control-solid" placeholder="" name="name" th:if="${courseModule==null}">
+                          <input type="text" class="form-control form-control-solid"
+                                 placeholder="" name="name" th:if="${courseModule!=null}" th:value="${courseModule.name}">
+                          <!--end::Input-->
+                          <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <!--end::Col-->
+                      </div>
+                      <!--end::Input group-->
+                      <!--begin::Input group-->
+                      <div class="d-flex flex-column mb-9">
+                        <label class="fs-6 fw-bold mb-2">Thông tin mô tả</label>
+                        <textarea class="form-control form-control-solid" rows="4"
+                                  name="description" placeholder="" th:text="${!addPage ? courseModule.description : ''}"></textarea>
+                      </div>
+                      <div class="row mb-5">
+                        <!--begin::Label-->
+                        <label class="col-lg-5 col-form-label fw-bold fs-6">Hiện thị thông tin chi tiết trên trang khóa học
+                          <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Hiện thị bên dưới tên của tài nguyên" aria-label="Hiện thị bên dưới tên của tài nguyên"></i>
+                        </label>
+                        <!--begin::Label-->
+                        <!--begin::Label-->
+                        <div class="col-lg-4 d-flex align-items-center">
+                          <div class="form-check form-check-solid form-switch fv-row">
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="showDes" th:checked="${!addPage ? courseModule.showDescription: false}">
+                            <label class="form-check-label" for="showDes"></label>
+                          </div>
+                        </div>
+                        <!--begin::Label-->
+
+                      </div>
+                      <div class="separator separator-dashed my-5"></div>
+
+
+                      <th:block th:if="${param.type.contains('Assignment')}" >
+                      <th:block th:replace="~{/layout/addModuleChild::Assginment}"></th:block>
+                      </th:block>
+
+                      <th:block th:if="${param.type.contains('Quiz')}" >
+                        <th:block th:replace="~{/layout/addModuleChild::Quiz}"></th:block>
+                      </th:block>
+
+                      <th:block th:if="${param.type.contains('FileModule')}" >
+                        <th:block th:replace="~{/layout/addModuleChild::FileModule}"></th:block>
+                      </th:block>
+
+                      <th:block th:if="${param.type.contains('Url')}" >
+                        <th:block th:replace="~{/layout/addModuleChild::Url}"></th:block>
+                      </th:block>
+
+
+
+
+
+                      <!--begin::Separator-->
+                      <div class="separator mb-8"></div>
+                      <!--end::Separator-->
+                      <!-- Button-->
+                      <div class="row md-5">
+                        <!--begin::Submit-->
+                        <a th:href="@{/teacher/viewCourse(id=${courseSection.course.courseId})}" class="col-md-6 btn btn-light" id="kt_module_cancel_button">
+                          <!--begin::Indicator-->
+                          <span class="indicator-label">Hủy bỏ</span>
+                             <!--end::Indicator-->
+                        </a>
+                        <!--end::Submit-->
+                        <!--begin::Submit-->
+                        <button type="submit" class="col-md-6 btn btn-primary" id="kt_module_submit_button">
+                          <!--begin::Indicator-->
+                          <span class="indicator-label" th:text="|Thêm ${param.type}|" th:if="${addPage}"></span>
+                          <span class="indicator-label" th:text="|Sửa ${param.type}|" th:if="${!addPage}"></span>
+                          <span class="indicator-progress">Vui lòng chờ...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                          <!--end::Indicator-->
+                        </button>
+                        <!--end::Submit-->
+                      </div>
+                      <div></div>
+                    </form>
+                    <!--end::Form-->
+
+                  </div>
+                  <!--end::Content-->
+                </div>
+                <!--end::Layout-->
+
+              </div>
+              <!--end::Body-->
+            </div>
+            <!--end::Careers - Apply-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::Post-->
+      </div>
+      <!--end::Content-->
+      <!--begin::Footer-->
+      <div th:replace="~{/layout/footer::footer}"></div>
+      <!--end::Footer-->
+    </div>
+    <!--end::Wrapper-->
+  </div>
+  <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{|/js/module/add${param.type}.js|}"></script>
+
+</body>
+</html>
