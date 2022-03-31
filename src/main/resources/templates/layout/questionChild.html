@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Question Child</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <th:block th:fragment="QuestionMultichoice">
+                <!--Start::Single Answer-->
+                <div class="row mb-5">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Loại đáp án</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Loại đáp án" name="singleAnswer"
+                                data-select2-id="select2-data-10-ex9i" tabindex="-1" aria-hidden="true">
+                            <option value="1" th:selected="${!addQuestion ? question.questionMultichoice.singleAnswer == true: true}">Chọn một đáp án</option>
+                            <option value="0" th:selected="${!addQuestion ? question.questionMultichoice.singleAnswer == false : false}">Chọn nhiều đáp án</option>
+
+                        </select>
+                    </div>
+                </div>
+                <!--Start::Number of choice-->
+                <div class="row mb-5">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Đánh dấu đáp án</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Đánh dấu đáp án" name="numberTheChoice"
+                                data-select2-id="select2-data-10-ex8i" tabindex="-1" aria-hidden="true">
+                            <option value="1" th:selected="${!addQuestion ? question.questionMultichoice.numberTheChoice == true : true}">A, B, C, D,...</option>
+                            <option value="0" th:selected="${!addQuestion ? question.questionMultichoice.numberTheChoice == false : false}">Không đánh dấu</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="separator separator-dashed my-5"></div>
+                <!-- Title-->
+                <div class="d-flex justify-content-between mb-10">
+                    <!--begin::Title-->
+                    <div class="card-title">
+                        <h3 class="d-flex align-items-center position-relative text-dark mb-3">
+                            Đáp án
+                        </h3>
+                    </div>
+                    <div class="card-toolbar">
+                        <h2 class="text-danger mb-3">Đáp án đúng</h2>
+                    </div>
+                    <!--end::Title-->
+
+                </div>
+                <!--end:Title-->
+                <!--Start Answer-->
+                <div class="wrapper-ans">
+                    <div class="row wrapper-choice">
+                        <th:block th:if="${addQuestion}">
+                        <div class="row ans mb-5">
+                            <div class="col-11 me-0 bg-light-primary rounded border-primary border border-dashed p-6">
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3 d-flex align-items-center">
+                                        <div class="fs-6 fw-bold mt-2 mb-3 fs-3">Lựa chọn 1</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <textarea name="ans[]"
+                                                  class="form-control form-control-white h-100px"></textarea>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-bold mt-2 mb-3">Giải thích</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <input type="text" class="form-control form-control-white" name="feedback[]"
+                                               value="">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-lg-start fv-row fv-plugins-icon-container">
+
+                                <div class="form-check form-check-custom form-check-solid me-9">
+                                    <input class="form-check-input" type="radio" value="" id="c_ans1" name="c_ans[]">
+                                    <label class="form-check-label ms-3" for="c_ans1">Đúng</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ans mb-5">
+                            <div class="col-11 me-0 bg-light-primary rounded border-primary border border-dashed p-6">
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3 d-flex align-items-center">
+                                        <div class="fs-6 fw-bold mt-2 mb-3 fs-3">Lựa chọn 2</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <textarea name="ans[]"
+                                                  class="form-control form-control-white h-100px"></textarea>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-bold mt-2 mb-3">Giải thích</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <input type="text" class="form-control form-control-white" name="feedback[]"
+                                               value="">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-lg-start fv-row fv-plugins-icon-container">
+
+                                <div class="form-check form-check-custom form-check-solid me-9">
+                                    <input class="form-check-input" type="radio" value="" id="c_ans2" name="c_ans[]">
+                                    <label class="form-check-label ms-3" for="c_ans2">Đúng</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ans mb-5">
+                            <div class="col-11 me-0 bg-light-primary rounded border-primary border border-dashed p-6">
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3 d-flex align-items-center">
+                                        <div class="fs-6 fw-bold mt-2 mb-3 fs-3">Lựa chọn 3</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <textarea name="ans[]"
+                                                  class="form-control form-control-white h-100px"></textarea>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-bold mt-2 mb-3">Giải thích</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <input type="text" class="form-control form-control-white" name="feedback[]"
+                                               value="">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-lg-start fv-row fv-plugins-icon-container">
+
+                                <div class="form-check form-check-custom form-check-solid me-9">
+                                    <input class="form-check-input" type="radio" value="" id="c_ans3" name="c_ans[]">
+                                    <label class="form-check-label ms-3" for="c_ans3">Đúng</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ans mb-5">
+                            <div class="col-11 me-0 bg-light-primary rounded border-primary border border-dashed p-6">
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3 d-flex align-items-center">
+                                        <div class="fs-6 fw-bold mt-2 mb-3 fs-3">Lựa chọn 4</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <textarea name="ans[]"
+                                                  class="form-control form-control-white h-100px"></textarea>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-bold mt-2 mb-3">Giải thích</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <input type="text" class="form-control form-control-white" name="feedback[]"
+                                               value="">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-lg-start fv-row fv-plugins-icon-container">
+
+                                <div class="form-check form-check-custom form-check-solid me-9">
+                                    <input class="form-check-input" type="radio" value="" id="c_ans4" name="c_ans[]">
+                                    <label class="form-check-label ms-3" for="c_ans4">Đúng</label>
+                                </div>
+                            </div>
+                        </div>
+                        </th:block>
+
+                        <th:block th:if="${!addQuestion}">
+                            <div class="row ans mb-5" th:each="ans,iState : ${question.answers}">
+                                <div class="col-11 me-0 bg-light-primary rounded border-primary border border-dashed p-6">
+                                    <div class="row mb-8">
+                                        <!--begin::Col-->
+                                        <div class="col-xl-3 d-flex align-items-center">
+                                            <div class="fs-6 fw-bold mt-2 mb-3 fs-3" th:text="|Lựa chọn *{iState.count}|"></div>
+                                        </div>
+                                        <!--end::Col-->
+                                        <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                        <textarea name="ans[]"
+                                                  class="form-control form-control-white h-100px" th:text="*{ans.answer}"></textarea>
+                                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-8">
+                                        <!--begin::Col-->
+                                        <div class="col-xl-3">
+                                            <div class="fs-6 fw-bold mt-2 mb-3">Giải thích</div>
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                                            <input type="text" class="form-control form-control-white" name="feedback[]"
+                                                   th:value="*{ans.feedback}">
+                                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1 d-flex justify-content-lg-start fv-row fv-plugins-icon-container">
+
+                                    <div class="form-check form-check-custom form-check-solid me-9">
+                                        <input class="form-check-input" type="radio" value="" th:id="|c_ans*{iState.count}|" name="c_ans[]" th:checked="*{ans.correct}">
+                                        <label class="form-check-label ms-3" th:for="|c_ans*{iState.count}|">Đúng</label>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="ansID[]" th:value="*{ans.questionAnswersId}">
+                            </div>
+                        </th:block>
+                    </div>
+                    <div class="d-flex justify-content-end py-6 px-7">
+                        <input type="hidden" name="numOfQuestion" th:value="${!addQuestion ? question.answers.size() :'4'}">
+                        <button type="submit" class="btn btn-light-primary" id="btn-add-answer">
+                            <span class="svg-icon svg-icon-3">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+													<path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z"
+                                                          fill="#12131A"></path>
+													<path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z"
+                                                          fill="#12131A"></path>
+												</svg>
+											</span>
+                            Thêm đáp án
+                        </button>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:fragment="QuestionTrueFalse">
+                <!-- Correct Answer  -->
+                <div class="row mb-2">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Đáp án đúng</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Đáp án đúng" name="correct_ans"
+                                data-select2-id="select2-data-10-ex8i" tabindex="-1" aria-hidden="true">
+                            <option value="1" th:selected="${!addQuestion ? question.questionTrueFalse.selection == true : true}">Đúng</option>
+                            <option value="0" th:selected="${!addQuestion ? question.questionTrueFalse.selection == false : false}">Sai</option>
+                        </select>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:fragment="QuestionEssay">
+                <!-- Require Answer  -->
+                <div class="row mb-2">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Yêu cầu văn bản</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Đáp án đúng" name="require"
+                                data-select2-id="select2-data-10-ex8i" tabindex="-1" aria-hidden="true">
+                            <option value="1" th:selected="${!addQuestion ? question.questionEssay.required == true : true}">Bắt buộc</option>
+                            <option value="0" th:selected="${!addQuestion ? question.questionEssay.required == false : false}">Tùy chọn</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Input box size -->
+                <div class="row mb-2">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Kích thước ô nhập</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container" data-select2-id="select2-data-4-uqj6">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Đáp án đúng" name="input_size"
+                                data-select2-id="select2-data-10-ex9i" tabindex="-1" aria-hidden="true">
+                            <option value="2" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 2 : true}">2 dòng</option>
+                            <option value="3" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 3 : false}">3 dòng</option>
+                            <option value="5" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 5 : false}">5 dòng</option>
+                            <option value="10" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 10 : false}">10 dòng</option>
+                            <option value="15" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 15 : false}">15 dòng</option>
+                            <option value="20" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 20 : false}">20 dòng</option>
+                            <option value="25" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 25 : false}">25 dòng</option>
+                            <option value="30" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 30 : false}">30 dòng</option>
+                            <option value="35" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 35 : false}">35 dòng</option>
+                            <option value="40" th:selected="${!addQuestion ? question.questionEssay.inputBoxSize == 40 : false}">40 dòng</option>
+                        </select>
+                    </div>
+                </div>
+
+            </th:block>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+</body>
+</html>

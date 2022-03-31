@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="">
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link th:href="@{/css/datatables.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/font/plugins.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:fragment="script">
+    <script th:src="@{/js/plugins.bundle.js}"></script>
+    <script th:src="@{/js/scripts.bundle.js}"></script>
+    <script th:src="@{/js/datatables.bundle.js}"></script>
+    <script th:src="@{/js/flatpickr.js}"></script>
+    <script>
+        flatpickr(".flatpickr-input",{
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            time_24hr: true
+        });
+        flatpickr(".flatpickr-minute",{
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true
+        });
+    </script>
+</div>
+</body>
+</html>

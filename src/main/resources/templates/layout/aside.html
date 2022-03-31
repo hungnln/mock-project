@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link th:href="@{/css/datatables.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/font/plugins.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css"/>
+    <title>Aside</title>
+</head>
+<body>
+<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
+     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
+     data-kt-drawer-toggle="#kt_aside_mobile_toggle" th:fragment="aside">
+    <!--begin::Brand-->
+    <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+        <!--begin::Logo-->
+        <a href="/afterLogin">
+            <img alt="Logo" th:src="@{/img/logo-v2.png}" class="logo" height="35px" width="35px" />
+        </a>
+        <!--end::Logo-->
+        <!--begin::Aside toggler-->
+        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
+             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+             data-kt-toggle-name="aside-minimize">
+          <span class="svg-icon svg-icon-1 rotate-180">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<polygon points="0 0 24 0 24 24 0 24"/>
+										<path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                              fill="#000000" fill-rule="nonzero"
+                                              transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)"/>
+										<path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                              fill="#000000" fill-rule="nonzero" opacity="0.5"
+                                              transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)"/>
+									</g>
+								</svg>
+							</span>
+            <!--end::Svg Icon-->
+        </div>
+        <!--end::Aside toggler-->
+    </div>
+    <!--end::Brand-->
+    <!--begin::Aside menu-->
+    <div class="aside-menu flex-column-fluid">
+        <!--begin::Aside Menu-->
+        <div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true"
+             data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
+             data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer"
+             data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
+            <!--begin::Menu-->
+            <div class="menu menu-column menu-title-white-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-white-500"
+                 id="#kt_aside_menu" data-kt-menu="true">
+                <div class="menu-item">
+                    <a class="menu-link" th:href="@{/login}" th:classappend="${module == 'home' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-house fs-3"></i>
+										</span>
+                        <span class="menu-title">Home</span>
+                    </a>
+                </div>
+
+
+                <th:block th:if="${userLogin.role.roleName.equals('Admin')}">
+                    <!-- Managing Account -->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Quản lý thành viên</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/admin/userList}"
+                           th:classappend="${module == 'userList' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-people fs-3"></i>
+										</span>
+                            <span class="menu-title">Danh sách thành viên</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/admin/userList}"
+                           th:classappend="${module == 'userDetails' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-person-circle fs-2"></i>
+										</span>
+                            <span class="menu-title">Chi tiết thành viên</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/admin/addUser}"
+                           th:classappend="${module == 'addUser' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-person-plus fs-2"></i>
+										</span>
+                            <span class="menu-title">Thêm thành viên mới</span>
+                        </a>
+                    </div>
+                    <!-- Role -->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Quản lý phân quyền</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/admin/permission}"
+                           th:classappend="${module == 'permission' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-shield-check fs-2"></i>
+										</span>
+                            <span class="menu-title">Phân Quyền</span>
+                        </a>
+                    </div>
+                    <!-- Course Category-->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Quản lý danh mục</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/admin/courseCategory}"
+                           th:classappend="${module == 'courseCategory' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-layers fs-3"></i>
+										</span>
+                            <span class="menu-title">Danh sách khóa học</span>
+                        </a>
+                    </div>
+                </th:block>
+
+                <th:block th:if="${userLogin.role.roleName.equals('Teacher')}">
+                    <!-- Course -->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Quản lý khóa học</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/teacher/course}"
+                           th:classappend="${module == 'course' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-person fs-2"></i>
+										</span>
+                            <span class="menu-title">Khóa Học</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" th:href="@{/teacher/addCourse}"
+                           th:classappend="${module == 'addCourse' ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-person fs-2"></i>
+										</span>
+                            <span class="menu-title">Thêm & Sửa khóa học</span>
+                        </a>
+                    </div>
+                    <!-- List Course -->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Khóa học của bạn</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item menu-accordion" th:each="item : ${myCourses}">
+                        <a class="menu-link" th:href="@{/teacher/viewCourse(id=*{item.courseId})}"
+                           th:classappend="${module == item.courseId.toString() ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-layers fs-3"></i>
+										</span>
+                            <span class="menu-title" th:text="*{item.fullName}"></span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg" style="display: none; overflow: hidden;"
+                             th:style="${module == ('mb' + item.courseId.toString()) ? '':'display: none; overflow: hidden;'}"
+                             th:classappend="${module == ('mb' + item.courseId.toString()) ? 'show':''}"
+                             kt-hidden-height="265">
+                            <div class="menu-item">
+                                <a class="menu-link"
+                                   th:href="@{/teacher/member(id=*{item.courseId})}"
+                                   th:classappend="${module == ('mb' + item.courseId.toString()) ? 'active' : ''}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+                                    <span class="menu-title">Thành viên</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </th:block>
+
+                <th:block th:if="${userLogin.role.roleName.equals('Student')}">
+
+                    <!-- List Course -->
+                    <div class="menu-item">
+                        <div class="menu-content pt-8 pb-2">
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Khóa học của bạn</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item menu-accordion" th:each="item : ${myCourses}">
+                        <a class="menu-link" th:href="@{/student/view(id=*{item.courseId})}"
+                           th:classappend="${module == item.courseId.toString() ? 'active' : ''}">
+										<span class="menu-icon">
+											<i class="bi bi-layers fs-3"></i>
+										</span>
+                            <span class="menu-title" th:text="*{item.fullName}"></span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    </div>
+
+
+                </th:block>
+                <!-- Separator-->
+                <div class="menu-item">
+                    <div class="menu-content">
+                        <div class="separator mx-1 my-4"></div>
+                    </div>
+                </div>
+                <!-- Separator-->
+                <!--                <div class="menu-item">-->
+                <!--                    <a class="menu-link"-->
+                <!--                       href="https://preview.keenthemes.com/metronic8/demo5/layout-builder.html">-->
+                <!--										<span class="menu-icon">-->
+                <!--											<i class="bi bi-layers fs-3"></i>-->
+                <!--										</span>-->
+                <!--                        <span class="menu-title">Profile</span>-->
+                <!--                    </a>-->
+                <!--                </div>-->
+            </div>
+            <!--end::Menu-->
+            <script>
+                var p = document.querySelector('.menu-item > .active');
+                if (p != null) {
+                    var x = p.parentNode;
+                    var subMenu = x.childNodes[3];
+                    console.log(x);
+                    subMenu.style = '';
+                    subMenu.classList.add('hover');
+                    subMenu.classList.add('show');
+                }
+            </script>
+        </div>
+    </div>
+    <!--end::Aside menu-->
+    <!--begin::Footer-->
+    <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
+        <a href="/logout" class="btn btn-custom btn-primary w-100"
+           data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-delay-show="8000"
+           title="Check out the complete documentation with over 100 components">
+            <span class="btn-label">ĐĂNG XUẤT</span>
+            <!--begin::Svg Icon | path: icons/duotone/General/Clipboard.svg-->
+            <span class="svg-icon btn-icon svg-icon-2">
+							<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+        <circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10"></circle>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z"
+              id="Combined-Shape" fill="#000000"></path>
+</svg>
+							</span>
+            <!--end::Svg Icon-->
+        </a>
+    </div>
+    <!--end::Footer-->
+</div>
+<!--end::Aside-->
+</body>
+</html>
