@@ -6,7 +6,7 @@ var KTUsersAddPermission = function () {
         init: function () {
             (() => {
                 var o = FormValidation.formValidation(e, {
-                    fields: {course_category_name: {validators: {notEmpty: {message: "Tên danh mục không được để trống"}}}},
+                    fields: {course_category_name: {validators: {notEmpty: {message: "Please fill course name"}}}},
 
                     plugins: {
                         trigger: new FormValidation.plugins.Trigger,
@@ -19,35 +19,36 @@ var KTUsersAddPermission = function () {
                 });
                 t.querySelector('[data-kt-permissions-modal-action="close"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Bạn có muốn tắt cửa sổ này?",
-                        icon: "warning",
+                        title:'Message',
+                        text: "Want to quit ?",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Có, đóng cửa sổ này!",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                        confirmButtonText: "Quit",
+                        cancelButtonText: "Get Back",
+                        customClass: { cancelButton: "btn btn-primary",confirmButton: "btn btn-danger"}
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
-                })), t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
-                    t.preventDefault(), Swal.fire({
-                        text: "Bạn có chắc chắn muốn hủy bỏ?",
-                        icon: "warning",
-                        showCancelButton: !0,
-                        buttonsStyling: !1,
-                        confirmButtonText: "Chắc chắn, hủy bỏ!",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
-                    }).then((function (t) {
-                        t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
-                            text: "Bạn đã hủy thêm danh mục!.",
-                            icon: "error",
-                            buttonsStyling: !1,
-                            confirmButtonText: "Ok!",
-                            customClass: {confirmButton: "btn btn-primary"}
-                        })
-                    }))
-                }));
+                }))
+                // t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
+                //     t.preventDefault(), Swal.fire({
+                //         text: "Bạn có chắc chắn muốn hủy bỏ?",
+                //         icon: "warning",
+                //         showCancelButton: !0,
+                //         buttonsStyling: !1,
+                //         confirmButtonText: "Chắc chắn, hủy bỏ!",
+                //         cancelButtonText: "Không, trở lại",
+                //         customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                //     }).then((function (t) {
+                //         t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
+                //             text: "Bạn đã hủy thêm danh mục!.",
+                //             icon: "error",
+                //             buttonsStyling: !1,
+                //             confirmButtonText: "Ok!",
+                //             customClass: {confirmButton: "btn btn-primary"}
+                //         })
+                //     }))
+                // }));
                 const i = t.querySelector('[data-kt-permissions-modal-action="submit"]');
                 i.addEventListener("click", (function (t) {
                     t.preventDefault(), o && o.validate().then((function (t) {
@@ -70,10 +71,11 @@ var KTUsersAddPermission = function () {
                                         let statusCode = this.status;
                                         if(statusCode === 200){
                                             Swal.fire({
-                                                text: `Chúc mừng, ${this.responseText}.`,
-                                                icon: 'success',
+                                                title: 'Message',
+                                                text: `Add new course successfully`,
+
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'Ok',
                                                 customClass: {
                                                     confirmButton: 'btn btn-primary'
                                                 }
@@ -82,10 +84,9 @@ var KTUsersAddPermission = function () {
                                             })
                                         }else{
                                             Swal.fire({
-                                                text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
-                                                icon: 'error',
+                                                text: `Something went wrong. Please try again`,
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'Try again',
                                                 customClass: {
                                                     confirmButton: 'btn btn-primary'
                                                 }
@@ -100,10 +101,9 @@ var KTUsersAddPermission = function () {
 
                         }else{
                             Swal.fire({
-                                text: 'Xin lỗi, bạn phải nhập hết thông tin, vui lòng thử lại.',
-                                icon: 'error',
+                                text: 'Fill all information and try again',
                                 buttonsStyling: !1,
-                                confirmButtonText: 'Ok!',
+                                confirmButtonText: 'Try again',
                                 customClass: {
                                     confirmButton: 'btn btn-primary'
                                 }

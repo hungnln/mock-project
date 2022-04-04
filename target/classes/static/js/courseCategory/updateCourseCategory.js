@@ -18,7 +18,7 @@ var KTUsersUpdatePermission = function () {
         init: function () {
             (() => {
                 var o = FormValidation.formValidation(e, {
-                    fields: {update_category_name: {validators: {notEmpty: {message: "Vui lòng nhập tên danh mục"}}}},
+                    fields: {update_category_name: {validators: {notEmpty: {message: "Please fill course name"}}}},
                     plugins: {
                         trigger: new FormValidation.plugins.Trigger,
                         bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -31,13 +31,14 @@ var KTUsersUpdatePermission = function () {
 
                 t.querySelector('[data-kt-permissions-modal-action="close"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Bạn có chắc chắn muốn thoát?",
-                        icon: "warning",
+                        title:'Message',
+                        text: "Want to exit ?",
+                        // icon: "warning",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Chắc chắn, tắt !",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                        confirmButtonText: "Quit",
+                        cancelButtonText: "Get Back",
+                        customClass: {confirmButton: "btn btn-danger", cancelButton: "btn btn-primary"}
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
@@ -86,10 +87,11 @@ var KTUsersUpdatePermission = function () {
                                         let statusCode = this.status;
                                         if (statusCode === 200) {
                                             Swal.fire({
-                                                text: `Danh mục đã được cập nhật!`,
+                                                title:'Message',
+                                                text: `Course update successfully`,
                                                 icon: 'success',
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'OK',
                                                 customClass: {
                                                     confirmButton: 'btn btn-primary'
                                                 }
@@ -98,10 +100,11 @@ var KTUsersUpdatePermission = function () {
                                             })
                                         } else {
                                             Swal.fire({
-                                                text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
+                                                title:'Message',
+                                                text: `Something went wrong. Please try again`,
                                                 icon: 'error',
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'Try again',
                                                 customClass: {
                                                     confirmButton: 'btn btn-primary'
                                                 }
@@ -116,10 +119,11 @@ var KTUsersUpdatePermission = function () {
 
                         } else {
                             Swal.fire({
-                                text: 'Xin lỗi, bạn phải nhập hết thông tin, vui lòng thử lại.',
+                                title: 'Message',
+                                text: 'Something went wrong. Please try again',
                                 icon: 'error',
                                 buttonsStyling: !1,
-                                confirmButtonText: 'Ok!',
+                                confirmButtonText: 'Try again',
                                 customClass: {
                                     confirmButton: 'btn btn-primary'
                                 }

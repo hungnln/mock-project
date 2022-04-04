@@ -29,9 +29,22 @@
 *, ::after, ::before {
     box-sizing: border-box
 }
+.form-input {
+    margin-bottom: 0  !important;
+    border-radius: 4px  !important;
+    font-size: 14px  !important;
+    color: #6d6d6d !important;
+    display: block  !important;
+    width: 100%  !important;
+    height: 4rem  !important;
+    padding-right: 16px  !important;
+    padding-left: 16px  !important;
+
+    border: 1px solid rgba(0, 0, 0, 0.2)  !important;
+}
 .btn-resize{
     background-color: rgba(136, 84, 192, 0.98) !important;
-    /*box-shadow: 0px 4px 0px #673d90;*/
+    box-shadow: 0px 4px 0px #673d90 !important;
     transition: all 0.2s ease-out;
     border-radius: 4px !important;
     color: white !important;
@@ -2091,7 +2104,8 @@ progress {
 }
 
 .table > thead {
-    vertical-align: bottom
+    vertical-align: bottom;
+    background-color: rgba(136, 84, 192, 0.98);
 }
 
 .table > :not(:last-child) > :last-child > * {
@@ -4111,7 +4125,9 @@ textarea.form-control-lg {
 .btn-group-vertical > .btn-check:checked + .btn, .btn-group-vertical > .btn-check:focus + .btn, .btn-group-vertical > .btn.active, .btn-group-vertical > .btn:active, .btn-group-vertical > .btn:focus, .btn-group-vertical > .btn:hover, .btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:focus + .btn, .btn-group > .btn.active, .btn-group > .btn:active, .btn-group > .btn:focus, .btn-group > .btn:hover {
     z-index: 1
 }
-
+.toolbar{
+    box-shadow: 0 5px 15px #ccc !important;
+}
 .btn-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -4901,10 +4917,11 @@ textarea.form-control-lg {
 
 .page-link:hover {
     z-index: 2;
-    color: #009ef7;
+    color: #fff;
     text-decoration: none;
-    background-color: #ecf8ff;
-    border-color: transparent
+    background-color: #673d906b;
+    border-color: transparent;
+    border-radius: 50%;
 }
 
 .page-link:focus {
@@ -4922,8 +4939,9 @@ textarea.form-control-lg {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #009ef7;
-    border-color: transparent
+    background-color: #673d90;
+    border-color: transparent;
+    border-radius: 50%;
 }
 
 .page-item.disabled .page-link {
@@ -4931,6 +4949,8 @@ textarea.form-control-lg {
     pointer-events: none;
     background-color: transparent;
     border-color: transparent
+    border-radius: 50%;
+
 }
 
 .page-link {
@@ -33994,13 +34014,20 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0;
+    border-radius: 50%;
     height: 2.5rem;
     min-width: 2.5rem;
     font-weight: 500;
     font-size: 1.075rem
 }
+#kt_permissions_table_next:hover .page-link{
+    transform: scale(1.2);
+    background-color: transparent;
+}
+#kt_permissions_table_next:hover .page-link i {
+    color: #8854c0fa !important;
 
+}
 .page-item .page-link i {
     font-size: .85rem
 }
@@ -34008,7 +34035,7 @@ a:hover {
 .page-item .page-link .next, .page-item .page-link .previous {
     display: block;
     height: .875rem;
-    width: .875rem
+    width: .875rem;
 }
 
 .page-item.next:not(:hover):not(:focus):not(.disabled) .page-link, .page-item.previous:not(:hover):not(:focus):not(.disabled) .page-link {
@@ -37807,7 +37834,7 @@ a:hover {
 }
 
 .btn:not(.btn-shadow):not(.shadow):not(.shadow-sm):not(.shadow-lg) {
-    box-shadow: none !important
+    /*box-shadow: none !important*/
 }
 
 .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
@@ -45700,7 +45727,7 @@ code:not([class*=language-]) {
     .symbol.symbol-xl-25px.symbol-2by3 > img {
         height: 25px;
         width: 37.5px;
-        max-width: auto
+        max-width: auto;
     }
 
     .symbol.symbol-xl-30px > img {

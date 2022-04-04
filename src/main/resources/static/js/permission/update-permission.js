@@ -72,7 +72,10 @@ var KTUsersUpdatePermission = function () {
                             i.disabled = !0;
                             setTimeout(function () {
                                 var radioNode =  document.getElementsByName("user_role");
-                                var roleU, username = document.getElementById('roleUpdate').value;
+                                var roleU = document.getElementById('roleUpdate').value;
+                               var username = document.getElementById('btn-role').getAttribute('data');
+
+
                                 for (const radioNodeElement of radioNode) {
                                     if(radioNodeElement.checked){
                                         roleU = radioNodeElement.value;
@@ -96,24 +99,24 @@ var KTUsersUpdatePermission = function () {
                                         let statusCode = this.status;
                                         if(statusCode === 200){
                                             Swal.fire({
-                                                text: `Vai trò đã được cập nhật!`,
-                                                icon: 'success',
+                                                title:'Message',
+                                                text: `Role change successfuly`,
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'Ok',
                                                 customClass: {
-                                                    confirmButton: 'btn btn-primary'
+                                                    confirmButton: 'btn btn-primary btn-shadow'
                                                 }
                                             }).then(function () {
                                                window.location.reload();
                                             })
                                         }else{
                                             Swal.fire({
-                                                text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
-                                                icon: 'error',
+                                                title:'Message',
+                                                text: `Something went wrong. Please try again`,
                                                 buttonsStyling: !1,
-                                                confirmButtonText: 'Ok!',
+                                                confirmButtonText: 'Try again',
                                                 customClass: {
-                                                    confirmButton: 'btn btn-primary'
+                                                    confirmButton: 'btn btn-primary btn-shadow'
                                                 }
                                             })
                                         }
@@ -126,12 +129,12 @@ var KTUsersUpdatePermission = function () {
 
                         }else{
                             Swal.fire({
-                                text: 'Xin lỗi, bạn phải nhập hết thông tin, vui lòng thử lại.',
-                                icon: 'error',
+                                title:'Message',
+                                text: `Something went wrong. Please try again`,
                                 buttonsStyling: !1,
-                                confirmButtonText: 'Ok!',
+                                confirmButtonText: 'Try again',
                                 customClass: {
-                                    confirmButton: 'btn btn-primary'
+                                    confirmButton: 'btn btn-primary btn-shadow'
                                 }
                             })
                         }
