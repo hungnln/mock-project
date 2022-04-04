@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
-    <title>Phân Quyền</title>
+    <title>Change Role</title>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -27,7 +27,7 @@
             <!--begin::Content-->
             <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                 <!--begin::Toolbar-->
-                <div class="toolbar" id="kt_toolbar">
+                <div class="toolbar" id="kt_toolbar" style="box-shadow: 0 5px 15px #ccc;">
                     <!--begin::Container-->
                     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
                         <!--begin::Page title-->
@@ -35,36 +35,35 @@
                              data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                              class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                             <!--begin::Title-->
-                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Phân quyền thành
-                                viên</h1>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Change Role</h1>
                             <!--end::Title-->
                             <!--begin::Separator-->
-                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">
-                                    <a href="/afterLogin" class="text-muted text-hover-primary">Bảng điều khiển</a>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">Quản lý phân quyền</li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-dark">Phân quyền</li>
-                                <!--end::Item-->
-                            </ul>
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a href="/afterLogin" class="text-muted text-hover-primary">Bảng điều khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Quản lý phân quyền</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark">Phân quyền</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
                             <!--end::Breadcrumb-->
                         </div>
                         <!--end::Page title-->
@@ -79,13 +78,16 @@
                         <!--begin::Card-->
                         <div class="card card-flush">
                             <!--begin::Card header-->
-                            <div class="card-header mt-6">
+                            <div class="card-header">
                                 <!--begin::Card title-->
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1 me-5">
+                                        <input type="text" data-kt-permissions-table-filter="search"
+                                               class="form-control w-250px "
+                                               placeholder="Search user" style="padding-right: 3.75rem;border-radius: 8px;border:2px solid rgba(136, 84, 192, 0.98);">
                                         <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
-                                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                        <span class="svg-icon svg-icon-1 position-absolute" style="right: 20px">
 													<svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                          height="24px" viewBox="0 0 24 24" version="1.1">
@@ -101,9 +103,7 @@
 													</svg>
 												</span>
                                         <!--end::Svg Icon-->
-                                        <input type="text" data-kt-permissions-table-filter="search"
-                                               class="form-control form-control-solid w-250px ps-15"
-                                               placeholder="Tìm kiếm ">
+
                                     </div>
                                     <!--end::Search-->
                                 </div>
@@ -120,63 +120,59 @@
                                         <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0 dataTable no-footer"
                                                id="kt_permissions_table" role="grid">
                                             <!--begin::Table head-->
-                                            <thead>
+                                            <thead >
                                             <!--begin::Table row-->
-                                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0"
+                                            <tr class="text-start fw-bolder text-uppercase gs-0" style="color: #000;font-size: 14px"
                                                 role="row">
-                                                <th class="min-w-150px sorting" tabindex="0"
-                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
-                                                    style="width: 164.983px;"
-                                                    aria-label="Name: activate to sort column ascending">Tên thành viên
-                                                </th>
                                                 <th class="min-w-125px sorting" tabindex="0"
                                                     aria-controls="kt_permissions_table" rowspan="1" colspan="1"
                                                     style="width: 139.3px;"
-                                                    aria-label="Created Date: activate to sort column ascending">Tên tài khoản
+                                                    aria-label="Created Date: activate to sort column ascending">Username
                                                 </th>
-                                                <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
-                                                    style="width: 455.65px;" aria-label="Assigned to">Vai trò
+                                                <th class="min-w-150px sorting" tabindex="0"
+                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
+                                                    style="width: 164.983px;"
+                                                    aria-label="Name: activate to sort column ascending">Full Name
+                                                </th>
+                                                <th class=" sorting_disabled" rowspan="1" colspan="1"
+                                                    style="width: 60px;" aria-label="Assigned to">Role
                                                 </th>
                                                 <th class="text-end min-w-100px sorting_disabled" rowspan="1"
-                                                    colspan="1" style="width: 106.567px;" aria-label="Actions">Hành động
+                                                    colspan="1" style="width: 106.567px;" aria-label="Actions">Option
                                                 </th>
                                             </tr>
                                             <!--end::Table row-->
                                             </thead>
                                             <!--end::Table head-->
                                             <!--begin::Table body-->
-                                            <tbody class="fw-bold text-gray-600">
+                                            <tbody class="fw-bold text-gray-600" >
                                             <th:block th:each="user, iState : ${LIST_USER}">
-                                                <tr class="" th:classappend="${iState.index % 2 == 0 ? 'even': 'odd'}">
+                                                <tr class="" th:classappend="${iState.index % 2 == 0 ? 'even': 'odd'}" >
                                                     <!--begin::Name=-->
+                                                    <td  th:text="*{user.username}"></td>
+
                                                     <td th:text="|*{user.lastName} *{user.firstName}|"></td>
                                                     <!--end::Name=-->
                                                     <!--begin::Username-->
-                                                    <td th:text="*{user.username}"></td>
                                                     <!--end::Username-->
                                                     <!--begin::Assigned to=-->
                                                     <td>
                                                         <span th:if="*{user.role.roleName.equals('Admin')}"
-                                                              class="badge badge-light-primary fs-7 m-1">Administrator</span>
+                                                              class=" fs-7 m-1">Administrator</span>
                                                         <span th:if="*{user.role.roleName.equals('Teacher')}"
-                                                              class="badge badge-light-danger fs-7 m-1">Teacher</span>
+                                                              class=" fs-7 m-1">Teacher</span>
                                                         <span th:if="*{user.role.roleName.equals('Student')}"
-                                                              class="badge badge-light-success fs-7 m-1">Student</span>
+                                                              class=" fs-7 m-1">Student</span>
                                                     </td>
                                                     <!--end::Assigned to=-->
                                                     <!--begin::Action=-->
                                                     <td class="text-end">
                                                         <!--begin::Update-->
-                                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3 btn-update" th:if="${user.username != userLogin.username}"
+                                                        <button class="btn-resize btn btn-shadow" th:if="${user.username != userLogin.username}"
                                                                 data-bs-toggle="modal" th:data="${user.username}" th:data-role="${user.role.roleName}"
-                                                                data-bs-target="#kt_modal_update_permission">
+                                                                data-bs-target="#kt_modal_update_permission" style="font-size: 13px">
                                                             <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>
-																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-																			</svg>
-																		</span>
+                                                           Change
                                                             <!--end::Svg Icon-->
                                                         </button>
                                                         <!--end::Update-->
@@ -198,13 +194,13 @@
                         <!--begin::Modal - Update permissions-->
                         <div class="modal fade" id="kt_modal_update_permission" tabindex="-1" aria-hidden="true">
                             <!--begin::Modal dialog-->
-                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                            <div class="modal-dialog modal-sm modal-dialog-centered mw-400px">
                                 <!--begin::Modal content-->
                                 <div class="modal-content">
                                     <!--begin::Modal header-->
                                     <div class="modal-header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Cập nhật phân quyền</h2>
+                                        <h2 class="fw-bolder">Change Role</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -230,39 +226,39 @@
                                     </div>
                                     <!--end::Modal header-->
                                     <!--begin::Modal body-->
-                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                    <div class="modal-body scroll-y" style="padding-left: 60px;padding-right: 60px">
                                         <!--begin::Notice-->
                                         <!--begin::Notice-->
-                                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">
-                                            <!--begin::Icon-->
-                                            <!--begin::Svg Icon | path: icons/duotone/Code/Warning-1-circle.svg-->
-                                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-														<svg xmlns="http://www.w3.org/2000/svg" width="24px"
-                                                             height="24px" viewBox="0 0 24 24" version="1.1">
-															<circle fill="#000000" opacity="0.3" cx="12" cy="12"
-                                                                    r="10"></circle>
-															<rect fill="#000000" x="11" y="7" width="2" height="8"
-                                                                  rx="1"></rect>
-															<rect fill="#000000" x="11" y="16" width="2" height="2"
-                                                                  rx="1"></rect>
-														</svg>
-													</span>
-                                            <!--end::Svg Icon-->
-                                            <!--end::Icon-->
-                                            <!--begin::Wrapper-->
-                                            <div class="d-flex flex-stack flex-grow-1">
-                                                <!--begin::Content-->
-                                                <div class="fw-bold">
-                                                    <div class="fs-6 text-gray-600">
-                                                        <strong class="me-1">Chú ý!</strong>Khi thay đổi phân quyền,
-                                                        Bạn sẽ thay đổi chức năng của thành viên.
-                                                        Hãy đảm bảo rằng bạn hoàn toàn chắc chắn trước khi thực hiện.
-                                                    </div>
-                                                </div>
-                                                <!--end::Content-->
-                                            </div>
-                                            <!--end::Wrapper-->
-                                        </div>
+<!--                                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">-->
+<!--                                            &lt;!&ndash;begin::Icon&ndash;&gt;-->
+<!--                                            &lt;!&ndash;begin::Svg Icon | path: icons/duotone/Code/Warning-1-circle.svg&ndash;&gt;-->
+<!--                                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">-->
+<!--														<svg xmlns="http://www.w3.org/2000/svg" width="24px"-->
+<!--                                                             height="24px" viewBox="0 0 24 24" version="1.1">-->
+<!--															<circle fill="#000000" opacity="0.3" cx="12" cy="12"-->
+<!--                                                                    r="10"></circle>-->
+<!--															<rect fill="#000000" x="11" y="7" width="2" height="8"-->
+<!--                                                                  rx="1"></rect>-->
+<!--															<rect fill="#000000" x="11" y="16" width="2" height="2"-->
+<!--                                                                  rx="1"></rect>-->
+<!--														</svg>-->
+<!--													</span>-->
+<!--                                            &lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--                                            &lt;!&ndash;end::Icon&ndash;&gt;-->
+<!--                                            &lt;!&ndash;begin::Wrapper&ndash;&gt;-->
+<!--                                            <div class="d-flex flex-stack flex-grow-1">-->
+<!--                                                &lt;!&ndash;begin::Content&ndash;&gt;-->
+<!--                                                <div class="fw-bold">-->
+<!--                                                    <div class="fs-6 text-gray-600">-->
+<!--                                                        <strong class="me-1">Chú ý!</strong>Khi thay đổi phân quyền,-->
+<!--                                                        Bạn sẽ thay đổi chức năng của thành viên.-->
+<!--                                                        Hãy đảm bảo rằng bạn hoàn toàn chắc chắn trước khi thực hiện.-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;end::Content&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;end::Wrapper&ndash;&gt;-->
+<!--                                        </div>-->
                                         <!--end::Notice-->
                                         <!--end::Notice-->
                                         <!--begin::Form-->
@@ -273,14 +269,14 @@
 
                                                 <div class="mb-7 fv-row">
                                                     <!--begin::Label-->
-                                                    <label class="required fw-bold fs-6 mb-5">Vai trò</label>
+<!--                                                    <label class="required fw-bold fs-6 mb-5">Vai trò</label>-->
                                                     <input type="hidden" name="roleUpdate" id="roleUpdate">
                                                     <!--end::Label-->
                                                     <!--begin::Roles-->
                                                     <!--begin::Input row-->
                                                     <th:block th:each="role, iState : ${LIST_ROLE}">
                                                         <!--begin::Input row-->
-                                                        <div class="d-flex">
+                                                        <div class="d-flex" style="margin-bottom: 20px">
                                                             <!--begin::Radio-->
                                                             <div class="form-check form-check-custom form-check-solid">
                                                                 <!--begin::Input-->
@@ -289,14 +285,14 @@
                                                                 <!--begin::Label-->
                                                                 <label class="form-check-label" th:for="*{role.roleName}">
                                                                     <div class="fw-bolder text-gray-800" th:text="*{role.roleName}"></div>
-                                                                    <div class="text-gray-600" th:text="*{role.roleDescription}"></div>
+<!--                                                                    <div class="text-gray-600" th:text="*{role.roleDescription}"></div>-->
                                                                 </label>
                                                                 <!--end::Label-->
                                                             </div>
                                                             <!--end::Radio-->
                                                         </div>
                                                         <!--end::Input row-->
-                                                        <div class="separator separator-dashed my-5"></div>
+
 
                                                     </th:block>
 
@@ -308,14 +304,15 @@
                                             <!--end::Input group-->
                                             <!--begin::Actions-->
                                             <div class="text-center pt-15">
-                                                <button type="reset" class="btn btn-white me-3"
-                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ
-                                                </button>
+
                                                 <button type="submit" class="btn btn-primary"
                                                         data-kt-permissions-modal-action="submit">
-                                                    <span class="indicator-label">Cập nhật</span>
-                                                    <span class="indicator-progress">Vui lòng chờ...
-															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                    <span class="indicator-label">Change</span>
+<!--                                                    <span class="indicator-progress">Vui lòng chờ...-->
+<!--															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
+                                                </button>
+                                                <button type="reset" class="btn btn-danger" style="border-radius: 4px;margin-left: 5px"
+                                                        data-kt-permissions-modal-action="cancel">Cancel
                                                 </button>
                                             </div>
                                             <!--end::Actions-->

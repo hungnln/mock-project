@@ -13,21 +13,21 @@ var KTSignupGeneral = function () {
           'last-name': {
             validators: {
               notEmpty: {
-                message: 'Vui lòng nhập Họ'
+                message: 'Please enter Last Name'
               }
             }
           },
           'first-name': {
             validators: {
               notEmpty: {
-                message: 'Vui lòng nhập Tên'
+                message: 'Please enter Last Name'
               }
             }
           },
           username: {
             validators: {
               notEmpty: {
-                message: 'Vui lòng nhập tên đăng nhập'
+                message: 'Please enter User Name'
               }
             //   emailAddress: {
             //     message: 'The value is not a valid email address'
@@ -37,7 +37,7 @@ var KTSignupGeneral = function () {
           password: {
             validators: {
               notEmpty: {
-                message: 'Vui lòng nhập mật khẩu'
+                message: 'Please enter Password'
               }
               // ,
               // callback: {
@@ -51,13 +51,13 @@ var KTSignupGeneral = function () {
           'confirm-password': {
             validators: {
               notEmpty: {
-                message: 'Vui lòng nhập lại mật khẩu'
+                message: 'Please enter Password'
               },
               identical: {
                 compare: function () {
                   return e.querySelector('[name="password"]').value
                 },
-                message: 'Mật khẩu và xác nhận không khớp'
+                message: "Password don't match"
               }
             }
           }
@@ -102,24 +102,24 @@ var KTSignupGeneral = function () {
                   let statusCode = this.status;
                   if(statusCode === 200){
                     Swal.fire({
-                      text: `Chúc mừng, ${this.responseText}, vui lòng đăng nhập.`,
-                      icon: 'success',
+                      title:'Message',
+                      text: `Account successfully created. Please login`,
                       buttonsStyling: !1,
-                      confirmButtonText: 'Ok!',
+                      confirmButtonText: 'Ok',
                       customClass: {
-                        confirmButton: 'btn btn-primary'
+                        confirmButton: 'btn btn-primary btn-shadow'
                       }
                     }).then(function () {
                       window.location.replace("/login");
                     })
                   }else{
                     Swal.fire({
-                      text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
-                      icon: 'error',
+                      title:'Message',
+                      text: `Can't create account. Please try again`,
                       buttonsStyling: !1,
-                      confirmButtonText: 'Ok!',
+                      confirmButtonText: 'Try again',
                       customClass: {
-                        confirmButton: 'btn btn-primary'
+                        confirmButton: 'btn btn-primary btn-shadow'
                       }
                     })
                   }
@@ -132,12 +132,12 @@ var KTSignupGeneral = function () {
             console.log('ok');
           }else{
             Swal.fire({
-                text: 'Xin lỗi, bạn phải nhập hết thông tin, vui lòng thử lại.',
-                icon: 'error',
+              title:'Message',
+              text: 'Please fill all information',
                 buttonsStyling: !1,
-                confirmButtonText: 'Ok, got it!',
+                confirmButtonText: 'Try again',
                 customClass: {
-                  confirmButton: 'btn btn-primary'
+                  confirmButton: 'btn btn-primary btn-shadow'
                 }
               })
           }
