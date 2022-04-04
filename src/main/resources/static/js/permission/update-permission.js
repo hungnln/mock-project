@@ -21,7 +21,7 @@ var KTUsersUpdatePermission = function () {
         init: function () {
             (() => {
                 var o = FormValidation.formValidation(e, {
-                    fields: {user_role: {validators: {notEmpty: {message: "Vui lòng chọn một vai trò"}}}},
+                    fields: {user_role: {validators: {notEmpty: {message: "Choose role"}}}},
                     plugins: {
                         trigger: new FormValidation.plugins.Trigger,
                         bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -34,33 +34,34 @@ var KTUsersUpdatePermission = function () {
 
                 t.querySelector('[data-kt-permissions-modal-action="close"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Bạn có chắc chắn muốn thoát?",
-                        icon: "warning",
+                        title:'Message',
+                        text: "Want to quit ?",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Chắc chắn, tắt !",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                        confirmButtonText: "Quit",
+                        cancelButtonText: "Cancel",
+                        customClass: {confirmButton: "btn btn-primary btn-shadow", cancelButton: "btn btn-danger btn-shadow"}
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
                 })), t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Bạn có chắc chắn muốn hủy bỏ?",
-                        icon: "warning",
+                        title:'Message',
+                        text: "Want to cancel ?",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Có, hủy bỏ!",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                        confirmButtonText: "Cancel",
+                        cancelButtonText: "Get back",
+                        customClass: {confirmButton: "btn btn-primary btn-shadow", cancelButton: "btn btn-danger btn-shadow"}
                     }).then((function (t) {
-                        t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
-                            text: "Your form has not been cancelled!.",
-                            icon: "error",
-                            buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {confirmButton: "btn btn-primary"}
-                        })
+                        t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && t.dismiss
+                        // ({
+                        //     text: "Your form has not been cancelled!.",
+                        //     icon: "error",
+                        //     buttonsStyling: !1,
+                        //     confirmButtonText: "Ok, got it!",
+                        //     customClass: {confirmButton: "btn btn-primary"}
+                        // })
                     }))
                 }));
                 const i = t.querySelector('[data-kt-permissions-modal-action="submit"]');

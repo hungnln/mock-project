@@ -10,7 +10,7 @@ var KTSigninGeneral = function () {
                         username: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Bạn phải nhập tên đăng nhập'
+                                    message: 'Please enter username'
                                 }
                                 //   emailAddress: {
                                 //     message: 'The value is not a valid email address'
@@ -20,7 +20,7 @@ var KTSigninGeneral = function () {
                         password: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Bạn phải nhập mật khẩu'
+                                    message: 'Please enter password'
                                 }
                                 // ,
                                 // callback: {
@@ -62,26 +62,26 @@ var KTSigninGeneral = function () {
                                                 t.disabled = !1;
                                                 if(url.href.indexOf('ogin') != -1){
                                                     Swal.fire({
-                                                        text: 'Xin lỗi, tên tài khoản hoặc mật khẩu không đúng, vui lòng thử lại.',
-                                                        icon: 'error',
+                                                        title: 'Message',
+                                                        text: 'Username or Password is wrong !',
                                                         buttonsStyling: !1,
-                                                        confirmButtonText: 'Ok!',
+                                                        confirmButtonText: 'Try again!',
                                                         customClass: {
-                                                            confirmButton: 'btn btn-primary'
+                                                            confirmButton: 'btn btn-primary btn-shadow'
                                                         }
                                                     })
+
                                                 }else{
-                                                    Swal.fire({
-                                                        text: 'Đăng nhập thành công. . .',
-                                                        icon: 'success',
-                                                        buttonsStyling: !1,
-                                                        confirmButtonText: 'Ok!',
-                                                        customClass: {
-                                                            confirmButton: 'btn btn-primary'
-                                                        }
-                                                    }).then(function () {
+                                                    // Swal.fire({
+                                                    //     text: '',
+                                                    //     buttonsStyling: !1,
+                                                    //     confirmButtonText: 'Ok!',
+                                                    //     customClass: {
+                                                    //         confirmButton: 'btn btn-primary'
+                                                    //     }
+                                                    // }).then(function () {
                                                         window.location.replace(url.href);
-                                                    })
+                                                    // })
                                                 }
                                             }
                                         });
@@ -90,12 +90,12 @@ var KTSigninGeneral = function () {
                                     },700);
                                 } else {
                                     Swal.fire({
-                                        text: 'Xin lỗi, hình như có một vài lỗi, vui lòng thử lại.',
-                                        icon: 'error',
+                                        title: 'Message',
+                                        text: 'Username or Password is wrong !',
                                         buttonsStyling: !1,
-                                        confirmButtonText: 'Ok, got it!',
+                                        confirmButtonText: 'Try again!',
                                         customClass: {
-                                            confirmButton: 'btn btn-primary'
+                                            confirmButton: 'btn btn-primary btn-shadow'
                                         }
                                     })
                                 }
