@@ -102,8 +102,10 @@ public class UserServicesImpl implements UserDetailsService, UserServices {
 
     @Override
     public List<User> getUserByLikeUsername(String search) {
+
         return userRepository.findByUsernameLike(search);
     }
+
     public boolean changeRole(User user){
         Role role = roleRepository.findByRoleName(user.getRole().getRoleName());
         User userDB = userRepository.findByUsername(user.getUsername());

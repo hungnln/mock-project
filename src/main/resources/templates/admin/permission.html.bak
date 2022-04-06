@@ -147,7 +147,7 @@
                                             <!--begin::Table body-->
                                             <tbody class="fw-bold text-gray-600" >
                                             <th:block th:each="user, iState : ${LIST_USER}">
-                                                <tr class="" th:classappend="${iState.index % 2 == 0 ? 'even': 'odd'}" >
+                                                <tr class="user-row" th:classappend="${iState.index % 2 == 0 ? 'even': 'odd'}" >
                                                     <!--begin::Name=-->
                                                     <td  th:text="*{user.username}"></td>
 
@@ -158,17 +158,17 @@
                                                     <!--begin::Assigned to=-->
                                                     <td>
                                                         <span th:if="*{user.role.roleName.equals('Admin')}"
-                                                              class=" fs-7 m-1">Administrator</span>
+                                                              class=" " style="color: red">Administrator</span>
                                                         <span th:if="*{user.role.roleName.equals('Teacher')}"
-                                                              class=" fs-7 m-1">Teacher</span>
+                                                              class=" " style="color: green">Teacher</span>
                                                         <span th:if="*{user.role.roleName.equals('Student')}"
-                                                              class=" fs-7 m-1">Teacher</span>
+                                                              class=" " style="color: #000">Student</span>
                                                     </td>
                                                     <!--end::Assigned to=-->
                                                     <!--begin::Action=-->
                                                     <td class="text-end">
                                                         <!--begin::Update-->
-                                                        <button class="btn-resize btn btn-shadow" th:if="${user.username != userLogin.username}"
+                                                        <button id="btn-role" class="btn-resize btn btn-shadow" th:if="${user.username != userLogin.username}"
                                                                 data-bs-toggle="modal" th:data="${user.username}" th:data-role="${user.role.roleName}"
                                                                 data-bs-target="#kt_modal_update_permission" style="font-size: 13px">
                                                             <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
