@@ -1,5 +1,5 @@
 "use strict";
-
+let username;
 var updateButtonDOM = document.getElementsByClassName('btn-update');
 for(let btnUpdate of updateButtonDOM){
     btnUpdate.onclick = function (){
@@ -11,7 +11,10 @@ for(let btnUpdate of updateButtonDOM){
 }
 
 
-
+function getUsername(data) {
+    console.log(data,'this')
+    username = data.getAttribute('data');
+}
 
 var KTUsersUpdatePermission = function () {
     const t = document.getElementById("kt_modal_update_permission"),
@@ -73,7 +76,7 @@ var KTUsersUpdatePermission = function () {
                             setTimeout(function () {
                                 var radioNode =  document.getElementsByName("user_role");
                                 var roleU = document.getElementById('roleUpdate').value;
-                               var username = document.getElementById('btn-role').getAttribute('data');
+                               // var username = document.getElementById('btn-role').getAttribute('data');
 
 
                                 for (const radioNodeElement of radioNode) {
@@ -89,6 +92,7 @@ var KTUsersUpdatePermission = function () {
                                         "roleName": roleU
                                     }
                                 });
+                                console.log(username,roleU)
 
                                 var xhr = new XMLHttpRequest();
                                 xhr.withCredentials = true;

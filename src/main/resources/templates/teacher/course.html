@@ -35,35 +35,35 @@
                              data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                              class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                             <!--begin::Title-->
-                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Khóa học</h1>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Course Detail</h1>
                             <!--end::Title-->
                             <!--begin::Separator-->
                             <span class="h-20px border-gray-200 border-start mx-4"></span>
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">
-                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
-                                        khiển</a>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">Quản lý khóa học
-                                    <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-dark">Khóa học</li>
-                                <!--end::Item-->
-                            </ul>
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều-->
+<!--                                        khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Quản lý khóa học-->
+<!--                                    &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark">Khóa học</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
                             <!--end::Breadcrumb-->
                         </div>
                         <!--end::Page title-->
@@ -74,17 +74,17 @@
                 <!--begin::Post-->
                 <div class="post d-flex flex-column-fluid" id="kt_post">
                     <!--begin::Container-->
-                    <div id="kt_content_container" class="container">
+                    <div id="kt_content_container" class="container" style="position: relative">
                         <!--begin::Card-->
                         <div class="card card-flush">
                             <!--begin::Card header-->
-                            <div class="card-header mt-6">
+                            <div class="card-header">
                                 <!--begin::Card title-->
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1 me-5">
                                         <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
-                                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                        <span class="svg-icon svg-icon-1 position-absolute" style="right: 20px">
 													<svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                          height="24px" viewBox="0 0 24 24" version="1.1">
@@ -101,8 +101,10 @@
 												</span>
                                         <!--end::Svg Icon-->
                                         <input type="text" data-kt-permissions-table-filter="search"
-                                               class="form-control form-control-solid w-250px ps-15"
-                                               placeholder="Tìm kiếm khóa học">
+                                               class="form-control w-250px"
+                                               placeholder="Search course" style="padding-right: 3.75rem;
+    border-radius: 8px;
+    border: 2px solid rgba(136, 84, 192, 0.98);">
                                     </div>
                                     <!--end::Search-->
                                 </div>
@@ -110,7 +112,7 @@
                                 <!--begin::Card toolbar-->
                                 <div class="card-toolbar">
                                     <!--begin::Button-->
-                                    <a type="button" class="btn btn-light-primary" th:href="@{/teacher/addCourse}" >
+                                    <a type="button" class="btn btn-primary" th:href="@{/teacher/addCourse}" >
                                         <!--begin::Svg Icon | path: icons/duotone/Interface/Plus-Square.svg-->
                                         <span class="svg-icon svg-icon-3">
 												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -123,7 +125,7 @@
                                                           fill="#12131A"></path>
 												</svg>
 											</span>
-                                        <!--end::Svg Icon-->Thêm khóa học
+                                        <!--end::Svg Icon-->Add course
                                     </a>
                                     <!--end::Button-->
                                 </div>
@@ -135,34 +137,34 @@
                                 <!--begin::Table-->
                                 <div id="kt_permissions_table_wrapper"
                                      class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                    <div class="table-responsive">
+
                                         <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0 dataTable no-footer"
                                                id="kt_permissions_table" role="grid">
                                             <!--begin::Table head-->
                                             <thead>
                                             <!--begin::Table row-->
-                                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0"
+                                            <tr class="text-start fw-bolder text-uppercase gs-0" style="color: #000;font-size: 14px"
                                                 role="row">
                                                 <th class="min-w-100px sorting" tabindex="0"
                                                     aria-controls="kt_permissions_table" rowspan="1" colspan="1"
                                                     style="width: 0px;padding-right: 0px"
-                                                    aria-label="Name: activate to sort column ascending">Tên viết tắt
+                                                    aria-label="Name: activate to sort column ascending">Code
                                                 </th>
                                                 <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
-                                                    style="width: 455.65px;" aria-label="Assigned to">Tên đầy đủ
+                                                    style="width: 455.65px;" aria-label="Assigned to">Name
                                                 </th>
-                                                <th class="min-w-125px sorting" tabindex="0"
+<!--                                                <th class="min-w-125px sorting" tabindex="0"-->
+<!--                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"-->
+<!--                                                    style="width: 139.3px;"-->
+<!--                                                    aria-label="Created Date: activate to sort column ascending">Ngày bắt đầu-->
+<!--                                                </th>-->
+                                                <th class=" sorting" tabindex="0"
                                                     aria-controls="kt_permissions_table" rowspan="1" colspan="1"
                                                     style="width: 139.3px;"
-                                                    aria-label="Created Date: activate to sort column ascending">Ngày bắt đầu
-                                                </th>
-                                                <th class="min-w-125px sorting" tabindex="0"
-                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
-                                                    style="width: 139.3px;"
-                                                    aria-label="Created Date: activate to sort column ascending">Mật khẩu
+                                                    aria-label="Created Date: activate to sort column ascending">Password
                                                 </th>
                                                 <th class="text-end min-w-100px sorting_disabled" rowspan="1"
-                                                    colspan="1" style="width: 106.567px;" aria-label="Actions">Hành động
+                                                    colspan="1" style="width: 106.567px;" aria-label="Actions">Action
                                                 </th>
                                             </tr>
                                             <!--end::Table row-->
@@ -179,53 +181,26 @@
                                                     <td th:text="${course.fullName}"></td>
                                                     <!--end::Assigned to=-->
                                                     <!--begin::Created Date-->
-                                                    <td th:text="${#dates.format(course.startDate,'dd-MM-yyyy')}"></td>
+<!--                                                    <td th:text="${#dates.format(course.startDate,'dd-MM-yyyy')}"></td>-->
                                                     <td>
-                                                        <span class="badge badge-light-info fs-7 m-1" th:text="${course.password}" th:if="${course.password != null}"></span>
-                                                        <span class="badge badge-light-dark fs-7 m-1" th:if="${course.password == null}">Không đặt</span>
+                                                        <span class="" th:text="${course.password}" th:if="${course.password != null}"></span>
+                                                        <span class="" th:if="${course.password == null}">Not set</span>
                                                     </td>
                                                     <!--end::Created Date-->
                                                     <!--begin::Action=-->
-                                                    <td class="text-end">
+                                                    <td class="text-end d-flex flex-column" >
                                                         <!--begin::Update-->
-                                                        <a class="btn btn-icon btn-active-light-primary w-30px h-30px me-3 btn-update" th:href="|/teacher/editCourse/${course.courseId}|">
+                                                        <a class="btn btn-resize btn-shadow btn-update" th:href="|/teacher/editCourse/${course.courseId}|">
                                                             <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                     height="24" viewBox="0 0 24 24" fill="none">
-																	<path opacity="0.25"
-                                                                          d="M2 6.5C2 4.01472 4.01472 2 6.5 2H17.5C19.9853 2 22 4.01472 22 6.5V6.5C22 8.98528 19.9853 11 17.5 11H6.5C4.01472 11 2 8.98528 2 6.5V6.5Z"
-                                                                          fill="#12131A"></path>
-																	<path d="M20 6.5C20 7.88071 18.8807 9 17.5 9C16.1193 9 15 7.88071 15 6.5C15 5.11929 16.1193 4 17.5 4C18.8807 4 20 5.11929 20 6.5Z"
-                                                                          fill="#12131A"></path>
-																	<path opacity="0.25"
-                                                                          d="M2 17.5C2 15.0147 4.01472 13 6.5 13H17.5C19.9853 13 22 15.0147 22 17.5V17.5C22 19.9853 19.9853 22 17.5 22H6.5C4.01472 22 2 19.9853 2 17.5V17.5Z"
-                                                                          fill="#12131A"></path>
-																	<path d="M9 17.5C9 18.8807 7.88071 20 6.5 20C5.11929 20 4 18.8807 4 17.5C4 16.1193 5.11929 15 6.5 15C7.88071 15 9 16.1193 9 17.5Z"
-                                                                          fill="#12131A"></path>
-																</svg>
-															</span>
+                                                            Edit
                                                             <!--end::Svg Icon-->
                                                         </a>
                                                         <!--end::Update-->
                                                         <!--begin::Delete-->
-                                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px btn-delete"
+                                                        <button class="btn btn-danger btn-shadow btn-delete" style="padding: 5px 10px;margin-top: 10px"
                                                                 data-kt-permissions-table-filter="delete_row" th:data="${course.courseId}">
                                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg"
-                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                     width="24px" height="24px" viewBox="0 0 24 24"
-                                                                     version="1.1">
-																	<g stroke="none" stroke-width="1" fill="none"
-                                                                       fill-rule="evenodd">
-																		<rect x="0" y="0" width="24" height="24"></rect>
-																		<path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
-                                                                              fill="#000000" fill-rule="nonzero"></path>
-																		<path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
-                                                                              fill="#000000" opacity="0.3"></path>
-																	</g>
-																</svg>
+                                                            Delete
 															</span>
                                                             <!--end::Svg Icon-->
                                                         </button>
@@ -237,7 +212,7 @@
                                             </tbody>
                                             <!--end::Table body-->
                                         </table>
-                                    </div>
+
 
                                 </div>
                                 <!--end::Table-->

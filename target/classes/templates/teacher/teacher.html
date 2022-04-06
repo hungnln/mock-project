@@ -7,6 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
     <title>Teacher</title>
+    <style>
+    .card-body{
+        border: 2px solid #8854c0fa;
+        cursor: pointer;
+        box-shadow: 0 0px 5px #8854c0fa;
+    }
+    .card-body:hover{
+        border: 2px solid #8854c0fa;
+        transform: scale(1.05);
+        animation: transform 5s ease;
+    }
+    </style>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -35,16 +47,23 @@
                               data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                               class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                              <!--begin::Title-->
-                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Trang chủ
+                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">List Courses
                                  <!--begin::Separator-->
-                                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
-                                 <!--end::Separator-->
-                                 <!--begin::Description-->
-                                 <small class="text-muted fs-7 fw-bold my-1 ms-1">#WFH-SP-21</small>
+<!--                                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>-->
+<!--                                 &lt;!&ndash;end::Separator&ndash;&gt;-->
+<!--                                 &lt;!&ndash;begin::Description&ndash;&gt;-->
+<!--                                 <small class="text-muted fs-7 fw-bold my-1 ms-1">#WFH-SP-21</small>-->
                                  <!--end::Description--></h1>
                              <!--end::Title-->
                          </div>
                          <!--end::Page title-->
+                         <a th:href="@{/teacher/addCourse}" class="btn-resize">
+                             <!--begin::Body-->
+                             Add Course
+                                 <!--                                        <div class="fw-bold text-inverse-primary fs-7">Flats, Shared Rooms, Duplex</div>-->
+
+                             <!--end::Body-->
+                         </a>
                      </div>
                      <!--end::Container-->
                  </div>
@@ -54,9 +73,9 @@
                     <!--begin::Container-->
                     <div id="kt_content_container" class="container">
                         <!--begin::Row-->
-                        <div class="row g-5 g-xl-8 mb-5">
-                           <h2>Khóa học của bạn</h2>
-                        </div>
+<!--                        <div class="row g-5 g-xl-8 mb-5">-->
+<!--                           <h2>List courses</h2>-->
+<!--                        </div>-->
                         <!--end::Row-->
                         <!--begin::Row-->
                         <div class="row g-5 g-xl-8">
@@ -65,13 +84,18 @@
                                     <!--begin::Statistics Widget 1-->
                                     <div class="card bgi-no-repeat card-xl-stretch mb-xl-8" th:style="|background-position: right top; background-size: 30% auto; background-image: url(/img/abstract-${iState.count % 10 + 1}.svg)|">
                                         <!--begin::Body-->
-                                        <div class="card-body">
-                                            <a th:href="@{/teacher/viewCourse(id=*{course.courseId})}" class="card-title fw-bolder text-muted text-hover-primary fs-4" th:text="|*{course.shortName} - *{course.fullName}|"></a>
-                                            <div class="fw-bolder text-primary my-6">
-                                                <span th:if="*{course.startDate != null}" th:text="${#dates.format(course.startDate,'dd-MM-yyyy HH:mm')}"></span>
-                                                <span th:if="*{course.endDate != null}" th:text="| - ${#dates.format(course.endDate,'dd-MM-yyyy HH:mm')}|"></span>
-                                            </div>
-                                            <p class="text-dark-75 fw-bold fs-5 m-0" th:text="${course.description.length() != 0 ? course.description : 'Không có mô tả'}"></p>
+                                        <div class="card-body p-7 mb-3">
+                                            <a th:href="@{/teacher/viewCourse(id=*{course.courseId})}" class="card-title fw-bolder text-muted text-hover-primary fs-4">
+                                                <div th:text="*{course.shortName} " style="font-size: 15px;color: #673d90;margin-bottom: 4px "></div>
+                                                <div th:text=" *{course.fullName}" style="font-size: 17px; color: #000;margin-bottom: 8px"></div>
+                                                <p class="fw-bold fs-5 m-0" th:text="${course.description.length() != 0 ? course.description : 'No Description'}" th:style="${course.description.length() != 0 ? 'color: black' :'color: #ccc'}"></p>
+
+                                            </a>
+<!--                                            <div class="fw-bolder text-primary my-6">-->
+
+<!--                                                <span th:if="*{course.startDate != null}" th:text="${#dates.format(course.startDate,'dd-MM-yyyy HH:mm')}"></span>-->
+<!--                                                <span th:if="*{course.endDate != null}" th:text="| - ${#dates.format(course.endDate,'dd-MM-yyyy HH:mm')}|"></span>-->
+<!--                                            </div>-->
                                         </div>
                                         <!--end::Body-->
                                     </div>
@@ -79,26 +103,26 @@
                                 </div>
                             </th:block>
 
-                            <div class="col-xl-4">
-                                <!--begin::Statistics Widget 5-->
-                                <a th:href="@{/teacher/addCourse}" class="card bg-primary hoverable card-xl-stretch mb-xl-8">
-                                    <!--begin::Body-->
-                                    <div class="card-body">
-                                        <!--begin::Svg Icon | path: icons/duotone/Home/Building.svg-->
-                                        <span class="svg-icon svg-icon-white svg-icon-3x ms-n1">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z" fill="#12131A"></path>
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z" fill="#12131A"></path>
-												</svg>
-												</span>
-                                        <!--end::Svg Icon-->
-                                        <div class="text-inverse-primary fw-bolder fs-2 mb-2 mt-5">Thêm khóa học mới</div>
-<!--                                        <div class="fw-bold text-inverse-primary fs-7">Flats, Shared Rooms, Duplex</div>-->
-                                    </div>
-                                    <!--end::Body-->
-                                </a>
-                                <!--end::Statistics Widget 5-->
-                            </div>
+<!--                            <div class="col-xl-4">-->
+<!--                                &lt;!&ndash;begin::Statistics Widget 5&ndash;&gt;-->
+<!--                                <a th:href="@{/teacher/addCourse}" class="card bg-primary hoverable card-xl-stretch mb-xl-8">-->
+<!--                                    &lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--                                    <div class="card-body">-->
+<!--                                        &lt;!&ndash;begin::Svg Icon | path: icons/duotone/Home/Building.svg&ndash;&gt;-->
+<!--                                        <span class="svg-icon svg-icon-white svg-icon-3x ms-n1">-->
+<!--													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--													<path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z" fill="#12131A"></path>-->
+<!--													<path fill-rule="evenodd" clip-rule="evenodd" d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z" fill="#12131A"></path>-->
+<!--												</svg>-->
+<!--												</span>-->
+<!--                                        &lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--                                        <div class="text-inverse-primary fw-bolder fs-2 mb-2 mt-5">Thêm khóa học mới</div>-->
+<!--&lt;!&ndash;                                        <div class="fw-bold text-inverse-primary fs-7">Flats, Shared Rooms, Duplex</div>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end::Body&ndash;&gt;-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash;end::Statistics Widget 5&ndash;&gt;-->
+<!--                            </div>-->
                         </div>
                         <!--end::Row-->
 
