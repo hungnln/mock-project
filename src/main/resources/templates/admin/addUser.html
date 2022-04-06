@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Thêm thành viên mới</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Thêm thành viên mới</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
+                                        khiển</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">Quản lý thành viên</li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark">Thêm thành viên mới</li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Careers - Apply-->
+                        <div class="card">
+                            <!--begin::Body-->
+                            <div class="card-body p-lg-17">
+
+                                <!--begin::Layout-->
+                                <div class="d-flex flex-column flex-lg-row mb-17">
+                                    <!--begin::Content-->
+                                    <div class="flex-lg-row-fluid me-0 me-lg-20">
+                                        <!--begin::Form-->
+                                        <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" id="kt_sign_up_form">
+                                            <!--begin::Heading-->
+                                            <div class="mb-10 text-center">
+                                                <!--begin::Title-->
+                                                <h1 class="text-dark mb-3">Thêm thành viên mới</h1>
+                                                <!--end::Title-->
+                                                <!--begin::Link-->
+                                                    <div class="text-gray-400 fw-bold fs-4">Mật khẩu mặc định :
+                                                    <a href="#" class="link-primary fw-bolder" th:text="${DEFAULT_PASS}"></a></div>
+                                                <!--end::Link-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            <!--begin::Separator-->
+                                            <div class="d-flex align-items-center mb-10">
+                                                <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+                                                <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+                                            </div>
+                                            <!--end::Separator-->
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row mb-7 fv-plugins-icon-container">
+                                                <!--begin::Col-->
+                                                <div class="col-xl-6">
+                                                    <label class="form-label fw-bolder text-dark fs-6">Họ</label>
+                                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last-name" autocomplete="off">
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-xl-6">
+                                                    <label class="form-label fw-bolder text-dark fs-6">Tên</label>
+                                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first-name" autocomplete="off">
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <label class="form-label fw-bolder text-dark fs-6">Tên đăng nhập</label>
+                                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="username" autocomplete="off">
+                                                <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="mb-10 fv-row fv-plugins-icon-container" data-kt-password-meter="true">
+                                                <!--begin::Wrapper-->
+                                                <div class="mb-1">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label fw-bolder text-dark fs-6">Mật khẩu</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input wrapper-->
+                                                    <div class="position-relative mb-3">
+                                                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" th:value="${DEFAULT_PASS}">
+                                                        <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+												<i class="bi bi-eye-slash fs-2"></i>
+												<i class="bi bi-eye fs-2 d-none"></i>
+											</span>
+                                                    </div>
+                                                    <!--end::Input wrapper-->
+                                                    <!--begin::Meter-->
+                                                    <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
+                                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                                                    </div>
+                                                    <!--end::Meter-->
+                                                </div>
+                                                <!--end::Wrapper-->
+                                                <!--begin::Hint-->
+                                                <!-- <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div> -->
+                                                <!--end::Hint-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                                            <!--end::Input group=-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-5 fv-plugins-icon-container">
+                                                <label class="form-label fw-bolder text-dark fs-6">Nhập lại mật khẩu</label>
+                                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" th:value="${DEFAULT_PASS}">
+                                                <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                                            <!--end::Input group-->
+                                            <!--start::Input group-->
+                                            <div class="d-flex flex-column mb-5 fv-row fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                    <span class="required">Vai trò</span>
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                       data-bs-toggle="tooltip" title=""
+                                                       data-bs-original-title="Chọn vai trò của thành viên trong hệ thống"
+                                                       aria-label="Chọn vai trò của thành viên trong hệ thống"></i>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Select-->
+                                                <select name="role" data-control="select2"
+                                                        data-placeholder="Chọn vai trò..."
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-select2-id="select2-data-10-j15u" tabindex="-1"
+                                                        aria-hidden="true">
+                                                    <th:block th:each="role : ${LIST_ROLE}">
+                                                        <option th:value="*{role.roleName}" th:text="*{role.roleName}"></option>
+                                                    </th:block>
+                                                </select>
+
+                                                <!--end::Select-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Actions-->
+                                            <div class="text-center">
+                                                <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                                                    <span class="indicator-label">Thêm thành viên</span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                            <div></div></form>
+                                        <!--end::Form-->
+
+                                    </div>
+                                    <!--end::Content-->
+                                    <!--begin::Sidebar-->
+                                    <div class="flex-lg-row-auto w-100 w-lg-275px w-xxl-350px">
+                                        <!--begin::Careers about-->
+                                        <div class="card bg-light">
+                                            <!--begin::Body-->
+                                            <div class="card-body">
+                                                <!--begin::Top-->
+                                                <div class="mb-7">
+                                                    <!--begin::Title-->
+                                                    <h2 class="fs-1 text-gray-800 w-bolder mb-6">WFH_SP_21</h2>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <p class="fw-bold fs-6 text-gray-600">Learning Management Sysstem.</p>
+                                                    <!--end::Text-->
+                                                </div>
+                                                <!--end::Top-->
+                                                <!--begin::Item-->
+                                                <div class="mb-8">
+                                                    <!--begin::Title-->
+                                                    <h4 class="text-gray-700 w-bolder mb-0">Vai trò</h4>
+                                                    <!--end::Title-->
+                                                    <!--begin::Section-->
+                                                    <div class="my-2">
+                                                        <!--begin::Row-->
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <!--begin::Bullet-->
+                                                            <span class="bullet me-3"></span>
+                                                            <!--end::Bullet-->
+                                                            <!--begin::Label-->
+                                                            <div class="text-gray-600 fw-bold fs-6">Administrator
+                                                            </div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                        <!--begin::Row-->
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <!--begin::Bullet-->
+                                                            <span class="bullet me-3"></span>
+                                                            <!--end::Bullet-->
+                                                            <!--begin::Label-->
+                                                            <div class="text-gray-600 fw-bold fs-6">Teacher
+                                                            </div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                        <!--begin::Row-->
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <!--begin::Bullet-->
+                                                            <span class="bullet me-3"></span>
+                                                            <!--end::Bullet-->
+                                                            <!--begin::Label-->
+                                                            <div class="text-gray-600 fw-bold fs-6">Student
+                                                            </div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Section-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Item-->
+                                                <div class="mb-8">
+                                                    <!--begin::Title-->
+                                                    <h4 class="text-gray-700 w-bolder mb-0">Mật Khẩu mặc định</h4>
+                                                    <!--end::Title-->
+                                                    <!--begin::Section-->
+                                                    <div class="my-2">
+                                                        <!--begin::Row-->
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <!--begin::Bullet-->
+                                                            <span class="bullet me-3"></span>
+                                                            <!--end::Bullet-->
+                                                            <!--begin::Label-->
+                                                            <div class="text-gray-600 fw-bold fs-6" th:text="${DEFAULT_PASS}">
+                                                            </div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                        <!--begin::Row-->
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <!--begin::Bullet-->
+                                                            <span class="bullet me-3"></span>
+                                                            <!--end::Bullet-->
+                                                            <!--begin::Label-->
+                                                            <div class="text-gray-600 fw-bold fs-6">Mặc định khi đăng ký: Student
+                                                            </div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Row-->
+
+
+                                                    </div>
+                                                    <!--end::Section-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Link-->
+                                                <a href="#"
+                                                   class="link-primary fs-6 fw-bold">Tìm hiểu thêm</a>
+                                                <!--end::Link-->
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end::Careers about-->
+                                    </div>
+                                    <!--end::Sidebar-->
+                                </div>
+                                <!--end::Layout-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Careers - Apply-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+<div th:replace="~{/layout/include::script}"></div>
+
+<script th:src="@{/js/user/addUser.js}"></script>
+</body>
+</html>

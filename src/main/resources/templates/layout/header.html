@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--begin::Head-->
+<head>
+    <base href="">
+    <meta charset="utf-8"/>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link th:href="@{/css/datatables.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/font/plugins.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!--begin::Header-->
+<div id="kt_header" style=" display:none" class="header align-items-stretch" th:fragment="header">
+    <!--begin::Container-->
+    <div class="container-fluid d-none align-items-stretch justify-content-between" >
+        <!--begin::Aside mobile toggle-->
+        <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+            <div class="btn btn-icon btn-active-color-white" id="kt_aside_mobile_toggle">
+                <i class="bi bi-list fs-1"></i>
+            </div>
+        </div>
+        <!--end::Aside mobile toggle-->
+        <!--begin::Mobile logo-->
+        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+            <a href="index.html" class="d-lg-none">
+                <img alt="Logo" th:src="@{/img/logo.png}" class="h-15px">
+            </a>
+        </div>
+        <!--end::Mobile logo-->
+        <!--begin::Wrapper-->
+<!--        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">-->
+<!--            &lt;!&ndash;begin::Navbar&ndash;&gt;-->
+<!--            <div class="d-flex align-items-stretch" id="kt_header_nav">-->
+<!--                &lt;!&ndash;begin::Menu wrapper&ndash;&gt;-->
+<!--                <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_body', lg: '#kt_header_nav'}">-->
+<!--                    &lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--                    <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">-->
+<!--                        <div class="menu-item me-lg-1">-->
+<!--                            <a class="menu-link active py-3" th:href="@{/afterLogin}">-->
+<!--                                <span class="menu-title">Home sadsd</span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                           </div>-->
+<!--                    &lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;end::Menu wrapper&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;end::Navbar&ndash;&gt;-->
+<!--            &lt;!&ndash;begin::Topbar&ndash;&gt;-->
+<!--            &lt;!&ndash;end::Topbar&ndash;&gt;-->
+<!--        </div>-->
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::Header-->
+</body>
+</html>

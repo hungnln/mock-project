@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Đăng kí khóa học </title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"><span th:text="${course.fullName}"></span>
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <small class="text-muted fs-7 fw-bold my-1 ms-1">Đăng kí khóa học</small>
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Card-->
+                        <div class="card">
+                            <!--begin::Card body-->
+                            <div class="card-body p-0">
+                                <form class="form w-100" novalidate="novalidate" id="kt_enroll_form" action="#">
+                                    <input type="hidden" name="courseID" th:value="${course.courseId}">
+                                    <input type="hidden" name="username" th:value="${userLogin.username}">
+                                <!--begin::Heading-->
+                                <div class="card-px d-flex flex-column justify-content-center text-center py-5 my-10">
+                                    <!--begin::Illustration-->
+                                    <div class="text-center d-flex flex-column justify-content-center px-5 mb-5" th:if="${course.image != null}">
+                                        <div class="image-input-wrapper min-h-150px" th:style="|background-image: ${course.image};background-size: contain;background-repeat: no-repeat;  background-position: center; |"></div>
+                                    </div>
+                                    <!--end::Illustration-->
+                                    <!--begin::Title-->
+                                    <h2 class="fs-2x fw-bolder mb-5 mt-5" th:text="|${course.shortName} - ${course.fullName}|"></h2>
+                                    <!--end::Title-->
+                                    <!--begin::Description-->
+                                    <p class="text-gray-400 fs-5 fw-bold mb-13" th:text="${course.description}"></p>
+                                    <!--end::Description-->
+                                    <!--begin::Input group-->
+                                    <div class="mb-5 d-flex flex-column justify-content-center fv-row fv-plugins-icon-container" data-kt-password-meter="true" th:if="${expiredEnrol || course.password != null}">
+                                        <!--begin::Wrapper-->
+                                        <div class="mb-1">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bolder text-dark fs-6">Mật khẩu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input wrapper-->
+                                            <div class="position-relative mb-3">
+                                                <input class="form-control form-control-lg form-control-solid" type="password"
+                                                       placeholder="" name="password" autocomplete="off"/>
+                                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+                                                      data-kt-password-meter-control="visibility">
+												<i class="bi bi-eye-slash fs-2"></i>
+												<i class="bi bi-eye fs-2 d-none"></i>
+											</span>
+                                            </div>
+                                            <!--end::Input wrapper-->
+                                            <!--begin::Meter-->
+                                            <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
+                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                                            </div>
+                                            <!--end::Meter-->
+                                        </div>
+                                        <!--end::Wrapper-->
+                                        <!--begin::Hint-->
+                                        <!-- <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div> -->
+                                        <!--end::Hint-->
+                                    </div>
+                                    <!--end::Input group=-->
+
+                                    <!--begin::Action-->
+                                    <div class="d-flex flex-stack pt-15">
+                                        <!--begin::Wrapper-->
+                                        <div class="mr-2">
+                                            <a th:href="@{/afterLogin}" type="button"
+                                               class="btn btn-lg btn-light-primary me-3"
+                                               data-kt-stepper-action="previous">
+                                                <!--begin::Svg Icon | path: icons/duotone/Navigation/Left-2.svg-->
+                                                <span class="svg-icon svg-icon-4 me-1">
+															<svg xmlns="http://www.w3.org/2000/svg"
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                                 height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none"
+                                                                   fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"></polygon>
+																	<rect fill="#000000" opacity="0.3"
+                                                                          transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)"
+                                                                          x="14" y="7" width="2" height="10"
+                                                                          rx="1"></rect>
+																	<path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z"
+                                                                          fill="#000000" fill-rule="nonzero"
+                                                                          transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)"></path>
+																</g>
+															</svg>
+														</span>
+                                                <!--end::Svg Icon-->Trở lại</a>
+                                        </div>
+                                        <!--end::Wrapper-->
+                                        <!--begin::Wrapper-->
+                                        <div>
+                                            <th:block th:if="${earlyEnrol}">
+                                                <button class="btn btn-lg btn-dark disabled w-100 me-3">
+                                                <span class="indicator-label">Chưa đến thời điểm đăng kí<span
+                                                        class="svg-icon svg-icon-3 ms-2 me-0">
+																<svg xmlns="http://www.w3.org/2000/svg"
+                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     width="24px" height="24px" viewBox="0 0 24 24"
+                                                                     version="1.1">
+																	<g stroke="none" stroke-width="1" fill="none"
+                                                                       fill-rule="evenodd">
+																		<polygon points="0 0 24 0 24 24 0 24"></polygon>
+																		<rect fill="#000000" opacity="0.5"
+                                                                              transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)"
+                                                                              x="7.5" y="7.5" width="2" height="9"
+                                                                              rx="1"></rect>
+																		<path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+                                                                              fill="#000000" fill-rule="nonzero"
+                                                                              transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
+																	</g>
+																</svg>
+															</span></span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+
+                                                </span>
+                                                </button>
+                                            </th:block>
+                                            <th:block th:if="${expiredEnrol}">
+                                                <button class="btn btn-lg btn-dark disabled w-100 me-3">
+                                                <span class="indicator-label">Đã hết hạn đăng kí<span
+                                                        class="svg-icon svg-icon-3 ms-2 me-0">
+																<svg xmlns="http://www.w3.org/2000/svg"
+                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     width="24px" height="24px" viewBox="0 0 24 24"
+                                                                     version="1.1">
+																	<g stroke="none" stroke-width="1" fill="none"
+                                                                       fill-rule="evenodd">
+																		<polygon points="0 0 24 0 24 24 0 24"></polygon>
+																		<rect fill="#000000" opacity="0.5"
+                                                                              transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)"
+                                                                              x="7.5" y="7.5" width="2" height="9"
+                                                                              rx="1"></rect>
+																		<path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+                                                                              fill="#000000" fill-rule="nonzero"
+                                                                              transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
+																	</g>
+																</svg>
+															</span></span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+
+                                                </span>
+                                                </button>
+                                            </th:block>
+
+                                            <th:block th:if="${!earlyEnrol && !expiredEnrol}">
+                                            <button type="submit" id="kt_sign_in_submit"
+                                                    class="btn btn-lg btn-primary w-100 me-3">
+                                                <span class="indicator-label">Đăng kí vào khóa học<span
+                                                        class="svg-icon svg-icon-3 ms-2 me-0">
+																<svg xmlns="http://www.w3.org/2000/svg"
+                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     width="24px" height="24px" viewBox="0 0 24 24"
+                                                                     version="1.1">
+																	<g stroke="none" stroke-width="1" fill="none"
+                                                                       fill-rule="evenodd">
+																		<polygon points="0 0 24 0 24 24 0 24"></polygon>
+																		<rect fill="#000000" opacity="0.5"
+                                                                              transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)"
+                                                                              x="7.5" y="7.5" width="2" height="9"
+                                                                              rx="1"></rect>
+																		<path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+                                                                              fill="#000000" fill-rule="nonzero"
+                                                                              transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
+																	</g>
+																</svg>
+															</span></span>
+                                                <span class="indicator-progress">Vui lòng chờ...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+
+                                                </span>
+                                            </button>
+                                            </th:block>
+                                        </div>
+                                        <!--end::Wrapper-->
+                                    </div>
+                                    <!--end::Action-->
+                                </div>
+                                <!--end::Heading-->
+                                </form>
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/enrolments/enrollCourse.js}"></script>
+</body>
+</html>

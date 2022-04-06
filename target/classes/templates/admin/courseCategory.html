@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Course List</title>
+    <style>
+        .dataTables_length{
+            display: none;
+        }
+        #kt_permissions_table_paginate{
+            width: fit-content;
+            position: absolute ;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+        }
+    </style>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Course List</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều-->
+<!--                                        khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Quản lý danh mục</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark">Danh mục khóa học</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container" style="position: relative">
+                        <!--begin::Card-->
+                        <div class="card card-flush">
+                            <!--begin::Card header-->
+                            <div class="card-header">
+                                <!--begin::Card title-->
+                                <div class="card-title">
+                                    <!--begin::Search-->
+                                    <div class="d-flex align-items-center position-relative my-1 me-5">
+                                        <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+
+                                        <!--end::Svg Icon-->
+                                        <input type="text" data-kt-permissions-table-filter="search"
+                                               class="form-control w-250px"
+                                               placeholder="Search course" style="padding-right: 3.75rem;
+    border-radius: 8px;
+    border: 2px solid rgba(136, 84, 192, 0.98);">
+                                        <span class="svg-icon svg-icon-1 position-absolute " style="right: 20px">
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"></rect>
+															<path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                                  fill="#000000" fill-rule="nonzero"
+                                                                  opacity="0.3"></path>
+															<path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                                  fill="#000000" fill-rule="nonzero"></path>
+														</g>
+													</svg>
+												</span>
+                                    </div>
+                                    <!--end::Search-->
+                                </div>
+                                <!--end::Card title-->
+                                <!--begin::Card toolbar-->
+                                <div class="card-toolbar">
+                                    <!--begin::Button-->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#kt_modal_add_permission">
+                                        <!--begin::Svg Icon | path: icons/duotone/Interface/Plus-Square.svg-->
+                                        <span class="svg-icon svg-icon-3">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+													<path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z"
+                                                          fill="#12131A"></path>
+													<path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z"
+                                                          fill="#12131A"></path>
+												</svg>
+											</span>
+                                        <!--end::Svg Icon-->Add course
+                                    </button>
+                                    <!--end::Button-->
+                                </div>
+                                <!--end::Card toolbar-->
+                            </div>
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0">
+                                <!--begin::Table-->
+                                <div id="kt_permissions_table_wrapper"
+                                     class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="">
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0 dataTable no-footer"
+                                               id="kt_permissions_table" role="grid">
+                                            <!--begin::Table head-->
+                                            <thead>
+                                            <!--begin::Table row-->
+                                            <tr class="text-start fw-bolder  text-uppercase gs-0" style="color: #000;font-size: 14px"
+                                                role="row">
+                                                <th class="min-w-125px sorting" tabindex="0"
+                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
+                                                    style="width: 164.983px;"
+                                                    aria-label="Name: activate to sort column ascending">Course Name
+                                                </th>
+                                                <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
+                                                    style="width: 455.65px;" aria-label="Assigned to">Description
+                                                </th>
+                                                <th class=" sorting" tabindex="0"
+                                                    aria-controls="kt_permissions_table" rowspan="1" colspan="1"
+                                                    style="width: 40px;"
+                                                    aria-label="Created Date: activate to sort column ascending">Amount
+                                                </th>
+                                                <th class="text-end sorting_disabled" rowspan="1"
+                                                    colspan="1" style="width: 70px;" aria-label="Actions">Actions
+                                                </th>
+                                            </tr>
+                                            <!--end::Table row-->
+                                            </thead>
+                                            <!--end::Table head-->
+                                            <!--begin::Table body-->
+                                            <tbody class="fw-bold text-gray-600">
+                                            <th:block th:each="courseCategory,iState : ${LIST_COURSE_CATEGORY}">
+                                                <tr class="odd">
+                                                    <!--begin::Name=-->
+                                                    <td th:text="${courseCategory.categoryName}"></td>
+                                                    <!--end::Name=-->
+                                                    <!--begin::Assigned to=-->
+                                                    <td th:text="${courseCategory.categoryDescription}"></td>
+                                                    <!--end::Assigned to=-->
+                                                    <!--begin::Created Date-->
+                                                    <td th:text="${courseCategory.courses.size()}"></td>
+                                                    <!--end::Created Date-->
+                                                    <!--begin::Action=-->
+                                                    <td class="text-end d-flex flex-column">
+                                                        <!--begin::Update-->
+                                                        <button class="btn  btn-resize btn-shadow  btn-update"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#kt_modal_update_permission"
+                                                                th:data="${courseCategory.categoryId}"
+                                                                th:category-name="${courseCategory.categoryName}"
+                                                                th:category-description="${courseCategory.categoryDescription}"
+                                                                data-bs-placement="top"
+                                                                data-bs-trigger="hover" title=""
+                                                                data-bs-original-title="Nhấn vào đây để sửa danh mục"
+                                                        >
+                                                            <!--begin::Svg Icon | -->
+                                                            Edit
+                                                            <!--end::Svg Icon-->
+                                                        </button>
+                                                        <!--end::Update-->
+                                                        <!--begin::Delete-->
+                                                        <button class="btn btn-danger btn-shadow  btn-delete" style="padding: 5px 10px;margin-top: 10px"
+                                                                data-kt-permissions-table-filter="delete_row"
+
+                                                                data-bs-placement="top"
+                                                                data-bs-trigger="hover" title=""
+
+                                                        >
+                                                            <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
+                                                            Delete
+                                                            <!--end::Svg Icon-->
+                                                        </button>
+                                                        <!--end::Delete-->
+                                                    </td>
+                                                    <!--end::Action=-->
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                            <!--end::Table body-->
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+                        <!--begin::Modals-->
+                        <!--begin::Modal - Add permissions-->
+                        <div class="modal fade" id="kt_modal_add_permission" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bolder">Add Course</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                             data-kt-permissions-modal-action="close">
+                                            <!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+                                            <span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+															<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+                                                               fill="#000000">
+																<rect fill="#000000" x="0" y="7" width="16" height="2"
+                                                                      rx="1"></rect>
+																<rect fill="#000000" opacity="0.5"
+                                                                      transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)"
+                                                                      x="0" y="7" width="16" height="2" rx="1"></rect>
+															</g>
+														</svg>
+													</span>
+                                            <!--end::Svg Icon-->
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                        <!--begin::Form-->
+                                        <form id="kt_modal_add_permission_form"
+                                              class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-bold form-label mb-2">
+                                                    <span class="required">Course name</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Tiêu đề danh mục khóa học."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input class="form-input form-control"
+                                                       placeholder=""
+                                                       name="course_category_name">
+                                                <!--end::Input-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-bold form-label mb-2">
+                                                    <span class="required">Course description</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Thông tin chi tiết danh mục khóa học."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <textarea class="form-control " style="color: #6d6d6d;font-size: 14px;border-radius: 4px; height: 200px;padding:16px 16px;border: 1px solid rgba(0, 0, 0, 0.2);"
+
+                                                          name="course_category_description"></textarea>
+                                                <!--end::Input-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Actions-->
+                                            <div class="text-center pt-15">
+<!--                                                <button type="reset" class="btn btn-white me-3"-->
+<!--                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ-->
+<!--                                                </button>-->
+                                                <button type="submit" class="btn btn-primary"
+                                                        data-kt-permissions-modal-action="submit">
+                                                    <span class="indicator-label">Add new course</span>
+<!--                                                    <span class="indicator-progress">Vui lòng chờ...-->
+<!--															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                            <div></div>
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - Add permissions-->
+                        <!--begin::Modal - Update permissions-->
+                        <div class="modal fade" id="kt_modal_update_permission" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bolder">Update course</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                             data-kt-permissions-modal-action="close">
+                                            <!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+                                            <span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+															<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+                                                               fill="#000000">
+																<rect fill="#000000" x="0" y="7" width="16" height="2"
+                                                                      rx="1"></rect>
+																<rect fill="#000000" opacity="0.5"
+                                                                      transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)"
+                                                                      x="0" y="7" width="16" height="2" rx="1"></rect>
+															</g>
+														</svg>
+													</span>
+                                            <!--end::Svg Icon-->
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+
+                                        <!--begin::Form-->
+                                        <form id="kt_modal_update_permission_form"
+                                              class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+                                            <!--begin::Input group-->
+                                            <input type="hidden" name="id_category" id="categoryUpdate">
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-bold form-label mb-2">
+                                                    <span class="required">New course name</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Permission names is required to be unique."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input class="form-control form-input"
+
+                                                       name="update_category_name">
+                                                <!--end::Input-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-bold form-label mb-2">
+                                                    <span class="required">New course's description</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Permission names is required to be unique."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <textarea class="form-control " style="color: #6d6d6d;font-size: 14px;border-radius: 4px; height: 200px;padding:16px 16px;border: 1px solid rgba(0, 0, 0, 0.2);"
+
+                                                          name="update_description"></textarea>
+                                                <!--end::Input-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Actions-->
+                                            <div class="text-center pt-15">
+<!--                                                <button type="reset" class="btn btn-white me-3"-->
+<!--                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ-->
+<!--                                                </button>-->
+                                                <button type="submit" class="btn btn-primary"
+                                                        data-kt-permissions-modal-action="submit">
+                                                    <span class="indicator-label">Update</span>
+<!--                                                    <span class="indicator-progress">Vui lòng chờ...-->
+<!--															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                            <div></div>
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - Update permissions-->
+                        <!--end::Modals-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/courseCategory/courseCategory.js}"></script>
+<script th:src="@{/js/courseCategory/updateCourseCategory.js}"></script>
+<script th:src="@{/js/courseCategory/addCourseCategory.js}"></script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Admin</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <th:block th:fragment="Assginment">
+                <!--end::Upload-->
+                <style>
+                    .box__file {
+                        width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;
+                    }
+                </style>
+                <div class="row md-5">
+                    <div class="col-12 col-sm-12 col-xl">
+                        <!--begin::Card-->
+                        <div class="card h-100 flex-center bg-light-primary border-primary border border-dashed p-8">
+                            <!--begin::Image-->
+                            <img th:src="@{/img/upload.svg}" class="mb-8" alt="">
+                            <!--end::Image-->
+                            <!--begin::Link-->
+<!--                            <a href="#" class="text-hover-primary fs-5 fw-bolder mb-2">File Upload</a>-->
+                            <input type="file" name="files[]" id="file" class="box__file text-hover-primary fs-5 fw-bolder mb-2" data-multiple-caption="{count} files selected" multiple="">
+                            <label for="file"><strong class="text-hover-primary fs-5 fw-bolder mb-2">Chọn tập tin</strong><span class="box__dragndrop"> để tải lên</span>.</label>
+                            <!--end::Link-->
+                            <!--begin::Description-->
+<!--                            <div class="fs-7 fw-bold text-gray-400 mt-auto">Drag and drop files here</div>-->
+                            <!--end::Description-->
+                        </div>
+
+                        <!--end::Card-->
+                    </div>
+                </div>
+                <div class="separator separator-dashed my-5"></div>
+                <!--end::Start Date-->
+                <div class="row mb-5">
+                    <!--begin::Col-->
+                    <div class="col-md-9 fv-row fv-plugins-icon-container">
+                        <!--end::Label-->
+                        <label class="fs-5 fw-bold mb-2">Ngày bắt đầu</label>
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <div class="position-relative d-flex align-items-center">
+                            <!--begin::Icon-->
+                            <div class="symbol symbol-20px me-4 position-absolute ms-4">
+																	<span class="symbol-label bg-secondary">
+																		<!--begin::Svg Icon | path: icons/duotone/Layout/Layout-grid.svg-->
+																		<span class="svg-icon">
+																			<svg xmlns="http://www.w3.org/2000/svg"
+                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 width="24px" height="24px"
+                                                                                 viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1"
+                                                                                   fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24"
+                                                                                          height="24"></rect>
+																					<rect fill="#000000" opacity="0.3"
+                                                                                          x="4" y="4" width="4"
+                                                                                          height="4" rx="1"></rect>
+																					<path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                                                          fill="#000000"></path>
+																				</g>
+																			</svg>
+																		</span>
+                                                                        <!--end::Svg Icon-->
+																	</span>
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Datepicker-->
+                            <input class="form-control form-control-solid ps-12 flatpickr-input"
+                                   placeholder="Chọn thời điểm bắt đầu" name="start_date" type="text"
+                                   readonly="readonly"
+                                   th:value="${!addPage ? #dates.format(courseModule.assignment.startDate, 'dd-MM-yyyy HH:mm') :''}"
+                                   th:disabled="${!addPage ? courseModule.assignment.startDate == null : false}"
+                                   th:style="${!addPage ? (courseModule.assignment.startDate == null ? 'background-color: rgb(58, 59, 60);' : '') : ''}"
+                             >
+                            <!--end::Datepicker-->
+                        </div>
+                        <!--end::Input-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <label class="fs-5 fw-bold mb-2">Bật ngày bắt đầu</label>
+                        <br>
+                        <div class="form-check form-check-solid form-switch fv-row pt-3">
+                            <label class="form-check-label" for="allowstartdate"></label>
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="allowstartdate"
+                                   th:checked="${!addPage ? courseModule.assignment.startDate != null : true}">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::End Date-->
+                <div class="row mb-5">
+                    <!--begin::Col-->
+                    <div class="col-md-9 fv-row fv-plugins-icon-container">
+                        <!--end::Label-->
+                        <label class="fs-5 fw-bold mb-2">Ngày kết thúc</label>
+                        <!--end::Label-->
+                        <!--end::Input-->
+                        <div class="position-relative d-flex align-items-center">
+                            <!--begin::Icon-->
+                            <div class="symbol symbol-20px me-4 position-absolute ms-4">
+																	<span class="symbol-label bg-secondary">
+																		<!--begin::Svg Icon | path: icons/duotone/Layout/Layout-grid.svg-->
+																		<span class="svg-icon">
+																			<svg xmlns="http://www.w3.org/2000/svg"
+                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 width="24px" height="24px"
+                                                                                 viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1"
+                                                                                   fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24"
+                                                                                          height="24"></rect>
+																					<rect fill="#000000" opacity="0.3"
+                                                                                          x="4" y="4" width="4"
+                                                                                          height="4" rx="1"></rect>
+																					<path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                                                          fill="#000000"></path>
+																				</g>
+																			</svg>
+																		</span>
+                                                                        <!--end::Svg Icon-->
+																	</span>
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Datepicker-->
+                            <input class="form-control form-control-solid ps-12 flatpickr-input"
+                                   placeholder="Chọn thời điểm kết thúc" name="end_date" type="text"
+                                   readonly="readonly"
+                                   th:value="${!addPage ? #dates.format(courseModule.assignment.dueDate, 'dd-MM-yyyy HH:mm') :''}"
+                                   th:disabled="${!addPage ? courseModule.assignment.dueDate == null : false}"
+                                   th:style="${!addPage ? (courseModule.assignment.dueDate == null ? 'background-color: rgb(58, 59, 60);' : '') : ''}"
+                            >
+                            <!--end::Datepicker-->
+                        </div>
+                        <!--end::Input-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <label class="fs-5 fw-bold mb-2">Bật ngày kết thúc</label>
+                        <br>
+                        <div class="form-check form-check-solid form-switch fv-row pt-3">
+                            <label class="form-check-label" for="allowenddate"></label>
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="allowenddate"
+                                   th:checked="${!addPage ? courseModule.assignment.dueDate != null : true}">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Input group-->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Loại nộp bài</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
+                        <!--begin::Options-->
+                        <div class="d-flex align-items-center mt-3">
+                            <!--begin::Option-->
+                            <label class="form-check form-check-inline form-check-solid me-5 is-valid">
+                                <input class="form-check-input" name="typeSubmit[]" type="checkbox" value="1"
+                                th:checked="${!addPage ? courseModule.assignment.textSubmission : false}"
+                                >
+                                <span class="fw-bold ps-2 fs-6">Văn bản</span>
+                            </label>
+                            <!--end::Option-->
+                            <!--begin::Option-->
+                            <label class="form-check form-check-inline form-check-solid is-valid">
+                                <input class="form-check-input" name="typeSubmit[]" type="checkbox" value="1"
+                                th:checked="${!addPage ? courseModule.assignment.fileSubmission : true}"
+                                >
+                                <span class="fw-bold ps-2 fs-6">Tập tin</span>
+                            </label>
+                            <!--end::Option-->
+                        </div>
+                        <!--end::Options-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Điểm cao nhất</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <!--begin::Col-->
+                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                <input type="text" name="maxGrade"
+                                       class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                       placeholder="Nhập điểm cao nhất" th:value="${!addPage ? courseModule.assignment.maximumGrade : '100'}">
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+            </th:block>
+            <th:block th:fragment="Quiz">
+                <!--end::Start Date-->
+                <div class="row mb-5">
+                    <!--begin::Col-->
+                    <div class="col-md-9 fv-row fv-plugins-icon-container">
+                        <!--end::Label-->
+                        <label class="fs-5 fw-bold mb-2">Ngày bắt đầu</label>
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <div class="position-relative d-flex align-items-center">
+                            <!--begin::Icon-->
+                            <div class="symbol symbol-20px me-4 position-absolute ms-4">
+																	<span class="symbol-label bg-secondary">
+																		<!--begin::Svg Icon | path: icons/duotone/Layout/Layout-grid.svg-->
+																		<span class="svg-icon">
+																			<svg xmlns="http://www.w3.org/2000/svg"
+                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 width="24px" height="24px"
+                                                                                 viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1"
+                                                                                   fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24"
+                                                                                          height="24"></rect>
+																					<rect fill="#000000" opacity="0.3"
+                                                                                          x="4" y="4" width="4"
+                                                                                          height="4" rx="1"></rect>
+																					<path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                                                          fill="#000000"></path>
+																				</g>
+																			</svg>
+																		</span>
+                                                                        <!--end::Svg Icon-->
+																	</span>
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Datepicker-->
+                            <input class="form-control form-control-solid ps-12 flatpickr-input"
+                                   placeholder="Chọn thời điểm bắt đầu" name="start_date" type="text"
+                                   readonly="readonly"
+                                   th:value="${!addPage ? #dates.format(courseModule.quiz.timeOpen, 'dd-MM-yyyy HH:mm') :''}"
+                                   th:disabled="${!addPage ? courseModule.quiz.timeOpen == null : false}"
+                                   th:style="${!addPage ? (courseModule.quiz.timeOpen  == null ? 'background-color: rgb(58, 59, 60);' : '') : ''}"
+                            >
+                            <!--end::Datepicker-->
+                        </div>
+                        <!--end::Input-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <label class="fs-5 fw-bold mb-2">Bật ngày bắt đầu</label>
+                        <br>
+                        <div class="form-check form-check-solid form-switch fv-row pt-3">
+                            <label class="form-check-label" for="allowstartdate"></label>
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="allowstartdate"
+                                   th:checked="${!addPage ? courseModule.quiz.timeOpen != null : true}">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::End Date-->
+                <div class="row mb-5">
+                    <!--begin::Col-->
+                    <div class="col-md-9 fv-row fv-plugins-icon-container">
+                        <!--end::Label-->
+                        <label class="fs-5 fw-bold mb-2">Ngày kết thúc</label>
+                        <!--end::Label-->
+                        <!--end::Input-->
+                        <div class="position-relative d-flex align-items-center">
+                            <!--begin::Icon-->
+                            <div class="symbol symbol-20px me-4 position-absolute ms-4">
+																	<span class="symbol-label bg-secondary">
+																		<!--begin::Svg Icon | path: icons/duotone/Layout/Layout-grid.svg-->
+																		<span class="svg-icon">
+																			<svg xmlns="http://www.w3.org/2000/svg"
+                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 width="24px" height="24px"
+                                                                                 viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1"
+                                                                                   fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24"
+                                                                                          height="24"></rect>
+																					<rect fill="#000000" opacity="0.3"
+                                                                                          x="4" y="4" width="4"
+                                                                                          height="4" rx="1"></rect>
+																					<path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                                                          fill="#000000"></path>
+																				</g>
+																			</svg>
+																		</span>
+                                                                        <!--end::Svg Icon-->
+																	</span>
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Datepicker-->
+                            <input class="form-control form-control-solid ps-12 flatpickr-input"
+                                   placeholder="Chọn thời điểm kết thúc" name="end_date" type="text"
+                                   readonly="readonly"
+                                   th:value="${!addPage ? #dates.format(courseModule.quiz.timeClose, 'dd-MM-yyyy HH:mm') :''}"
+                                   th:disabled="${!addPage ? courseModule.quiz.timeClose == null : false}"
+                                   th:style="${!addPage ? (courseModule.quiz.timeClose  == null ? 'background-color: rgb(58, 59, 60);' : '') : ''}"
+
+                            >
+                            <!--end::Datepicker-->
+                        </div>
+                        <!--end::Input-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <label class="fs-5 fw-bold mb-2">Bật ngày kết thúc</label>
+                        <br>
+                        <div class="form-check form-check-solid form-switch fv-row pt-3">
+                            <label class="form-check-label" for="allowenddate"></label>
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="allowenddate"
+                                   th:checked="${!addPage ? courseModule.quiz.timeClose != null : true}">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Time Limit-->
+                <div class="row mb-5">
+                    <!--begin::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <!--end::Label-->
+                        <label class="fs-5 fw-bold mb-2">Thời gian giới hạn</label>
+                        <!--end::Label-->
+                        <!--end::Input-->
+                        <div class="position-relative d-flex align-items-center">
+                            <!--begin::Icon-->
+                            <div class="symbol symbol-20px me-4 position-absolute ms-4">
+																	<span class="symbol-label bg-secondary">
+																		<!--begin::Svg Icon | path: icons/duotone/Layout/Layout-grid.svg-->
+																		<span class="svg-icon">
+																			<svg xmlns="http://www.w3.org/2000/svg"
+                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 width="24px" height="24px"
+                                                                                 viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1"
+                                                                                   fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24"
+                                                                                          height="24"></rect>
+																					<rect fill="#000000" opacity="0.3"
+                                                                                          x="4" y="4" width="4"
+                                                                                          height="4" rx="1"></rect>
+																					<path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                                                          fill="#000000"></path>
+																				</g>
+																			</svg>
+																		</span>
+                                                                        <!--end::Svg Icon-->
+																	</span>
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Datepicker-->
+                            <input class="form-control form-control-solid ps-12 flatpickr-minute"
+                                   placeholder="Chọn thời gian giới hạn" name="time_limit" type="text"
+                                   readonly="readonly"
+                                   th:value="${!addPage ? #dates.format(courseModule.quiz.timeLimit, 'HH:mm') :''}"
+                                   th:disabled="${!addPage ? courseModule.quiz.timeLimit == null : false}"
+                                   th:style="${!addPage ? (courseModule.quiz.timeLimit == null ? 'background-color: rgb(58, 59, 60);' : '') : ''}"
+                            >
+                            <!--end::Datepicker-->
+                        </div>
+                        <!--end::Input-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <!--end::Col-->
+                    <div class="col-md-3 fv-row fv-plugins-icon-container">
+                        <label class="fs-5 fw-bold mb-2">Bật thời gian giới hạn</label>
+                        <br>
+                        <div class="form-check form-check-solid form-switch fv-row pt-3">
+                            <label class="form-check-label" for="allowtimelimit"></label>
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="allowtimelimit"
+                                   th:checked="${!addPage ? courseModule.quiz.timeLimit != null : true}">
+                        </div>
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Mật khẩu bài kiểm tra</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <!--begin::Col-->
+                            <div class="position-relative mb-3">
+                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="Nhập mật khẩu quiz nếu có" name="password" autocomplete="off"
+                                th:value="${!addPage ? courseModule.quiz.password : ''}"
+                                >
+                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2 btn-visible" data-kt-password-meter-control="visibility">
+												<i class="bi bi-eye-slash fs-2"></i>
+												<i class="bi bi-eye fs-2 d-none"></i>
+											</span>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!-- Grade to pass -->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Số điểm để vượt qua</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <!--begin::Col-->
+                            <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                                <input type="text" name="gradeToPass" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Nhập số điểm"
+                                       th:value="${!addPage ? courseModule.quiz.gradeToPass : ''}">
+                                <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!-- Attempt  -->
+                <div class="row mb-5">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Số lần làm bài</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="Chọn số lần làm bài" name="num_attempt"
+                                data-select2-id="select2-data-10-ex8i" tabindex="-1" aria-hidden="true">
+                            <option value="0">Không giới hạn</option>
+                            <th:block th:each="num : ${#numbers.sequence(1,10)}">
+                                <option th:value="*{num}" th:text="*{num}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                </div>
+                <!--  Suffle Question              -->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Xáo trộn câu hỏi</label>
+                    <!--begin::Label-->
+                    <!--begin::Label-->
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="form-check form-check-solid form-switch fv-row">
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="shuffleQuestions"
+                            th:checked="${!addPage ? courseModule.quiz.shuffleQuestions : false}"
+                            >
+                            <label class="form-check-label" for="shuffleQuestions"></label>
+                        </div>
+                    </div>
+                    <!--begin::Label-->
+                </div>
+                <!-- Review-->
+                <div class="row mb-5">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Cho phép xem đáp án</label>
+                    <!--begin::Label-->
+                    <!--begin::Label-->
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="form-check form-check-solid form-switch fv-row">
+                            <input class="form-check-input w-45px h-30px" type="checkbox" id="review"
+                            th:checked="${!addPage ? courseModule.quiz.review : false}">
+                            <label class="form-check-label" for="review"></label>
+                        </div>
+                    </div>
+                    <!--begin::Label-->
+                </div>
+            </th:block>
+            <th:block th:fragment="FileModule">
+                <!--end::Upload-->
+                <style>
+                    .box__file {
+                        width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;
+                    }
+                </style>
+                <div class="row md-5">
+                    <div class="col-md-12 card h-100 flex-center bg-light-primary border-primary border border-dashed p-8 fv-row fv-plugins-icon-container">
+                        <!--begin::Card-->
+<!--                        <div class="card h-100 flex-center bg-light-primary border-primary border border-dashed p-8">-->
+                            <!--begin::Image-->
+                            <img src="/img/upload.svg" class="mb-8" alt="">
+                            <!--end::Image-->
+                            <!--begin::Link-->
+                            <input type="file" name="filesUp" id="fileUp" class="box__file text-hover-primary fs-5 fw-bolder mb-2">
+                            <label for="fileUp">
+                                <strong class="text-hover-primary fs-5 fw-bolder mb-2">Chọn tập tin</strong>
+                                <span class="box__dragndrop"> để tải lên</span>.
+                            </label>
+                            <!--end::Link-->
+                            <!--begin::Description-->
+<!--                            <div class="fs-7 fw-bold text-gray-400 mt-auto">Drag and drop files here</div>-->
+                            <!--end::Description-->
+<!--                        </div>-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                        <!--end::Card-->
+                    </div>
+                </div>
+                <div class="separator separator-dashed my-5"></div>
+            </th:block>
+            <th:block th:fragment="Url">
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Liên kết</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <input type="text" name="link" class="form-control form-control-lg form-control-solid" placeholder="Nhập liên kết"
+                               th:value="${!addPage ? courseModule.url.link : ''}">
+                        <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                    <!--end::Col-->
+                </div>
+            </th:block>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+</body>
+</html>

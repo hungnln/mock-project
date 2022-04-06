@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title th:text="|${courseModule.typeName}:  ${courseModule.name}|"></title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      data-kt-aside-minimize="on"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<input type="hidden" name="username" th:value="${userLogin.username}">
+<input type="hidden" name="assignmentID" th:value="${courseModule.courseModuleId}">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <input type="hidden" name="quizAttempsID" id="quizAttempsID" th:value="${quizAttempt.quizAttemptId}">
+                <input type="hidden" name="courseModule" id="quizID" th:value="${courseModule.courseModuleId}">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
+                                th:text="|Làm bài ${courseModule.name}|"></h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Trang chủ</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted"
+                                    th:text="${courseModule.courseSections.course.fullName}"></li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark"
+                                    th:text="${courseModule.courseSections.courseSectionName}"></li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1" th:if="${timeLeft != null }">
+                            <!--begin::Wrapper-->
+                            <div class="me-4">
+                                <!--begin::Menu-->
+                                <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder disabled"
+                                   data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+
+                                    <!--end::Svg Icon-->Thời gian còn lại</a>
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Wrapper-->
+                            <!--begin::Button-->
+                            <input type="hidden" name="timeLeft" th:if="${timeLeft != null}"
+                                   th:value="${timeLeft}">
+                            <div class="btn btn-sm btn-info" id="cTimeLeft"><span id="timeLeft"></span><span
+                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></div>
+                            <!--end::Button-->
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-fluid">
+                        <form action="#" id="kt_submit_quiz">
+                        <div class="row g-5 g-xl-8">
+                            <th:block th:each="ques,iState : ${lQuestion}">
+                                <div class="row bg-white mb-8 p-5 mt-3 my-3 question">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-2">
+                                        <div class="fs-6 fw-bold mt-2 mb-3" th:text="|Câu hỏi *{iState.count}|"></div>
+                                        <div class="fw-bold text-gray-400 mb-6"
+                                             th:text="|*{ques.defaultMark} điểm|"></div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 qid" th:data-type="*{ques.questionType}" th:id="|qid*{ques.questionId}|" th:data="*{ques.questionId}">
+                                        <div class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-10 pb-3"
+                                             th:text="*{ques.questionText}"
+                                        ></div>
+                                        <!--begin::Row-->
+                                        <th:block th:if="${ques.questionType == 'QuestionMultichoice'}">
+                                            <div class="row g-10" data-kt-buttons="true"
+                                                 data-kt-buttons-target="[data-kt-button]">
+                                                <!--begin::Col-->
+                                                <div class="col-md-4 col-lg-12 col-xxl-4 mt-2"
+                                                     th:each="ans : *{ques.answers}">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-3 active"
+                                                           data-kt-button="true">
+                                                        <!--begin::Radio button-->
+                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-2">
+                                                    <input class="form-check-input" th:type="${ques.questionMultichoice.singleAnswer ? 'radio' : 'checkbox'}"
+                                                           th:name="|qid*{ques.questionId}|"
+                                                           th:value="*{ans.questionAnswersId}">
+                                                </span>
+                                                        <!--end::Radio button-->
+                                                        <span class="ms-5 mt-1">
+                                                    <span class="fs-4 fw-bolder mb-1 d-block"
+                                                          th:text="*{ans.answer}"></span>
+                                                </span>
+                                                    </label>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </th:block>
+
+                                        <th:block th:if="${ques.questionType == 'QuestionTrueFalse'}">
+                                            <div class="row g-10" data-kt-buttons="true"
+                                                 data-kt-buttons-target="[data-kt-button]">
+                                                <!--begin::Col-->
+                                                <div class="col-md-4 col-lg-12 col-xxl-4 mt-2">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-3 active"
+                                                           data-kt-button="true">
+                                                        <!--begin::Radio button-->
+                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-2">
+                                                    <input class="form-check-input" type="radio"
+                                                           th:name="|qid*{ques.questionId}|" value="1">
+                                                </span>
+                                                        <!--end::Radio button-->
+                                                        <span class="ms-5 mt-1">
+                                                    <span class="fs-4 fw-bolder mb-1 d-block">Đúng</span>
+                                                </span>
+                                                    </label>
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-md-4 col-lg-12 col-xxl-4 mt-2">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-3 active"
+                                                           data-kt-button="true">
+                                                        <!--begin::Radio button-->
+                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-2">
+                                                    <input class="form-check-input" type="radio"
+                                                           th:name="|qid*{ques.questionId}|" value="0">
+                                                </span>
+                                                        <!--end::Radio button-->
+                                                        <span class="ms-5 mt-1">
+                                                    <span class="fs-4 fw-bolder mb-1 d-block">Sai</span>
+                                                </span>
+                                                    </label>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </th:block>
+
+                                        <th:block th:if="${ques.questionType == 'QuestionEssay'}">
+                                            <div class="row g-10" data-kt-buttons="true"
+                                                 data-kt-buttons-target="[data-kt-button]"
+                                            >
+                                                <!--begin::Col-->
+                                                <div class="col-md-4 col-lg-12 col-xxl-4 mt-2">
+                                                    <textarea class="form-control form-control-solid mb-8"
+                                                              th:rows="*{ques.questionEssay.inputBoxSize}"
+                                                              placeholder="Viết bài làm vào đây"
+                                                              th:name="|qid*{ques.questionId}|"
+                                                    ></textarea>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </th:block>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                            </th:block>
+                        </div>
+                        <!--begin::Row-->
+                        <div class="row g-5 g-xl-8">
+                            <!--begin::Col-->
+                            <div class="col-xl-12">
+                                <!--begin::Feeds widget 4, 5 load more-->
+                                <button class="btn btn-primary w-100 text-center" id="kt_submit_assignment">
+                                    <span class="indicator-label">Nộp bài</span>
+                                    <span class="indicator-progress">Vui lòng chờ...
+											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <!--end::Feeds widget 4, 5 load more-->
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                        </form>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/module/takeQuiz.js}"></script>
+<script th:src="@{/js/module/widgets.js}"></script>
+</body>
+</html>

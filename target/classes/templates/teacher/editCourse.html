@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title>Sửa khóa học</title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Sửa khóa học</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
+                                        khiển</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">Quản lý khóa học</li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark">Sửa khóa học</li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Careers - Apply-->
+                        <div class="card">
+                            <!--begin::Body-->
+                            <div class="card-body p-lg-17">
+                                <!--begin::Layout-->
+                                <div class="d-flex flex-column flex-lg-row mb-17">
+                                    <!--begin::Content-->
+                                    <div class="flex-lg-row-fluid me-0">
+                                        <!--begin::Form-->
+                                        <input type="hidden" name="courseId" id="courseID"
+                                               th:value="${eCourse.courseId}">
+                                        <form action="" class="form mb-15 fv-plugins-bootstrap5 fv-plugins-framework"
+                                              method="post" id="kt_careers_form">
+                                            <!--begin::Input group-->
+                                            <div class="d-flex flex-column mb-5 fv-row fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                    <span class="required">Danh mục khóa học</span>
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                       data-bs-toggle="tooltip" title=""
+                                                       data-bs-original-title="Chọn danh mục cho khóa học của bạn"
+                                                       aria-label="Chọn danh mục cho khóa học của bạn"></i>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Select-->
+                                                <select name="category" data-control="select2"
+                                                        data-placeholder="Chọn danh mục..."
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-select2-id="select2-data-10-my2j" tabindex="-1"
+                                                        aria-hidden="true">
+                                                    <th:block th:each="category : ${LIST_CATEGORY}">
+                                                        <option th:value="${category.categoryId}"
+                                                                th:text="${category.categoryName}"
+                                                                th:selected="${category.categoryId == eCourse.getCourseCategory().categoryId}"></option>
+                                                    </th:block>
+                                                </select>
+                                                <!--end::Select-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-5">
+                                                <!--begin::Col-->
+                                                <input type="hidden" name="userLogin" id="userLogin"
+                                                       th:value="${userLogin.username}">
+                                                <div class="col-md-3 fv-row fv-plugins-icon-container">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2">Tên viết tắt</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="" name="short_name"
+                                                           th:value="${eCourse.shortName}">
+                                                    <!--end::Input-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-md-9 fv-row fv-plugins-icon-container">
+                                                    <!--end::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2">Tên đầy đủ</label>
+                                                    <!--end::Label-->
+                                                    <!--end::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="" name="full_name"
+                                                           th:value="${eCourse.fullName}">
+                                                    <!--end::Input-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="separator separator-dashed my-5"></div>
+                                            <div class="row mb-5">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">Cho phép hiện
+                                                    thị</label>
+                                                <!--begin::Label-->
+                                                <!--begin::Label-->
+                                                <div class="col-lg-4 d-flex align-items-center">
+                                                    <div class="form-check form-check-solid form-switch fv-row">
+                                                        <input class="form-check-input w-45px h-30px" type="checkbox"
+                                                               id="allowvisible" th:checked="${eCourse.visible}">
+                                                        <label class="form-check-label" for="allowvisible"></label>
+                                                    </div>
+                                                </div>
+                                                <!--begin::Label-->
+
+                                            </div>
+                                            <div class="separator separator-dashed my-5"></div>
+                                            <!--begin::Input group-->
+                                            <div class="row mb-5">
+                                                <!--begin::Col-->
+                                                <div class="col-md-9 fv-row fv-plugins-icon-container">
+                                                    <!--end::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2">Ngày bắt đầu</label>
+                                                    <!--end::Label-->
+                                                    <!--end::Input-->
+                                                    <input type="date"
+                                                           class="form-control form-control-solid"
+                                                           name="start_date"
+                                                           th:value="${#dates.format(eCourse.startDate,'yyyy-MM-dd')}">
+                                                    <!--end::Input-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <div class="row mb-5">
+                                                <!--begin::Col-->
+                                                <div class="col-md-9 fv-row fv-plugins-icon-container">
+                                                    <!--end::Label-->
+                                                    <label class="fs-5 fw-bold mb-2">Ngày kết thúc</label>
+                                                    <!--end::Label-->
+                                                    <!--end::Input-->
+                                                    <input type="date"
+                                                           class="form-control form-control-solid"
+                                                           placeholder="" name="end_date"
+                                                           th:value="${eCourse.endDate != null ? #dates.format(eCourse.endDate,'yyyy-MM-dd'):''}"
+                                                           th:disabled="${eCourse.endDate == null}"
+                                                           th:style="${eCourse.endDate == null ? 'background-color: rgb(58, 59, 60);':''}">
+                                                    <!--end::Input-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                                <div class="col-md-3 fv-row fv-plugins-icon-container">
+                                                    <label class="fs-5 fw-bold mb-2">Bật ngày kết thúc</label>
+                                                    <br>
+                                                    <div class="form-check form-check-solid form-switch fv-row pt-3">
+                                                        <label class="form-check-label" for="allowenddate"></label>
+                                                        <input class="form-check-input w-45px h-30px" type="checkbox"
+                                                               id="allowenddate"
+                                                               th:checked="${eCourse.endDate != null}">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="mb-1">
+                                                <!--begin::Label-->
+                                                <label class="form-label fw-bolder text-dark fs-6">Mật khẩu khóa
+                                                    học</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input wrapper-->
+                                                <div class="position-relative mb-3">
+                                                    <input class="form-control form-control-lg form-control-solid"
+                                                           type="password" placeholder="" name="password"
+                                                           autocomplete="off" th:value="${eCourse.password}">
+                                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2 btn-visible"
+                                                          data-kt-password-meter-control="visibility">
+												<i class="bi bi-eye-slash fs-2"></i>
+												<i class="bi bi-eye fs-2 d-none"></i>
+											</span>
+                                                </div>
+                                                <!--end::Input wrapper-->
+                                            </div>
+                                            <!--begin::Input group-->
+                                            <div class="d-flex flex-column mb-9">
+                                                <label class="fs-6 fw-bold mb-2">Thông tin mô tả</label>
+                                                <textarea class="form-control form-control-solid" rows="4"
+                                                          name="description" placeholder=""
+                                                          th:value="${eCourse.description}"></textarea>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">Hình ảnh khóa
+                                                    học</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8">
+                                                    <!--begin::Image input-->
+                                                    <div class="image-input image-input-outline"
+                                                         data-kt-image-input="true"
+                                                         style="background-image: url(/img/blank.png)">
+                                                        <!--begin::Preview existing avatar-->
+                                                        <div class="image-input-wrapper w-300px h-125px"
+                                                             th:style="|background-image: ${eCourse.image}|"></div>
+                                                        <!--end::Preview existing avatar-->
+                                                        <!--begin::Label-->
+                                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-white shadow"
+                                                               data-kt-image-input-action="change"
+                                                               data-bs-toggle="tooltip" title=""
+                                                               data-bs-original-title="Đổi hình ảnh">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
+                                                            <input type="hidden" name="avatar_remove">
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Cancel-->
+                                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-white shadow"
+                                                              th:style="${eCourse.image == null ? '': 'display : block;'}"
+                                                              data-kt-image-input-action="cancel"
+                                                              data-bs-toggle="tooltip" title=""
+                                                              data-bs-original-title="Cancel avatar">
+																<i class="bi bi-x fs-2"></i>
+															</span>
+                                                        <!--end::Cancel-->
+
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Hint-->
+                                                    <div class="form-text">Chấp nhận các loại file: png, jpg, jpeg.
+                                                    </div>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--begin::Separator-->
+                                            <div class="separator mb-8"></div>
+                                            <!--end::Separator-->
+                                            <!--begin::Submit-->
+                                            <button type="submit" class="btn btn-primary" id="kt_careers_submit_button">
+                                                <!--begin::Indicator-->
+                                                <span class="indicator-label">Sửa khóa học</span>
+                                                <span class="indicator-progress">Vui lòng chờ...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                <!--end::Indicator-->
+                                            </button>
+                                            <!--end::Submit-->
+                                            <div></div>
+                                        </form>
+                                        <!--end::Form-->
+
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Layout-->
+
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Careers - Apply-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/course/addCourse.js}"></script>
+
+</body>
+</html>

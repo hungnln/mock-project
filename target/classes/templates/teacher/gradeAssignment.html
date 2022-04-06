@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div th:replace="~{/layout/include:: head/link}"></div>
+    <title th:text="|Chấm bài ${courseModule.name} của ${submit.user.lastName} ${submit.user.firstName}|"></title>
+</head>
+<!--begin::Body-->
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      data-kt-aside-minimize="on"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<input type="hidden" name="username" th:value="${userLogin.username}">
+<input type="hidden" name="assignmentID" th:value="${courseModule.courseModuleId}">
+<input type="hidden" name="assS" th:value="${submit.assignmentSubmissionId}">
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{/layout/aside::aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{/layout/header::header}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Chấm bài Assignment</h1>
+                            <!--end::Title-->
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                            <!--end::Separator-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted">
+                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Trang chủ</a>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-muted"
+                                    th:text="${courseModule.courseSections.course.fullName}"></li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item">
+                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                                </li>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <li class="breadcrumb-item text-dark"
+                                    th:text="${courseModule.courseSections.courseSectionName}"></li>
+                                <!--end::Item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1" th:if="${courseModule.assignment.dueDate != null}">
+                            <!--begin::Wrapper-->
+                            <div class="me-4">
+                                <!--begin::Menu-->
+                                <a th:href="@{/teacher/grade(id=${submit.assignmentSubmissionId}, goto='prev')}" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
+                                   th:if="${submit.assignmentSubmissionId != minP}">
+                                    Bài trước đó</a>
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Wrapper-->
+                            <!--begin::Button-->
+                            <a th:href="@{/teacher/grade(id=${submit.assignmentSubmissionId}, goto='next')}" class="btn btn-sm btn-info" th:if="${submit.assignmentSubmissionId != maxP}">Bài kế tiêp</a>
+                            <!--end::Button-->
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container">
+                        <!--begin::Row-->
+                        <div class="row g-5 g-xl-8">
+                            <!--begin::Col-->
+                            <div class="col-xl-12">
+                                <!--begin::Info -->
+                                <div class="card mb-5 mb-xl-8">
+                                    <!--begin::Body-->
+                                    <div class="card-body pb-0">
+                                        <!--begin::Header-->
+                                        <div class="d-flex align-items-center mb-3">
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center flex-grow-1">
+
+                                                <!--begin::Info-->
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder"
+                                                       th:text="|${courseModule.name} của ${submit.user.lastName} ${submit.user.firstName}|"></a>
+
+
+                                                </div>
+                                                <!--end::Info-->
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Header-->
+                                        <!--begin::Post-->
+                                        <div class="mb-7">
+                                            <!--begin::Text-->
+                                            <div class="text-gray-800 mb-5" th:text="${courseModule.description}"></div>
+                                            <!--end::Text-->
+                                        </div>
+                                        <!--end::Post-->
+                                        <!--begin::Replies-->
+                                        <div class="mb-7 ps-10" th:if="${courseModule.assignment.fileData != null}">
+                                            <!--begin::Reply-->
+                                            <div class="d-flex mb-5">
+                                                <!--begin::Avatar-->
+                                                <div class="symbol symbol-45px me-5">
+                                                    <img th:src="@{/img/FileModule.svg}" alt="">
+                                                </div>
+                                                <!--end::Avatar-->
+                                                <!--begin::Info-->
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <a th:href="@{/teacher/fileAssignment(id=${courseModule.courseModuleId})}"
+                                                       class="text-gray-800 text-hover-primary fw-bolder me-2"
+                                                       th:text="${courseModule.assignment.file}"></a>
+
+                                                </div>
+                                                <!--end::Info-->
+                                            </div>
+                                            <!--end::Reply-->
+                                        </div>
+                                        <!--end::Replies-->
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Info -->
+
+                                <!--begin::Text -->
+                                <div class="card mb-5 mb-xl-8" th:if="${courseModule.assignment.textSubmission}"
+                                     id="textSubmission">
+                                    <!--begin::Body-->
+                                    <div class="card-body pb-0">
+                                        <!--begin::Header-->
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center flex-grow-1">
+                                                <!--begin::Avatar-->
+                                                <div class="symbol symbol-45px me-5">
+                                                </div>
+                                                <!--end::Avatar-->
+                                                <!--begin::Info-->
+                                                <div class="d-flex flex-column">
+                                                    <a href="#"
+                                                       class="text-gray-800 text-hover-primary fs-6 fw-bolder"></a>
+                                                    <span class="text-gray-400 fw-bold"></span>
+                                                </div>
+                                                <!--end::Info-->
+                                            </div>
+                                            <!--end::User-->
+
+                                        </div>
+                                        <!--end::Header-->
+                                        <!--begin::Form-->
+                                        <form id="kt_forms_widget_1_form" class="ql-quil ql-quil-plain pb-3">
+                                            <!--begin::Editor-->
+                                            <div id="kt_forms_widget_1_editor" class="py-6 ql-container ql-snow">
+                                                <div class="ql-editor ql-blank" data-gramm="false"
+                                                     data-placeholder="Nhập bài làm của bạn vào đây ?"
+                                                     contenteditable="true"
+                                                     th:utext="${submit.text != null ? submit.text :''}"
+                                                >
+                                                </div>
+                                                <div class="ql-clipboard" tabindex="-1" contenteditable="true"></div>
+                                                <div class="ql-tooltip ql-hidden"><a class="ql-preview"
+                                                                                     rel="noopener noreferrer"
+                                                                                     target="_blank"
+                                                                                     href="about:blank"></a><input
+                                                        type="text" data-formula="e=mc^2"
+                                                        data-link="https://quilljs.com" data-video="Embed URL"><a
+                                                        class="ql-action"></a><a class="ql-remove"></a></div>
+                                            </div>
+                                            <!--end::Editor-->
+                                            <div class="separator"></div>
+                                            <!--begin::Toolbar-->
+                                            <div id="kt_forms_widget_1_editor_toolbar"
+                                                 class="ql-toolbar d-flex flex-stack py-2 ql-snow">
+                                                <div class="me-2">
+                                      <span class="ql-formats">
+																<button class="ql-bold ql-active" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <path class="ql-stroke"
+                                                                                                   d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path> <path
+                                                                        class="ql-stroke"
+                                                                        d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path> </svg></button>
+																<button class="ql-italic ql-active" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <line class="ql-stroke"
+                                                                                                   x1="7" x2="13" y1="4"
+                                                                                                   y2="4"></line> <line
+                                                                        class="ql-stroke" x1="5" x2="11" y1="14"
+                                                                        y2="14"></line> <line class="ql-stroke" x1="8"
+                                                                                              x2="10" y1="14"
+                                                                                              y2="4"></line> </svg></button>
+																<button class="ql-underline ql-active" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <path class="ql-stroke"
+                                                                                                   d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path> <rect
+                                                                        class="ql-fill" height="1" rx="0.5" ry="0.5"
+                                                                        width="12" x="3" y="15"></rect> </svg></button>
+																<button class="ql-strike" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <line
+                                                                        class="ql-stroke ql-thin" x1="15.5" x2="2.5"
+                                                                        y1="8.5" y2="9.5"></line> <path class="ql-fill"
+                                                                                                        d="M9.007,8C6.542,7.791,6,7.519,6,6.5,6,5.792,7.283,5,9,5c1.571,0,2.765.679,2.969,1.309a1,1,0,0,0,1.9-.617C13.356,4.106,11.354,3,9,3,6.2,3,4,4.538,4,6.5a3.2,3.2,0,0,0,.5,1.843Z"></path> <path
+                                                                        class="ql-fill"
+                                                                        d="M8.984,10C11.457,10.208,12,10.479,12,11.5c0,0.708-1.283,1.5-3,1.5-1.571,0-2.765-.679-2.969-1.309a1,1,0,1,0-1.9.617C4.644,13.894,6.646,15,9,15c2.8,0,5-1.538,5-3.5a3.2,3.2,0,0,0-.5-1.843Z"></path> </svg></button>
+																<button class="ql-image" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <rect class="ql-stroke"
+                                                                                                   height="10"
+                                                                                                   width="12" x="3"
+                                                                                                   y="4"></rect> <circle
+                                                                        class="ql-fill" cx="6" cy="7" r="1"></circle> <polyline
+                                                                        class="ql-even ql-fill"
+                                                                        points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline> </svg></button>
+																<button class="ql-link" type="button"><svg
+                                                                        viewBox="0 0 18 18"> <line class="ql-stroke"
+                                                                                                   x1="7" x2="11" y1="7"
+                                                                                                   y2="11"></line> <path
+                                                                        class="ql-even ql-stroke"
+                                                                        d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path> <path
+                                                                        class="ql-even ql-stroke"
+                                                                        d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path> </svg></button>
+																<button class="ql-clean" type="button"><svg class=""
+                                                                                                            viewBox="0 0 18 18"> <line
+                                                                        class="ql-stroke" x1="5" x2="13" y1="3"
+                                                                        y2="3"></line> <line class="ql-stroke" x1="6"
+                                                                                             x2="9.35" y1="12"
+                                                                                             y2="3"></line> <line
+                                                                        class="ql-stroke" x1="11" x2="15" y1="11"
+                                                                        y2="15"></line> <line class="ql-stroke" x1="15"
+                                                                                              x2="11" y1="11"
+                                                                                              y2="15"></line> <rect
+                                                                        class="ql-fill" height="1" rx="0.5" ry="0.5"
+                                                                        width="7" x="2" y="14"></rect> </svg></button>
+															</span>
+                                                </div>
+                                                <div class="me-n3">
+															<span class="btn btn-icon btn-sm btn-active-color-primary">
+																<i class="flaticon2-clip-symbol icon-ms"></i>
+															</span>
+                                                    <span class="btn btn-icon btn-sm btn-active-color-primary">
+																<i class="flaticon2-pin icon-ms"></i>
+															</span>
+                                                </div>
+                                            </div>
+                                            <!--end::Toolbar-->
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Text -->
+
+                                <!--begin::File -->
+                                <div class="card mb-5 mb-xl-8" th:if="${courseModule.assignment.fileSubmission}"
+                                     id="fileSubmission">
+                                    <!--begin::Body-->
+                                    <div class="card-body pb-0">
+                                        <!--begin::Header-->
+                                        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tập tin đã
+                                            nộp</a>
+                                        <div class="col-md-12 card h-100 flex-center bg-light-primary border-primary border border-dashed p-8 fv-row fv-plugins-icon-container mb-5">
+                                            <div class="mb-7 ps-10" th:if="${submit.fileData != null}">
+                                                <!--begin::Section-->
+                                                <div class="d-flex mb-5">
+                                                    <!--begin::Avatar-->
+                                                    <div class="symbol symbol-45px me-5">
+                                                        <img th:src="@{/img/FileModule.svg}" alt="">
+                                                    </div>
+                                                    <!--end::Avatar-->
+                                                    <!--begin::Info-->
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <a th:href="@{/teacher/fileSubmitAssignment(id=${submit.assignmentSubmissionId})}"
+                                                           class="text-gray-800 text-hover-primary fw-bolder me-2"
+                                                           th:text="${submit.fileName}"></a>
+
+                                                    </div>
+                                                    <!--end::Info-->
+                                                </div>
+                                                <!--end::Section-->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::File -->
+                                <form action="#" id="kt_grade_form">
+                                    <!--begin::Grade -->
+                                    <div class="card mb-5 mb-xl-8">
+                                        <!--begin::Body-->
+                                        <div class="card-body pb-0">
+                                            <!--begin::Grade-->
+                                            <div class="fv-row mb-10 fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="form-label fs-6 fw-bolder text-dark">Chấm điểm</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input class="form-control form-control-lg form-control-solid"
+                                                       type="text" name="grade" autocomplete="off"
+                                                       th:value="${submit.grade ? submit.gradeScore : ''}">
+                                                <!--end::Input-->
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <!--end::Grade-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Grade-->
+
+
+                                    <!--begin::Button-->
+                                    <button class="btn btn-primary w-100 text-center mb-5" id="kt_grade_assignment">
+                                        <span class="indicator-label">Chấm điểm</span>
+                                        <span class="indicator-progress">Vui lòng chờ...
+											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+
+                                    <a th:href="@{/teacher/viewSubmission(id=${courseModule.courseModuleId})}" class="btn btn-white w-100 text-center mb-5">
+                                        Trở lại</a>
+
+                                    <!--end::Submit Button-->
+                                </form>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div th:replace="~{/layout/footer::footer}"></div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+<div th:replace="~{/layout/footer::footer1}"></div>
+
+<div th:replace="~{/layout/include::script}"></div>
+<script th:src="@{/js/module/gradeAssignment.js}"></script>
+<script th:src="@{/js/module/widgets.js}"></script>
+</body>
+</html>
