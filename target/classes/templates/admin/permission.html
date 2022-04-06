@@ -181,7 +181,7 @@
                                                         <!--begin::Update-->
                                                         <button id="btn-role" class="btn-resize btn btn-shadow" th:if="${user.username != userLogin.username}"
                                                                 data-bs-toggle="modal" th:data="${user.username}" th:data-role="${user.role.roleName}"
-                                                                data-bs-target="#kt_modal_update_permission" style="font-size: 13px">
+                                                                data-bs-target="#kt_modal_update_permission" style="font-size: 13px" onclick="getUsername(this)" >
                                                             <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
                                                            Change
                                                             <!--end::Svg Icon-->

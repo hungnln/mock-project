@@ -29,6 +29,16 @@
 *, ::after, ::before {
     box-sizing: border-box
 }
+.card-item{
+    cursor: pointer;
+    box-shadow: 0 0px 5px #8854c0fa;
+}
+.card-item:hover{
+    transform: scale(1.05);
+    animation: transform 5s ease;
+
+
+}
 .form-input {
     margin-bottom: 0  !important;
     border-radius: 4px  !important;
