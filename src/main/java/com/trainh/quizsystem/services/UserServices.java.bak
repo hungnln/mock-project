@@ -15,5 +15,5 @@ public interface UserServices {
     boolean deactivateListUsers(List<String> usernames) throws SQLException;
     List<User> listAddCourses(List<User> list);
 
-   List<User> getUserByLikeUsername(String search);
+	List<User> getUserByLikeUsername(String search);
 }
