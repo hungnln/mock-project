@@ -140,7 +140,7 @@ public class AdminController {
             userList = userServicesImpl.getUserByLikeUsername(search);
         } else {
             userList = userServicesImpl.getAllUsers();
-       }
+       }       
         model.addAttribute("module","permission");
         model.addAttribute("LIST_USER",userList);
         model.addAttribute("LIST_ROLE", roleList);

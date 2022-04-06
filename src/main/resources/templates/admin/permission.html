@@ -94,7 +94,7 @@
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1 me-5">
-                                        <input type="text" data-kt-permissions-table-filter="search"
+                                        <input id="search" type="text" data-kt-permissions-table-filter="search"
                                                class="form-control w-250px "
                                                placeholder="Search user" style="padding-right: 3.75rem;border-radius: 8px;border:2px solid rgba(136, 84, 192, 0.98);">
                                         <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
@@ -359,5 +359,12 @@
 <div th:replace="~{/layout/include::script}"></div>
 <!--<script th:src="@{/js/list.js}"></script>-->
 <script th:src="@{/js/permission/update-permission.js}"></script>
+<script>
+    document.getElementById("search").addEventListener("keydown", (e) => {
+        if (e.code === 'Enter') {
+            window.location.href = `/admin/permission?search=${document.getElementById('search').value}`;
+        }
+    })
+</script>
 </body>
 </html>

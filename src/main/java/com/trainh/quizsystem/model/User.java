@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "wfh_user")
 @Table(name = "wfh_user")
 
 @AllArgsConstructor
