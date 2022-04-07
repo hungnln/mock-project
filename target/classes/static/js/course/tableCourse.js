@@ -19,15 +19,15 @@ var KTUsersPermissionsList = function () {
                     var id = n.querySelector('.btn-delete').getAttribute('data');
                     console.log(id);
                     Swal.fire({
-                        text: "Bạn có muốn xóa khóa học " + o + "?",
-                        icon: "warning",
+                        text: "Confirm to delete " + o + "?",
+                        title:'Message',
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Có, xóa!",
-                        cancelButtonText: "Không, hủy bỏ",
+                        confirmButtonText: "Delete",
+                        cancelButtonText: "Get Back",
                         customClass: {
                             confirmButton: "btn fw-bold btn-danger",
-                            cancelButton: "btn fw-bold btn-active-light-primary"
+                            cancelButton: "btn fw-bold btn-primary"
                         }
                     }).then((function (e) {
                         if(e.value){
@@ -40,10 +40,11 @@ var KTUsersPermissionsList = function () {
                                 if(this.readyState === 4) {
                                     if(this.status === 200){
                                         Swal.fire({
-                                            text: "Bạn đã xóa khóa học " + o + "!.",
-                                            icon: "success",
+                                            text: "Delete " + o + " successfully!",
+                                            title:'Message',
+
                                             buttonsStyling: !1,
-                                            confirmButtonText: "Ok!",
+                                            confirmButtonText: "Ok",
                                             customClass: {confirmButton: "btn fw-bold btn-primary"}
                                         }).then((function () {
                                             t.row($(n)).remove().draw()
@@ -56,13 +57,13 @@ var KTUsersPermissionsList = function () {
                             xhr.send(data);
                         }else{
                             if("cancel" === e.dismiss){
-                                Swal.fire({
-                                    text: `Bạn đã hủy xóa ${o}`,
-                                    icon: "error",
-                                    buttonsStyling: !1,
-                                    confirmButtonText: "Ok!",
-                                    customClass: {confirmButton: "btn fw-bold btn-primary"}
-                                })
+                                // Swal.fire({
+                                //     text: `Bạn đã hủy xóa ${o}`,
+                                //     icon: "error",
+                                //     buttonsStyling: !1,
+                                //     confirmButtonText: "Ok!",
+                                //     customClass: {confirmButton: "btn fw-bold btn-primary"}
+                                // })
                             }
                         }
 

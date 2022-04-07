@@ -6,8 +6,8 @@ var KTCareersApply = function () {
         init: function () {
             var valObj = {
                 fields: {
-                    name: {validators: {notEmpty: {message: "Vui lòng nhập tên File"}}},
-                    "filesUp": {validators: {notEmpty: {message: "Vui lòng tải lên một tập tin"}}}
+                    name: {validators: {notEmpty: {message: "Please choose file"}}},
+                    "filesUp": {validators: {notEmpty: {message: "Please choose file"}}}
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger({
@@ -31,12 +31,12 @@ var KTCareersApply = function () {
                     const getSizeImage = this.files[0].size;
                     if(getSizeImage > 2*1024 * 1024) {
                         Swal.fire({
-                            text: `Chỉ cho phép tải tệp tin nhỏ hơn 2MB.`,
-                            icon: 'error',
+                            text: `File size less than 2MB.`,
+                            title :'Message',
                             buttonsStyling: !1,
-                            confirmButtonText: 'Ok!',
+                            confirmButtonText: 'Try again',
                             customClass: {
-                                confirmButton: 'btn btn-primary'
+                                confirmButton: 'btn btn-danger'
                             }
                         })
                     } else
@@ -106,22 +106,22 @@ var KTCareersApply = function () {
                                     let statusCode = this.status;
                                     if (statusCode === 200) {
                                         Swal.fire({
-                                            text: `${this.responseText}!`,
-                                            icon: "success",
+                                            text: `Upload new file successfully`,
+                                          title: 'Message',
                                             buttonsStyling: !1,
-                                            confirmButtonText: "Ok!",
+                                            confirmButtonText: "Ok",
                                             customClass: {confirmButton: "btn btn-primary"}
                                         }).then((function (t) {
                                             window.location.href = `/teacher/viewCourse?id=${courseID}`;
                                         }))
                                     } else {
                                         Swal.fire({
-                                            text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
-                                            icon: 'error',
+                                            text: `Something went wrong. Please try again !`,
+                                            title: 'Message',
                                             buttonsStyling: !1,
-                                            confirmButtonText: 'Ok!',
+                                            confirmButtonText: 'Try again',
                                             customClass: {
-                                                confirmButton: 'btn btn-primary'
+                                                confirmButton: 'btn btn-danger'
                                             }
                                         })
                                     }
@@ -134,11 +134,13 @@ var KTCareersApply = function () {
 
                     } else {
                         Swal.fire({
-                            text: "Xin lỗi, bạn chưa nhập đầy đủ thông tin, vui lòng thử lại.",
-                            icon: "error",
+                            text: `Something went wrong. Please try again !`,
+                            title: 'Message',
                             buttonsStyling: !1,
-                            confirmButtonText: "Ok!",
-                            customClass: {confirmButton: "btn btn-primary"}
+                            confirmButtonText: 'Try again',
+                            customClass: {
+                                confirmButton: 'btn btn-danger'
+                            }
                         }).then((function (t) {
                             KTUtil.scrollTop()
                         }))

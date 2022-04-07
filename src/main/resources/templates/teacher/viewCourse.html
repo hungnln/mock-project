@@ -6,7 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
-    <title th:text="|Khóa học ${oCourse.fullName}|"></title>
+    <title th:text=" ${oCourse.fullName}"></title>
+    <style>
+        .table > thead {
+            background-color: unset;
+        }
+        .card{
+            border: 2px solid #8854c0fa;
+            box-shadow: 0 0px 5px #8854c0fa;
+        }
+    </style>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -28,8 +37,10 @@
             <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                 <!--begin::Toolbar-->
                 <div class="toolbar" id="kt_toolbar">
+
                     <!--begin::Container-->
                     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+
                         <!--begin::Page title-->
                         <div data-kt-place="true" data-kt-place-mode="prepend"
                              data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
@@ -37,40 +48,43 @@
                             <!--begin::Title-->
                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
                                 th:text="${oCourse.fullName}"></h1>
+
                             <!--end::Title-->
                             <!--begin::Separator-->
-                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">
-                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
-                                        khiển</a>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-dark"
-                                    th:text="|${oCourse.shortName} - ${oCourse.fullName}|"></li>
-                                <!--end::Item-->
-                            </ul>
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều-->
+<!--                                        khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark"-->
+<!--                                    th:text="|${oCourse.shortName} - ${oCourse.fullName}|"></li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
                             <!--end::Breadcrumb-->
                         </div>
                         <!--end::Page title-->
-
+                        <button class="btn btn-primary align-items-sm-end" data-bs-toggle="modal"
+                                data-bs-target="#kt_modal_add_section" th:data="${oCourse.courseId}">Add topic
+                        </button>
                     </div>
                     <!--end::Container-->
                 </div>
@@ -79,28 +93,29 @@
                 <div class="post d-flex flex-column-fluid" id="kt_post">
                     <!--begin::Container-->
                     <div id="kt_content_container" class="container">
+
                         <th:block th:each="section : ${oCourse.courseSections}">
                             <!-- begin:Section -->
-                            <div class="col-xl-12" th:style="${section.visible ? '' : 'opacity: .7;'}" th:if="${section.status}">
+                            <div class="col-xl-12" th:style="${section.visible ? '' : ''}" th:if="${section.status}">
                                 <!--begin::Tables Widget 9-->
-                                <div class="card card-xxl-stretch mb-5 mb-xl-8">
+                                <div class="card card-xxl-stretch mb-5 mb-xl-8" th:style="${section.visible ? '' : 'box-shadow: 0 0px 5px #ff0000;    border: 2px solid #ff0000fa;'}">
                                     <!--begin::Header-->
                                     <div class="card-header border-0 pt-5">
                                         <h3 class="card-title align-items-start flex-column">
-                                            <span class="card-label fw-bolder fs-3 mb-1"
+                                            <span class="card-label fw-bolder fs-3 mb-1 "
                                                   th:text="*{section.courseSectionName}">
                                             </span>
-                                            <span class="badge badge-light-success opacity-100"
-                                                  th:if="*{!section.visible}">Ẩn với sinh viên</span>
+                                            <span class=""
+                                                  th:if="*{!section.visible}">Hide</span>
                                             <span class="text-muted mt-1 fw-bold fs-7"
                                                   th:text="*{section.courseSummary}"></span>
                                         </h3>
-                                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             data-bs-trigger="hover" title=""
-                                             data-bs-original-title="Nhấn vào đây để sửa chủ đề">
+                                        <div class="card-toolbar"
+                                        >
                                             <!--begin::Menu-->
                                             <button type="button"
-                                                    class="btn btn-sm btn-light-primary"
+                                                    class="btn btn-sm "
+                                                th:classappend="${!section.visible ? 'btn-danger':'btn-primary'}"
                                                     th:data="*{section.courseSectionId}"
                                                     th:data-name="*{section.courseSectionName}"
                                                     th:data-summary="*{section.courseSummary}"
@@ -108,27 +123,28 @@
                                                     data-kt-menu-placement="bottom-end"
                                                     data-kt-menu-flip="top-end">
                                                 <!--begin::Svg Icon | path: icons/duotone/Layout/Layout-4-blocks-2.svg-->
-                                                <span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 width="24px" height="24px"
-                                                                                 viewBox="0 0 24 24" version="1.1">
-																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z"
-                                                                                      fill="#000000" fill-rule="nonzero"
-                                                                                      transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>
-																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z"
-                                                                                      fill="#000000" fill-rule="nonzero"
-                                                                                      opacity="0.3"></path>
-																			</svg>
-																		</span>Sửa
+<!--                                                <span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                                                 width="24px" height="24px"-->
+<!--                                                                                 viewBox="0 0 24 24" version="1.1">-->
+<!--																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z"-->
+<!--                                                                                      fill="#000000" fill-rule="nonzero"-->
+<!--                                                                                      transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>-->
+<!--																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z"-->
+<!--                                                                                      fill="#000000" fill-rule="nonzero"-->
+<!--                                                                                      opacity="0.3"></path>-->
+<!--																			</svg>-->
+<!--																		</span>-->
+                                                Actions
                                                 <!--end::Svg Icon-->
                                             </button>
                                             <!--begin::Menu 3-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
-                                                 data-kt-menu="true" style="">
+                                                 data-kt-menu="true" style="border-radius: 4px">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3" data-bs-toggle="modal"
-                                                       data-bs-target="#kt_modal_update_section">Sửa chủ đề</a>
+                                                       data-bs-target="#kt_modal_update_section">Edit</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -136,18 +152,19 @@
                                                     <a href="#" class="menu-link flex-stack px-3"
                                                        data-kt-section="hidden_section"
                                                        th:data="*{section.courseSectionId}">
-                                                        <span th:text="*{section.visible ? 'Ẩn chủ đề' : 'Hiện chủ đề'}"></span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                           data-bs-toggle="tooltip" title=""
-                                                           data-bs-original-title="Chủ đề bị ẩn sẽ không hiện với sinh viên"
-                                                           aria-label="Chủ đề bị ẩn sẽ không hiện với sinh viên"></i></a>
+                                                        <span th:text="*{section.visible ? 'Hide' : 'Show'}"></span>
+<!--                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                           data-bs-toggle="tooltip" title=""-->
+<!--                                                           data-bs-original-title="Chủ đề bị ẩn sẽ không hiện với sinh viên"-->
+<!--                                                           aria-label="Chủ đề bị ẩn sẽ không hiện với sinh viên"></i>-->
+                                                    </a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3"
                                                        data-kt-section="delete_section"
-                                                       th:data="*{section.courseSectionId}">Xóa chủ đề</a>
+                                                       th:data="*{section.courseSectionId}">Delete</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -178,7 +195,7 @@
                                                 <!--begin::Table body-->
                                                 <tbody>
                                                 <th:block  th:each="courseModule : *{section.courseModules}">
-                                                <tr th:if="*{courseModule.status}" th:style="${courseModule.visible ? '' : 'opacity: .7;'}">
+                                                <tr th:if="*{courseModule.status}" th:style="${courseModule.visible ? '' : ''}">
                                                     <td>
 <!--                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">-->
 <!--                                                            <input class="form-check-input widget-9-check"-->
@@ -188,77 +205,77 @@
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="symbol symbol-45px me-5">
-                                                                <img th:src="@{|/img/*{courseModule.typeName}.png|}" style="width: 35px;"  alt="icon">
+<!--                                                                <img th:src="@{|/img/*{courseModule.typeName}.png|}" style="width: 35px;"  alt="icon">-->
+                                                                <i class="fas fa-file" th:style="${courseModule.visible ? 'font-size:35px;color:#673d90 ' : 'font-size:35px;color: red'}"></i>
                                                             </div>
                                                             <div class="d-flex justify-content-start flex-column">
                                                                 <a th:href="@{/teacher/viewModule(id=*{courseModule.courseModuleId})}"
-                                                                   class="text-dark fw-bolder text-hover-primary fs-6" th:text="*{courseModule.name}"></a>
-                                                                <span class="text-muted fw-bold d-block fs-7 badge badge-light-success" th:if="*{!courseModule.visible}">Ẩn với sinh viên</span>
-                                                                <span class="badge badge-light-primary" th:if="*{courseModule.showDescription}" th:text="*{courseModule.description}"></span>
+                                                                   class="fw-bolder fs-6" th:text="*{courseModule.name}" th:style="${courseModule.visible ? 'color:black' : 'color: red'}"></a>
+<!--                                                                <span class="" th:if="*{!courseModule.visible}" th:style="${courseModule.visible ? '' : 'color: red'}">Hide</span>-->
+                                                                <span class="" th:if="*{courseModule.showDescription}" th:text="*{courseModule.description}" th:style="${courseModule.visible ? '' : 'color: red'}"></span>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td></td>
-                                                    <td class="text-end"></td>
+                                                    <td class="text-end opa "></td>
                                                     <td class="text-end">
                                                         <button href="#"
                                                                 th:data="*{courseModule.courseModuleId}"
-                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-hs"
-                                                           data-bs-trigger="hover"
-                                                           data-bs-original-title="Ẩn/Hiện tài nguyên"
-                                                           data-bs-toggle="tooltip"
-                                                        >
-                                                            <i class="bi bi-eye-slash fs-2"
-                                                               th:classappend="${courseModule.visible ? '': 'd-none'}"></i>
-                                                            <i class="bi bi-eye fs-2" th:classappend="${!courseModule.visible ? '': 'd-none'}"></i>
+                                                           class="btn btn-sm me-1 btn-hs "
+
+                                                                th:text="${courseModule.visible?'Hide':'Show'}"
+                                                                th:classappend="${courseModule.visible ? 'btn-danger min-w-70px opacity-100': 'btn-primary min-w-70px'}"></i>
+
+                                                            >
+<!--                                                            <i class="bi bi-eye-slash fs-2"-->
+<!--                                                               th:classappend="${courseModule.visible ? '': 'd-none'}"></i>-->
+<!--                                                            <i class="bi bi-eye fs-2" th:classappend="${!courseModule.visible ? '': 'd-none'}"></i>-->
                                                         </button>
                                                         <a th:href="@{/teacher/editModule(type=*{courseModule.typeName}, id=*{courseModule.courseModuleId})}"
-                                                           data-bs-trigger="hover"
-                                                           data-bs-original-title="Sửa tài nguyên"
-                                                           data-bs-toggle="tooltip"
-                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+
+                                                           class="btn btn-edit btn-sm me-1">
                                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 width="24px" height="24px"
-                                                                                 viewBox="0 0 24 24" version="1.1">
-																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z"
-                                                                                      fill="#000000" fill-rule="nonzero"
-                                                                                      transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>
-																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z"
-                                                                                      fill="#000000" fill-rule="nonzero"
-                                                                                      opacity="0.3"></path>
-																			</svg>
-																		</span>
+<!--                                                            <span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                                                 width="24px" height="24px"-->
+<!--                                                                                 viewBox="0 0 24 24" version="1.1">-->
+<!--																				<path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z"-->
+<!--                                                                                      fill="#000000" fill-rule="nonzero"-->
+<!--                                                                                      transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953)"></path>-->
+<!--																				<path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z"-->
+<!--                                                                                      fill="#000000" fill-rule="nonzero"-->
+<!--                                                                                      opacity="0.3"></path>-->
+<!--																			</svg>-->
+<!--																		</span>-->
                                                             <!--end::Svg Icon-->
+                                                            Edit
                                                         </a>
                                                         <button
                                                                 th:data="*{courseModule.courseModuleId}"
                                                                 th:data-title="*{courseModule.name}"
-                                                           data-bs-trigger="hover"
-                                                           data-bs-original-title="Xóa tài nguyên"
-                                                           data-bs-toggle="tooltip"
-                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm btn-dl">
+
+                                                           class="btn btn-danger btn-sm btn-dl">
                                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg"
-                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                 width="24px" height="24px"
-                                                                                 viewBox="0 0 24 24" version="1.1">
-																				<g stroke="none" stroke-width="1"
-                                                                                   fill="none" fill-rule="evenodd">
-																					<rect x="0" y="0" width="24"
-                                                                                          height="24"></rect>
-																					<path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
-                                                                                          fill="#000000"
-                                                                                          fill-rule="nonzero"></path>
-																					<path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
-                                                                                          fill="#000000"
-                                                                                          opacity="0.3"></path>
-																				</g>
-																			</svg>
-																		</span>
+<!--                                                            <span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"-->
+<!--                                                                                 width="24px" height="24px"-->
+<!--                                                                                 viewBox="0 0 24 24" version="1.1">-->
+<!--																				<g stroke="none" stroke-width="1"-->
+<!--                                                                                   fill="none" fill-rule="evenodd">-->
+<!--																					<rect x="0" y="0" width="24"-->
+<!--                                                                                          height="24"></rect>-->
+<!--																					<path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"-->
+<!--                                                                                          fill="#000000"-->
+<!--                                                                                          fill-rule="nonzero"></path>-->
+<!--																					<path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"-->
+<!--                                                                                          fill="#000000"-->
+<!--                                                                                          opacity="0.3"></path>-->
+<!--																				</g>-->
+<!--																			</svg>-->
+<!--																		</span>-->
                                                             <!--end::Svg Icon-->
+                                                            Delete
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -277,11 +294,12 @@
                                     <div class="card-header border-0 add-module">
                                         <h3 class="card-title align-items-start flex-column"></h3>
                                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             data-bs-trigger="hover" title=""
-                                             data-bs-original-title="Nhấn vào đây để thêm tài nguyên">
+
+                                        >
                                             <!--begin::Menu-->
                                             <button type="button"
-                                                    class="btn btn-sm btn-light-primary"
+                                                    class="btn btn-sm"
+                                                    th:classappend="${section.visible? 'btn-primary': 'btn-danger btn-shadow'}"
                                                     th:data="*{section.courseSectionId}"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_add_resource"
@@ -294,7 +312,7 @@
 													<path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z" fill="#12131A"></path>
 													<path fill-rule="evenodd" clip-rule="evenodd" d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z" fill="#12131A"></path>
 												</svg>
-											</span>Thêm tài nguyên
+											</span>Add resource
                                                 <!--end::Svg Icon-->
                                             </button>
 
@@ -309,13 +327,11 @@
                             <!-- end:Section -->
                         </th:block>
                         <!--  begin:Add Section Btn    -->
-                        <div class="card card-xxl mb-5 mb-xl-8">
+
                             <!--begin::Action-->
-                            <button class="btn btn-primary align-items-sm-end" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_section" th:data="${oCourse.courseId}">Thêm chủ đề
-                            </button>
+
                             <!--end::Action-->
-                        </div>
+
                         <!-- end:Add Section Btn-->
                         <!--begin::Modal - Add Section-->
                         <div class="modal fade" id="kt_modal_add_section" tabindex="-1" aria-hidden="true">
@@ -326,7 +342,7 @@
                                     <!--begin::Modal header-->
                                     <div class="modal-header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Thêm chủ đề</h2>
+                                        <h2 class="fw-bolder">Add topic</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -360,20 +376,20 @@
                                             <div class="fv-row mb-7 fv-plugins-icon-container">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-bold form-label mb-2">
-                                                    <span class="required">Số chủ đề</span>
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                       data-bs-toggle="popover" data-bs-trigger="hover"
-                                                       data-bs-html="true"
-                                                       data-bs-content="Nhập số lượng chủ đề."
-                                                       data-bs-original-title="" title=""></i>
+                                                    <span class="">Number of topic</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Nhập số lượng chủ đề."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="hidden" name="courseID" id="courseID"
                                                        th:value="${oCourse.courseId}">
                                                 <input type="number" value="1"
-                                                       class="form-control form-control-solid"
-                                                       placeholder="Nhập sô chủ đề cần thêm"
+                                                       class="form-control form-input"
+                                                       placeholder=""
                                                        name="number_section">
                                                 <!--end::Input-->
 
@@ -381,15 +397,16 @@
                                             <!--end::Input group-->
                                             <!--begin::Actions-->
                                             <div class="text-center pt-15">
-                                                <button type="reset" class="btn btn-white me-3"
-                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ
-                                                </button>
-                                                <button type="submit" class="btn btn-primary"
+                                                <button type="submit" class="btn btn-primary me-3"
                                                         data-kt-permissions-modal-action="submit">
-                                                    <span class="indicator-label">Thêm chủ đề</span>
-                                                    <span class="indicator-progress">Vui lòng chờ...
-															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                    Add Topic
+<!--                                                    <span class="indicator-progress">Vui lòng chờ...-->
+<!--															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
                                                 </button>
+                                                <button type="reset" class="btn btn-danger "
+                                                        data-kt-permissions-modal-action="cancel">Quit
+                                                </button>
+
                                             </div>
                                             <!--end::Actions-->
                                             <div></div>
@@ -412,7 +429,7 @@
                                     <!--begin::Modal header-->
                                     <div class="modal-header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Sửa chủ đề</h2>
+                                        <h2 class="fw-bolder">Edit Topic</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -450,22 +467,22 @@
                                                 <label class="form-check form-check-inline form-check-solid me-5">
                                                     <input class="form-check-input" name="customName" type="checkbox"
                                                            value="0">
-                                                    <span class="fw-bold ps-2 fs-6">Tùy chỉnh</span>
+                                                    <span class="fw-bold ps-2 fs-6">Change topic name</span>
                                                 </label>
                                                 <br><br>
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-bold form-label mb-2">
-                                                    <span class="required">Tên chủ đề</span>
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                       data-bs-toggle="popover" data-bs-trigger="hover"
-                                                       data-bs-html="true"
-                                                       data-bs-content="Nhấn tùy chỉnh bên trên để sửa tên chủ đề."
-                                                       data-bs-original-title="" title=""></i>
+                                                    <span class="">Topic name</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Nhấn tùy chỉnh bên trên để sửa tên chủ đề."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input class="form-control form-control-solid bg-dark"
-                                                       placeholder="Nhập tên chủ đề"
+                                                <input class="form-control form-input bg-dark"
+                                                       placeholder=""
                                                        name="update_section_name" disabled>
                                                 <!--end::Input-->
                                                 <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -475,17 +492,23 @@
                                             <div class="fv-row mb-7 fv-plugins-icon-container">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-bold form-label mb-2">
-                                                    <span class="required">Tóm tắt chủ đề</span>
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                       data-bs-toggle="popover" data-bs-trigger="hover"
-                                                       data-bs-html="true"
-                                                       data-bs-content="Nhập thông tin tóm tắt chủ đề."
-                                                       data-bs-original-title="" title=""></i>
+                                                    <span class="">Description</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="popover" data-bs-trigger="hover"-->
+<!--                                                       data-bs-html="true"-->
+<!--                                                       data-bs-content="Nhập thông tin tóm tắt chủ đề."-->
+<!--                                                       data-bs-original-title="" title=""></i>-->
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <textarea class="form-control form-control-solid"
-                                                          placeholder="Nhập thông tin chi tiết chủ đề"
+                                                <textarea class="form-control"
+                                                          style="color: #6d6d6d;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 200px;
+    padding: 16px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);"
+                                                          placeholder=""
                                                           name="update_description"></textarea>
                                                 <!--end::Input-->
                                                 <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -493,14 +516,14 @@
                                             <!--end::Input group-->
                                             <!--begin::Actions-->
                                             <div class="text-center pt-15">
-                                                <button type="reset" class="btn btn-white me-3"
-                                                        data-kt-permissions-modal-action="cancel">Hủy bỏ
+                                                <button type="reset" class="btn btn-danger me-3"
+                                                        data-kt-permissions-modal-action="cancel">Quit
                                                 </button>
                                                 <button type="submit" class="btn btn-primary"
                                                         data-kt-permissions-modal-action="submit">
-                                                    <span class="indicator-label">Cập nhật</span>
-                                                    <span class="indicator-progress">Vui lòng chờ...
-															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                   Update
+<!--                                                    <span class="indicator-label">Update-->
+<!--															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
                                                 </button>
                                             </div>
                                             <!--end::Actions-->
@@ -524,7 +547,7 @@
                                     <!--begin::Modal header-->
                                     <div class="modal-header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Thêm Tài Nguyên</h2>
+                                        <h2 class="fw-bolder">Add more resource</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -560,32 +583,59 @@
                                                 <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
                                                     <input type="hidden" name="courseSectionID" id="courseSectionID">
                                                     <!--begin::Col-->
-                                                    <div class="col-12 col-sm-12 col-xl">
-                                                        <!--begin::Card-->
-                                                        <div class="card h-100 bg-light-dark">
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body d-flex justify-content-center text-center flex-column p-8">
-                                                                <!--begin::Name-->
-                                                                <a href="#" th:data-type="Assignment" class="text-gray-800 text-hover-primary d-flex flex-column">
-                                                                    <!--begin::Image-->
-                                                                    <div class="symbol symbol-60px mb-6">
-                                                                        <img th:src="@{/img/Assignment.png}" alt="">
-                                                                    </div>
-                                                                    <!--end::Image-->
-                                                                    <!--begin::Title-->
-                                                                    <div class="fs-5 fw-bolder mb-2">Assignment</div>
-                                                                    <!--end::Title-->
-                                                                </a>
-                                                                <!--end::Name-->
-                                                                <!--begin::Description-->
-                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Bài tập lớn</div>
-                                                                <!--end::Description-->
-                                                            </div>
-                                                            <!--end::Card body-->
-                                                        </div>
-                                                        <!--end::Card-->
+<!--                                                    <div class="col-12 col-sm-12 col-xl">-->
+<!--                                                        &lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--                                                        <div class="card h-100 bg-light-dark">-->
+<!--                                                            &lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--                                                            <div class="card-body d-flex justify-content-center text-center flex-column p-8">-->
+<!--                                                                &lt;!&ndash;begin::Name&ndash;&gt;-->
+<!--                                                                <a href="#" th:data-type="Assignment" class="text-gray-800 text-hover-primary d-flex flex-column">-->
+<!--                                                                    &lt;!&ndash;begin::Image&ndash;&gt;-->
+<!--                                                                    <div class="symbol symbol-60px mb-6">-->
+<!--                                                                        <img th:src="@{/img/Assignment.png}" alt="">-->
+<!--                                                                    </div>-->
+<!--                                                                    &lt;!&ndash;end::Image&ndash;&gt;-->
+<!--                                                                    &lt;!&ndash;begin::Title&ndash;&gt;-->
+<!--                                                                    <div class="fs-5 fw-bolder mb-2">Assignment</div>-->
+<!--                                                                    &lt;!&ndash;end::Title&ndash;&gt;-->
+<!--                                                                </a>-->
+<!--                                                                &lt;!&ndash;end::Name&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;begin::Description&ndash;&gt;-->
+<!--                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Bài tập lớn</div>-->
+<!--                                                                &lt;!&ndash;end::Description&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                            &lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--                                                        </div>-->
+<!--                                                        &lt;!&ndash;end::Card&ndash;&gt;-->
 
-                                                    </div>
+<!--                                                    </div>-->
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+<!--                                                    <div class="col-12 col-sm-12 col-xl">-->
+<!--                                                        &lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--                                                        <div class="card h-100 bg-light-dark">-->
+<!--                                                            &lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--                                                            <div class="card-body d-flex justify-content-center text-center flex-column p-8">-->
+<!--                                                                &lt;!&ndash;begin::Name&ndash;&gt;-->
+<!--                                                                <a href="#" th:data-type="Quiz" class="text-gray-800 text-hover-primary d-flex flex-column">-->
+<!--                                                                    &lt;!&ndash;begin::Image&ndash;&gt;-->
+<!--                                                                    <div class="symbol symbol-60px mb-6">-->
+<!--                                                                        <img th:src="@{/img/Quiz.png}" alt="">-->
+<!--                                                                    </div>-->
+<!--                                                                    &lt;!&ndash;end::Image&ndash;&gt;-->
+<!--                                                                    &lt;!&ndash;begin::Title&ndash;&gt;-->
+<!--                                                                    <div class="fs-5 fw-bolder mb-2">Quiz</div>-->
+<!--                                                                    &lt;!&ndash;end::Title&ndash;&gt;-->
+<!--                                                                </a>-->
+<!--                                                                &lt;!&ndash;end::Name&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;begin::Description&ndash;&gt;-->
+<!--                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Bài kiểm tra</div>-->
+<!--                                                                &lt;!&ndash;end::Description&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                            &lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--                                                        </div>-->
+<!--                                                        &lt;!&ndash;end::Card&ndash;&gt;-->
+<!--                                                    </div>-->
                                                     <!--end::Col-->
                                                     <!--begin::Col-->
                                                     <div class="col-12 col-sm-12 col-xl">
@@ -594,46 +644,19 @@
                                                             <!--begin::Card body-->
                                                             <div class="card-body d-flex justify-content-center text-center flex-column p-8">
                                                                 <!--begin::Name-->
-                                                                <a href="#" th:data-type="Quiz" class="text-gray-800 text-hover-primary d-flex flex-column">
-                                                                    <!--begin::Image-->
-                                                                    <div class="symbol symbol-60px mb-6">
-                                                                        <img th:src="@{/img/Quiz.png}" alt="">
-                                                                    </div>
-                                                                    <!--end::Image-->
-                                                                    <!--begin::Title-->
-                                                                    <div class="fs-5 fw-bolder mb-2">Quiz</div>
-                                                                    <!--end::Title-->
-                                                                </a>
-                                                                <!--end::Name-->
-                                                                <!--begin::Description-->
-                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Bài kiểm tra</div>
-                                                                <!--end::Description-->
-                                                            </div>
-                                                            <!--end::Card body-->
-                                                        </div>
-                                                        <!--end::Card-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-12 col-sm-12 col-xl">
-                                                        <!--begin::Card-->
-                                                        <div class="card h-100 bg-light-dark">
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body d-flex justify-content-center text-center flex-column p-8">
-                                                                <!--begin::Name-->
-                                                                <a href="#" th:data-type="FileModule" class="text-gray-800 text-hover-primary d-flex flex-column">
+                                                                <a href="#" th:data-type="FileModule" class="text-gray-800 d-flex flex-column">
                                                                     <!--begin::Image-->
                                                                     <div class="symbol symbol-60px mb-6">
                                                                         <img th:src="@{/img/FileModule.png}" alt="">
                                                                     </div>
                                                                     <!--end::Image-->
                                                                     <!--begin::Title-->
-                                                                    <div class="fs-5 fw-bolder mb-2">File</div>
+                                                                    <div class="fs-5 fw-bolder mb-2">Add file</div>
                                                                     <!--end::Title-->
                                                                 </a>
                                                                 <!--end::Name-->
                                                                 <!--begin::Description-->
-                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Tập tin</div>
+<!--                                                                <div class="fs-7 fw-bold text-gray-400 mt-auto">Tập tin</div>-->
                                                                 <!--end::Description-->
                                                             </div>
                                                             <!--end::Card body-->

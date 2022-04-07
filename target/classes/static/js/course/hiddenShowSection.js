@@ -10,15 +10,15 @@ var KTUsersPermissionsList = function () {
                     var text = this.getElementsByTagName('span')[0].innerHTML;
                     var id = this.getAttribute('data');
                     Swal.fire({
-                        text: `Bạn có muốn ${text} ?`,
-                        icon: "warning",
+                        text: `Confirm to ${text} this topic ?`,
+                        title:'Message',
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Có!",
-                        cancelButtonText: "Không, hủy bỏ",
+                        confirmButtonText: `${text}`,
+                        cancelButtonText: "Get Back",
                         customClass: {
-                            confirmButton: "btn fw-bold btn-danger",
-                            cancelButton: "btn fw-bold btn-active-light-primary"
+                            confirmButton: "btn fw-bold btn-primary",
+                            cancelButton: "btn fw-bold btn-danger"
                         }
                     }).then((function (e) {
                         if(e.value){
@@ -29,10 +29,10 @@ var KTUsersPermissionsList = function () {
                                 if(this.readyState === 4) {
                                     if(this.status === 200){
                                         Swal.fire({
-                                            text: `Bạn đã ${text}!.`,
-                                            icon: "success",
+                                            text: `${text} successfully !`,
+                                            title:'Message',
                                             buttonsStyling: !1,
-                                            confirmButtonText: "Ok!",
+                                            confirmButtonText: "Ok",
                                             customClass: {confirmButton: "btn fw-bold btn-primary"}
                                         }).then((function () {
                                            window.location.reload();
@@ -44,13 +44,13 @@ var KTUsersPermissionsList = function () {
                             xhr.send(data);
                         }else{
                             if("cancel" === e.dismiss){
-                                Swal.fire({
-                                    text: `Bạn đã hủy`,
-                                    icon: "error",
-                                    buttonsStyling: !1,
-                                    confirmButtonText: "Ok!",
-                                    customClass: {confirmButton: "btn fw-bold btn-primary"}
-                                })
+                                // Swal.fire({
+                                //     text: `Bạn đã hủy`,
+                                //     icon: "error",
+                                //     buttonsStyling: !1,
+                                //     confirmButtonText: "Ok!",
+                                //     customClass: {confirmButton: "btn fw-bold btn-primary"}
+                                // })
                             }
                         }
                     }))

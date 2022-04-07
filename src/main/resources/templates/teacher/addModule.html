@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
-    <title th:text="|Thêm tài nguyên ${param.type}|" th:if="${addPage}"></title>
-    <title th:text="|Sửa tài nguyên ${param.type}|" th:if="${!addPage}"></title>
+    <title th:text="|Add file|" th:if="${addPage}"></title>
+    <title th:text="|Edit file|" th:if="${!addPage}"></title>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -37,46 +37,46 @@
                              class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                             <!--begin::Title-->
                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
-                                th:text="|Thêm tài nguyên ${param.type}|" th:if="${addPage}"></h1>
+                                th:text="|Add file|" th:if="${addPage}"></h1>
                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3"
-                                th:text="|Sửa tài nguyên ${param.type}|" th:if="${!addPage}"></h1>
+                                th:text="|Edit file|" th:if="${!addPage}"></h1>
                             <!--end::Title-->
                             <!--begin::Separator-->
-                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">
-                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
-                                        khiển</a>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted" th:text="${courseSection.course.fullName}"></li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-dark" th:text="${courseSection.courseSectionName}"></li>
-                                <!--end::Item-->
-                            </ul>
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều-->
+<!--                                        khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Khóa học của bạn</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted" th:text="${courseSection.course.fullName}"></li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark" th:text="${courseSection.courseSectionName}"></li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
                             <!--end::Breadcrumb-->
                         </div>
                         <!--end::Page title-->
@@ -91,9 +91,9 @@
                         <!--begin::Module - ADD-->
                         <div class="card">
                             <!--begin::Body-->
-                            <div class="card-body p-lg-17">
+                            <div class="card-body">
                                 <!--begin::Layout-->
-                                <div class="d-flex flex-column flex-lg-row mb-17">
+                                <div class="d-flex flex-column flex-lg-row">
                                     <!--begin::Content-->
                                     <div class="flex-lg-row-fluid me-0">
                                         <!--begin::Form-->
@@ -139,27 +139,26 @@
 <!--                                                    </div>-->
 <!--                                                </div>-->
 
-                                                <th:block th:if="${param.type.contains('Assignment')}">
-                                                    <h1 class="text-dark mb-3">-->
-                                                        <img th:src="@{/img/Assignment.svg}"
-                                                             class="m-lg-4"
-                                                             th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|">
-                                                    </h1>
-                                                </th:block>
+<!--                                                <th:block th:if="${param.type.contains('Assignment')}">-->
+<!--                                                    <h1 class="text-dark mb-3">-->
+<!--                                                        <img th:src="@{/img/Assignment.svg}"-->
+<!--                                                             class="m-lg-4"-->
+<!--                                                             th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|">-->
+<!--                                                    </h1>-->
+<!--                                                </th:block>-->
 
-                                                <th:block th:if="${param.type.contains('Quiz')}">
-                                                    <h1 class="text-dark mb-3">-->
-                                                        <img th:src="@{/img/Quiz.svg}"
-                                                             class="m-lg-4"
-                                                             th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|">
-                                                    </h1>
-                                                </th:block>
+<!--                                                <th:block th:if="${param.type.contains('Quiz')}">-->
+<!--                                                    <h1 class="text-dark mb-3">&ndash;&gt;-->
+<!--                                                        -->
+<!--                                                             th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|"-->
+<!--                                                    </h1>-->
+<!--                                                </th:block>-->
 
                                                 <th:block th:if="${param.type.contains('FileModule')}">
-                                                    <h1 class="text-dark mb-3">-->
-                                                        <img th:src="@{/img/FileModule.svg}"
-                                                             class="m-lg-4"
-                                                             th:text="|Thêm ${param.type} mới vào ${courseSection.courseSectionName}|">
+                                                    <h1 class="text-dark mb-3"  th:text="|Add file into ${courseSection.courseSectionName}|">
+<!--                                                        <img th:src="@{/img/FileModule.svg}"-->
+<!--                                                             class="m-lg-4"-->
+<!--                                                            >-->
                                                     </h1>
                                                 </th:block>
 
@@ -171,13 +170,13 @@
                                                 <!--begin::Col-->
                                                 <div class="col-md-12 fv-row fv-plugins-icon-container">
                                                     <!--end::Label-->
-                                                    <label class="required fs-5 fw-bold mb-2"
-                                                           th:text="|Tên ${param.type}|"></label>
+                                                    <label class=" fs-5 fw-bold mb-2"
+                                                           th:text="|File name|"></label>
                                                     <!--end::Label-->
                                                     <!--end::Input-->
-                                                    <input type="text" class="form-control form-control-solid"
+                                                    <input type="text" class="form-control form-input"
                                                            placeholder="" name="name" th:if="${courseModule==null}">
-                                                    <input type="text" class="form-control form-control-solid"
+                                                    <input type="text" class="form-control form-input"
                                                            placeholder="" name="name" th:if="${courseModule!=null}"
                                                            th:value="${courseModule.name}">
                                                     <!--end::Input-->
@@ -188,12 +187,19 @@
                                             <!--end::Input group-->
                                             <!--begin::Input group-->
                                             <div class="d-flex flex-column mb-9">
-                                                <label class="fs-6 fw-bold mb-2">Thông tin mô tả</label>
-                                                <textarea class="form-control form-control-solid" rows="4"
+                                                <label class="fs-6 fw-bold mb-2">Description</label>
+                                                <textarea class="form-control" rows="4"
+                                                          style="
+color: #6d6d6d;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 200px;
+    padding: 16px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);"
                                                           name="description" placeholder=""
                                                           th:text="${!addPage ? courseModule.description : ''}"></textarea>
                                             </div>
-                                            <div class="row mb-5">
+                                            <div class="row mb-5 d-none">
                                                 <!--begin::Label-->
                                                 <label class="col-lg-5 col-form-label fw-bold fs-6">Hiện thị thông tin
                                                     chi tiết trên trang khóa học
@@ -215,7 +221,7 @@
                                                 <!--begin::Label-->
 
                                             </div>
-                                            <div class="separator separator-dashed my-5"></div>
+<!--                                            <div class="separator separator-dashed my-5"></div>-->
 
 
                                             <th:block th:if="${param.type.contains('Assignment')}">
@@ -236,30 +242,31 @@
 
 
                                             <!--begin::Separator-->
-                                            <div class="separator mb-8"></div>
+<!--                                            <div class="separator mb-8"></div>-->
                                             <!--end::Separator-->
                                             <!-- Button-->
-                                            <div class="row md-5">
+                                            <div class="d-flex align-items-center justify-content-center">
                                                 <!--begin::Submit-->
-                                                <a th:href="@{/teacher/viewCourse(id=${courseSection.course.courseId})}"
-                                                   class="col-md-6 btn btn-light" id="kt_module_cancel_button">
-                                                    <!--begin::Indicator-->
-                                                    <span class="indicator-label">Hủy bỏ</span>
-                                                    <!--end::Indicator-->
-                                                </a>
+
                                                 <!--end::Submit-->
                                                 <!--begin::Submit-->
-                                                <button type="submit" class="col-md-6 btn btn-primary"
+                                                <button type="submit" class=" btn btn-primary min-w-100px"
                                                         id="kt_module_submit_button">
                                                     <!--begin::Indicator-->
-                                                    <span class="indicator-label" th:text="|Thêm ${param.type}|"
+                                                    <span  th:text="|Add file|"
                                                           th:if="${addPage}"></span>
-                                                    <span class="indicator-label" th:text="|Sửa ${param.type}|"
+                                                    <span  th:text="|Update file|"
                                                           th:if="${!addPage}"></span>
-                                                    <span class="indicator-progress">Vui lòng chờ...
-														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+<!--                                                    <span class="indicator-progress">Vui lòng chờ...-->
+<!--														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
                                                     <!--end::Indicator-->
                                                 </button>
+                                                <a th:href="@{/teacher/viewCourse(id=${courseSection.course.courseId})}"
+                                                   class=" btn btn-danger min-w-100px" id="kt_module_cancel_button" style="margin-left: 5px">
+                                                    <!--begin::Indicator-->
+                                                   Quit
+                                                    <!--end::Indicator-->
+                                                </a>
                                                 <!--end::Submit-->
                                             </div>
                                             <div></div>
