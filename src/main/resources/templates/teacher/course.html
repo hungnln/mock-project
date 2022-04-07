@@ -6,7 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
-    <title>Khóa học</title>
+    <title>Course</title>
+    <style>
+        #kt_permissions_table_paginate{
+            width: fit-content;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+        }
+        .dataTables_length{
+            display: none;
+        }
+    </style>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -38,7 +50,7 @@
                             <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Course Detail</h1>
                             <!--end::Title-->
                             <!--begin::Separator-->
-                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
 <!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
@@ -133,7 +145,7 @@
                             </div>
                             <!--end::Card header-->
                             <!--begin::Card body-->
-                            <div class="card-body pt-0">
+                            <div class="card-body pt-0" style="position: relative">
                                 <!--begin::Table-->
                                 <div id="kt_permissions_table_wrapper"
                                      class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -150,7 +162,7 @@
                                                     style="width: 0px;padding-right: 0px"
                                                     aria-label="Name: activate to sort column ascending">Code
                                                 </th>
-                                                <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
+                                                <th class=" sorting_disabled" rowspan="1" colspan="1"
                                                     style="width: 455.65px;" aria-label="Assigned to">Name
                                                 </th>
 <!--                                                <th class="min-w-125px sorting" tabindex="0"-->
@@ -163,7 +175,7 @@
                                                     style="width: 139.3px;"
                                                     aria-label="Created Date: activate to sort column ascending">Password
                                                 </th>
-                                                <th class="text-end min-w-100px sorting_disabled" rowspan="1"
+                                                <th class="text-end mw-100px sorting_disabled" rowspan="1"
                                                     colspan="1" style="width: 106.567px;" aria-label="Actions">Action
                                                 </th>
                                             </tr>
@@ -190,14 +202,14 @@
                                                     <!--begin::Action=-->
                                                     <td class="text-end d-flex flex-column" >
                                                         <!--begin::Update-->
-                                                        <a class="btn btn-resize btn-shadow btn-update" th:href="|/teacher/editCourse/${course.courseId}|">
+                                                        <a class="btn btn-resize btn-shadow btn-update " th:href="|/teacher/editCourse/${course.courseId}|">
                                                             <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
                                                             Edit
                                                             <!--end::Svg Icon-->
                                                         </a>
                                                         <!--end::Update-->
                                                         <!--begin::Delete-->
-                                                        <button class="btn btn-danger btn-shadow btn-delete" style="padding: 5px 10px;margin-top: 10px"
+                                                        <button class="btn btn-danger btn-shadow btn-delete " style="padding: 5px 10px;margin-top: 10px"
                                                                 data-kt-permissions-table-filter="delete_row" th:data="${course.courseId}">
                                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                                             Delete

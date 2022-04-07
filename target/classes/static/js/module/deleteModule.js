@@ -3,15 +3,15 @@ document.getElementsByClassName('btn-dl').forEach((btn)=>{
         var id = this.getAttribute('data');
         var name = this.getAttribute('data-title');
         Swal.fire({
-            text: `Bạn có muốn xóa ${name} ?`,
-            icon: "warning",
+            text: `Confirm to delete ${name} ?`,
+            title: 'Message',
             showCancelButton: !0,
             buttonsStyling: !1,
-            confirmButtonText: "Có!",
-            cancelButtonText: "Không, hủy bỏ",
+            confirmButtonText: "Delete",
+            cancelButtonText: "Get Back",
             customClass: {
                 confirmButton: "btn fw-bold btn-danger",
-                cancelButton: "btn fw-bold btn-active-light-primary"
+                cancelButton: "btn fw-bold btn-primary"
             }
         }).then((function (e) {
             if(e.value){
@@ -21,10 +21,11 @@ document.getElementsByClassName('btn-dl').forEach((btn)=>{
                     if(this.readyState === 4) {
                         if(this.status === 200){
                             Swal.fire({
-                                text: `Bạn đã xóa ${name} thành công!.`,
-                                icon: "success",
+                                text: `Delete ${name} successfully!`,
+                                title: 'Message',
+
                                 buttonsStyling: !1,
-                                confirmButtonText: "Ok!",
+                                confirmButtonText: "Ok",
                                 customClass: {confirmButton: "btn fw-bold btn-primary"}
                             }).then((function () {
                                 window.location.reload();
@@ -36,13 +37,13 @@ document.getElementsByClassName('btn-dl').forEach((btn)=>{
                 xhr.send();
             }else{
                 if("cancel" === e.dismiss){
-                    Swal.fire({
-                        text: `Bạn đã hủy xóa chủ đề`,
-                        icon: "error",
-                        buttonsStyling: !1,
-                        confirmButtonText: "Ok!",
-                        customClass: {confirmButton: "btn fw-bold btn-primary"}
-                    })
+                    // Swal.fire({
+                    //     text: `Bạn đã hủy xóa chủ đề`,
+                    //     icon: "error",
+                    //     buttonsStyling: !1,
+                    //     confirmButtonText: "Ok!",
+                    //     customClass: {confirmButton: "btn fw-bold btn-primary"}
+                    // })
                 }
             }
         }))

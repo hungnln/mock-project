@@ -29,6 +29,21 @@
 *, ::after, ::before {
     box-sizing: border-box
 }
+.select2-container--bootstrap5 .select2-dropdown .select2-results__option {
+    color: #000;
+}
+.select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--selected{
+    background-color: rgba(136, 84, 192, 0.98);
+    color: white;
+}
+.select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--highlighted{
+    color: #000;
+    background-color: rgba(136, 84, 192, 0.98);
+}
+.select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered{
+    color:#6d6d6d !important;
+    line-height: 30.5px;
+}
 .card-item{
     cursor: pointer;
     box-shadow: 0 0px 5px #8854c0fa;
@@ -3378,8 +3393,14 @@ textarea.form-control-lg {
     background-color: #f1416c;
     border-color: #f1416c;
     box-shadow: 0px 4px 0px #932A2AFF !important;
-    border-radius: 4px;
+    border-radius: 4px !important;
 
+}
+.btn-edit{
+    color: #fff;
+    background-color: #673d90;
+    box-shadow: 0px 4px 0px #52138d !important;
+    border-radius: 4px !important;
 }
 
 .btn-danger:hover {
@@ -4936,8 +4957,11 @@ textarea.form-control-lg {
 
 .page-link:focus {
     z-index: 3;
-    color: #009ef7;
-    background-color: #ecf8ff;
+    color: #fff;
+    background-color: #673d906b;
+    border-color: transparent;
+    border-radius: 50%;
+
     outline: 0;
     box-shadow: none
 }
@@ -37058,8 +37082,15 @@ a:hover {
 
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active), .menu-state-bg-light-primary .menu-item.hover > .menu-link:not(.disabled):not(.active) {
     transition: color .2s ease, background-color .2s ease;
-    background-color: #ecf8ff;
-    color: #009ef7
+    background-color: rgba(136, 84, 192, 0.98);
+    color: #fff;
+}
+.bg-red-color-white{
+    color: #fff !important;
+    border-color: #f1416c !important;
+    background-color: #f1416c !important;
+    box-shadow: 0px 4px 0px #932a2aff !important;
+    border-radius: 4px;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title, .menu-state-bg-light-primary .menu-item.hover > .menu-link:not(.disabled):not(.active) .menu-title {
@@ -37845,6 +37876,7 @@ a:hover {
 
 .btn:not(.btn-shadow):not(.shadow):not(.shadow-sm):not(.shadow-lg) {
     /*box-shadow: none !important*/
+
 }
 
 .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {

@@ -29,8 +29,8 @@ var KTCareersApply = function () {
         init: function () {
             var valObj = {
                 fields: {
-                    short_name: {validators: {notEmpty: {message: "Vui lòng nhập tên viết tắt"}}},
-                    full_name: {validators: {notEmpty: {message: "Vui lòng nhập tên đầy đủ"}}},
+                    short_name: {validators: {notEmpty: {message: "Please fill Code "}}},
+                    full_name: {validators: {notEmpty: {message: "Please fill name"}}},
                     salary: {validators: {notEmpty: {message: "Expected salary is required"}}},
                     category: {validators: {notEmpty: {message: "Bạn phải chọn danh mục khóa học"}}},
                     start_date: {validators: {notEmpty: {message: "Ngày bắt đầu là bắt buộc"}}},
@@ -139,10 +139,11 @@ var KTCareersApply = function () {
                                     let statusCode = this.status;
                                     if (statusCode === 200) {
                                         Swal.fire({
-                                            text: `${this.responseText}!`,
-                                            icon: "success",
+                                            text: `Add new course successfully!`,
+                                            title:'Message',
+
                                             buttonsStyling: !1,
-                                            confirmButtonText: "Ok!",
+                                            confirmButtonText: "Ok",
                                             customClass: {confirmButton: "btn btn-primary"}
                                         }).then((function (t) {
                                             document.forms[0][2].value = document.forms[0][3].value = '';
@@ -153,12 +154,12 @@ var KTCareersApply = function () {
                                         }))
                                     } else {
                                         Swal.fire({
-                                            text: `Xin lỗi, ${this.responseText}, vui lòng thử lại.`,
-                                            icon: 'error',
+                                            text: `Something went wrong. Please try again`,
+                                            title:'Message',
                                             buttonsStyling: !1,
-                                            confirmButtonText: 'Ok!',
+                                            confirmButtonText: 'Try again',
                                             customClass: {
-                                                confirmButton: 'btn btn-primary'
+                                                confirmButton: 'btn btn-danger'
                                             }
                                         })
                                     }
@@ -171,11 +172,13 @@ var KTCareersApply = function () {
 
                     } else {
                         Swal.fire({
-                            text: "Xin lỗi, bạn chưa nhập đầy đủ thông tin, vui lòng thử lại.",
-                            icon: "error",
+                            text: `Something went wrong. Please try again`,
+                            title:'Message',
                             buttonsStyling: !1,
-                            confirmButtonText: "Ok!",
-                            customClass: {confirmButton: "btn btn-primary"}
+                            confirmButtonText: 'Try again',
+                            customClass: {
+                                confirmButton: 'btn btn-danger'
+                            }
                         }).then((function (t) {
                             KTUtil.scrollTop()
                         }))

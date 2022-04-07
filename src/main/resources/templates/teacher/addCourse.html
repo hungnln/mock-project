@@ -6,7 +6,24 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <div th:replace="~{/layout/include:: head/link}"></div>
-    <title>Thêm khóa học mới</title>
+    <title>Add Course</title>
+    <style>
+        .select2-container--bootstrap5 .select2-dropdown .select2-results__option {
+            color: #000;
+        }
+        .select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--selected{
+            background-color: rgba(136, 84, 192, 0.98);
+            color: white;
+        }
+        .select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--highlighted{
+            color: #000;
+            background-color: rgba(136, 84, 192, 0.98);
+        }
+        .select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered{
+            color:#6d6d6d !important;
+            line-height: 30.5px;
+        }
+    </style>
 </head>
 <!--begin::Body-->
 <body id="kt_body"
@@ -35,36 +52,36 @@
                              data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                              class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                             <!--begin::Title-->
-                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Thêm khóa học mới</h1>
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Add new course</h1>
                             <!--end::Title-->
                             <!--begin::Separator-->
-                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+<!--                            <span class="h-20px border-gray-200 border-start mx-4"></span>-->
                             <!--end::Separator-->
                             <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">
-                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều
-                                        khiển</a>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-muted">Quản lý khóa học</li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-dark">Thêm khóa học mới</li>
-                                <!--end::Item-->
-                            </ul>
+<!--                            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">-->
+<!--                                    <a th:href="@{/afterLogin}" class="text-muted text-hover-primary">Bảng điều-->
+<!--                                        khiển</a>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-muted">Quản lý khóa học</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item">-->
+<!--                                    <span class="bullet bg-gray-200 w-5px h-2px"></span>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                                &lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--                                <li class="breadcrumb-item text-dark">Thêm khóa học mới</li>-->
+<!--                                &lt;!&ndash;end::Item&ndash;&gt;-->
+<!--                            </ul>-->
                             <!--end::Breadcrumb-->
                         </div>
                         <!--end::Page title-->
@@ -79,9 +96,9 @@
                         <!--begin::Careers - Apply-->
                         <div class="card">
                             <!--begin::Body-->
-                            <div class="card-body p-lg-17">
+                            <div class="card-body">
                                 <!--begin::Layout-->
-                                <div class="d-flex flex-column flex-lg-row mb-17">
+                                <div class="d-flex flex-column flex-lg-row">
                                     <!--begin::Content-->
                                     <div class="flex-lg-row-fluid me-0">
                                         <!--begin::Form-->
@@ -92,17 +109,17 @@
                                             <div class="d-flex flex-column mb-5 fv-row fv-plugins-icon-container">
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                    <span class="required">Danh mục khóa học</span>
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                       data-bs-toggle="tooltip" title=""
-                                                       data-bs-original-title="Chọn danh mục cho khóa học của bạn"
-                                                       aria-label="Chọn danh mục cho khóa học của bạn"></i>
+                                                    <span class="">Course List</span>
+<!--                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"-->
+<!--                                                       data-bs-toggle="tooltip" title=""-->
+<!--                                                       data-bs-original-title="Chọn danh mục cho khóa học của bạn"-->
+<!--                                                       aria-label="Chọn danh mục cho khóa học của bạn"></i>-->
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Select-->
                                                 <select name="category" data-control="select2"
                                                         data-placeholder="Chọn danh mục..."
-                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        class="form-input form-select select2-hidden-accessible"
                                                         data-select2-id="select2-data-10-my2j" tabindex="-1"
                                                         aria-hidden="true">
                                                     <th:block th:each="category : ${LIST_CATEGORY}">
@@ -119,22 +136,22 @@
                                                 <input type="hidden" name="userLogin" id="userLogin" th:value="${userLogin.username}">
                                                 <div class="col-md-3 fv-row fv-plugins-icon-container">
                                                     <!--begin::Label-->
-                                                    <label class="required fs-5 fw-bold mb-2">Tên viết tắt</label>
+                                                    <label class=" fs-5 fw-bold mb-2">Code</label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <input type="text" class="form-control form-control-solid"
+                                                    <input type="text" class="form-control form-input"
                                                            placeholder="" name="short_name">
                                                     <!--end::Input-->
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
                                                 <!--end::Col-->
                                                 <!--begin::Col-->
-                                                <div class="col-md-9 fv-row fv-plugins-icon-container">
+                                                <div class="col-12 fv-row fv-plugins-icon-container">
                                                     <!--end::Label-->
-                                                    <label class="required fs-5 fw-bold mb-2">Tên đầy đủ</label>
+                                                    <label class=" fs-5 fw-bold mb-2">Name</label>
                                                     <!--end::Label-->
                                                     <!--end::Input-->
-                                                    <input type="text" class="form-control form-control-solid"
+                                                    <input type="text" class="form-control form-input"
                                                            placeholder="" name="full_name">
                                                     <!--end::Input-->
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -142,10 +159,10 @@
                                                 <!--end::Col-->
                                             </div>
                                             <!--end::Input group-->
-                                            <div class="separator separator-dashed my-5"></div>
+<!--                                            <div class="separator separator-dashed my-5"></div>-->
                                             <div class="row mb-5">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label fw-bold fs-6">Cho phép hiện thị</label>
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">Active</label>
                                                 <!--begin::Label-->
                                                 <!--begin::Label-->
                                                 <div class="col-lg-4 d-flex align-items-center">
@@ -157,9 +174,9 @@
                                                 <!--begin::Label-->
 
                                             </div>
-                                            <div class="separator separator-dashed my-5"></div>
+<!--                                            <div class="separator separator-dashed my-5"></div>-->
                                             <!--begin::Input group-->
-                                            <div class="row mb-5">
+                                            <div class="row mb-5 d-none">
                                                 <!--begin::Col-->
                                                 <div class="col-md-9 fv-row fv-plugins-icon-container">
                                                     <!--end::Label-->
@@ -168,13 +185,13 @@
                                                     <!--end::Input-->
                                                     <input type="date"
                                                            class="form-control form-control-solid"
-                                                           placeholder="" name="start_date">
+                                                           placeholder="" name="start_date" value="1990-01-01" onclick="">
                                                     <!--end::Input-->
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
                                                 <!--end::Col-->
                                             </div>
-                                            <div class="row mb-5">
+                                            <div class="row mb-5 d-none">
                                                 <!--begin::Col-->
                                                 <div class="col-md-9 fv-row fv-plugins-icon-container">
                                                     <!--end::Label-->
@@ -183,7 +200,7 @@
                                                     <!--end::Input-->
                                                     <input type="date"
                                                            class="form-control form-control-solid"
-                                                           placeholder="" name="end_date">
+                                                           placeholder="" name="end_date" disabled>
                                                     <!--end::Input-->
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
@@ -193,7 +210,7 @@
                                                     <br>
                                                     <div class="form-check form-check-solid form-switch fv-row pt-3">
                                                         <label class="form-check-label" for="allowenddate"></label>
-                                                        <input class="form-check-input w-45px h-30px" type="checkbox" id="allowenddate" checked="checked">
+                                                        <input class="form-check-input w-45px h-30px" type="checkbox" id="allowenddate" >
 
                                                     </div>
                                                 </div>
@@ -201,12 +218,12 @@
                                             <!--end::Input group-->
                                             <div class="mb-1">
                                                 <!--begin::Label-->
-                                                <label class="form-label fw-bolder text-dark fs-6">Mật khẩu khóa học</label>
+                                                <label class="form-label fs-5 fw-bold mb-2">Pasword <span style="color: #ccc">(option)</span></label>
                                                 <!--end::Label-->
                                                 <!--begin::Input wrapper-->
                                                 <div class="position-relative mb-3">
-                                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off">
-                                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2 btn-visible" data-kt-password-meter-control="visibility">
+                                                    <input class="form-control form-control-lg form-input" type="password" placeholder="" name="password" autocomplete="off">
+                                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2 btn-visible d-none" data-kt-password-meter-control="visibility">
 												<i class="bi bi-eye-slash fs-2"></i>
 												<i class="bi bi-eye fs-2 d-none"></i>
 											</span>
@@ -215,12 +232,17 @@
                                             </div>
                                             <!--begin::Input group-->
                                             <div class="d-flex flex-column mb-9">
-                                                <label class="fs-6 fw-bold mb-2">Thông tin mô tả</label>
-                                                <textarea class="form-control form-control-solid" rows="4"
-                                                          name="description" placeholder=""></textarea>
+                                                <label class="fs-5 fw-bold mb-2">Description <span style="color: #ccc">(option)</span></label>
+                                                <textarea class="form-control" rows="4"
+                                                          name="description" placeholder="" style="color: #6d6d6d;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 200px;
+    padding: 16px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);"></textarea>
                                             </div>
                                             <!--end::Input group-->
-                                            <div class="row mb-6">
+                                            <div class="row mb-6 d-none">
                                                 <!--begin::Label-->
                                                 <label class="col-lg-4 col-form-label fw-bold fs-6">Hình ảnh khóa học</label>
                                                 <!--end::Label-->
@@ -255,16 +277,18 @@
                                                 <!--end::Col-->
                                             </div>
                                             <!--begin::Separator-->
-                                            <div class="separator mb-8"></div>
+<!--                                            <div class="separator mb-8"></div>-->
                                             <!--end::Separator-->
                                             <!--begin::Submit-->
-                                            <button type="submit" class="btn btn-primary" id="kt_careers_submit_button">
-                                                <!--begin::Indicator-->
-                                                <span class="indicator-label">Thêm khóa học</span>
-                                                <span class="indicator-progress">Vui lòng chờ...
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary m-auto" id="kt_careers_submit_button">
+                                                    <!--begin::Indicator-->
+                                                    <span class="indicator-label">Add course</span>
+                                                    <span class="indicator-progress">Vui lòng chờ...
 														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                <!--end::Indicator-->
-                                            </button>
+                                                    <!--end::Indicator-->
+                                                </button>
+                                            </div>
                                             <!--end::Submit-->
                                             <div></div>
                                         </form>
