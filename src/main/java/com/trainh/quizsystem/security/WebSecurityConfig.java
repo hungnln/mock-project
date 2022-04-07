@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/public/favicon.ico").permitAll()
                 .antMatchers("/admin/**").hasAuthority("Admin")
                 .antMatchers("/teacher/**").hasAuthority("Teacher")
                 .antMatchers("/student/**").hasAuthority("Student")
