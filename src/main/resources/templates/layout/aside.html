@@ -215,16 +215,16 @@
                     <!-- List Course -->
                     <div class="menu-item">
                         <div class="menu-content pt-8 pb-2">
-                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Khóa học của bạn</span>
+                            <span class="menu-section text-muted text-uppercase fs-8 ls-1">Course List</span>
                         </div>
                     </div>
 
                     <div class="menu-item menu-accordion" th:each="item : ${myCourses}">
                         <a class="menu-link" th:href="@{/student/view(id=*{item.courseId})}"
                            th:classappend="${module == item.courseId.toString() ? 'active' : ''}">
-										<span class="menu-icon">
-											<i class="bi bi-layers fs-3"></i>
-										</span>
+<!--										<span class="menu-icon">-->
+<!--											<i class="bi bi-layers fs-3"></i>-->
+<!--										</span>-->
                             <span class="menu-title" th:text="*{item.fullName}"></span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -233,11 +233,11 @@
 
                 </th:block>
                 <!-- Separator-->
-                <div class="menu-item">
-                    <div class="menu-content">
-                        <div class="separator mx-1 my-4"></div>
-                    </div>
-                </div>
+<!--                <div class="menu-item">-->
+<!--                    <div class="menu-content">-->
+<!--                        <div class="separator mx-1 my-4"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Separator-->
                 <!--                <div class="menu-item">-->
                 <!--                    <a class="menu-link"-->

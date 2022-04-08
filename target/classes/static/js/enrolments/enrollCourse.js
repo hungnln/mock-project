@@ -12,7 +12,7 @@ var KTEnrollC = function () {
                         'password': {
                             validators: {
                                 notEmpty: {
-                                    message: 'Bạn phải nhập mật khẩu'
+                                    message: 'Please fill in password'
                                 }
                             }
                         }
@@ -57,10 +57,11 @@ var KTEnrollC = function () {
                                                 t.disabled = !1;
                                                 if(this.status === 200){
                                                     Swal.fire({
-                                                        text: 'Đăng ký khóa học thành công!',
-                                                        icon: 'success',
+                                                        text: 'Join in this course successfully',
+                                                        title:'Message',
+
                                                         buttonsStyling: !1,
-                                                        confirmButtonText: 'Ok!',
+                                                        confirmButtonText: 'Ok',
                                                         customClass: {
                                                             confirmButton: 'btn btn-primary'
                                                         }
@@ -69,12 +70,13 @@ var KTEnrollC = function () {
                                                     })
                                                 }else{
                                                     Swal.fire({
-                                                        text: `Xin lỗi,${this.responseText} , vui lòng thử lại.`,
-                                                        icon: 'error',
+                                                        title:'Message',
+                                                        text: `Password is wrong. Please try again !`,
+
                                                         buttonsStyling: !1,
-                                                        confirmButtonText: 'Ok!',
+                                                        confirmButtonText: 'Try again',
                                                         customClass: {
-                                                            confirmButton: 'btn btn-primary'
+                                                            confirmButton: 'btn btn-danger'
                                                         }
                                                     })
                                                 }
@@ -86,12 +88,12 @@ var KTEnrollC = function () {
                                     },700);
                                 } else {
                                     Swal.fire({
-                                        text: 'Xin lỗi, bạn phải nhập mật khẩu, vui lòng thử lại.',
-                                        icon: 'error',
+                                        text: 'Please enter password',
+                                        title:'Message',
                                         buttonsStyling: !1,
-                                        confirmButtonText: 'Ok, got it!',
+                                        confirmButtonText: 'Try again',
                                         customClass: {
-                                            confirmButton: 'btn btn-primary'
+                                            confirmButton: 'btn btn-danger'
                                         }
                                     })
                                 }
