@@ -3119,15 +3119,15 @@ textarea.form-control-lg {
 
 .btn-check:focus + .btn, .btn:focus {
     outline: 0;
-    box-shadow: 0 0 0 .25rem rgba(0, 158, 247, .25)
+    /*box-shadow: 0 0 0 .25rem rgba(0, 158, 247, .25)*/
 }
 
 .btn-check:active + .btn, .btn-check:checked + .btn, .btn.active, .btn:active {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+    /*box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)*/
 }
 
 .btn-check:active + .btn:focus, .btn-check:checked + .btn:focus, .btn.active:focus, .btn:active:focus {
-    box-shadow: 0 0 0 .25rem rgba(0, 158, 247, .25), inset 0 3px 5px rgba(0, 0, 0, .125)
+    /*box-shadow: 0 0 0 .25rem rgba(0, 158, 247, .25), inset 0 3px 5px rgba(0, 0, 0, .125)*/
 }
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {
@@ -31750,7 +31750,7 @@ textarea.form-control-lg {
 
 .text-hover-primary:hover {
     transition: color .2s ease, background-color .2s ease;
-    color: #009ef7 !important
+    color: rgba(136, 84, 192, 0.98) !important
 }
 
 .text-hover-primary:hover i {
@@ -34054,12 +34054,12 @@ a:hover {
     font-weight: 500;
     font-size: 1.075rem
 }
-#kt_permissions_table_next:hover .page-link{
+#kt_permissions_table_next:hover .page-link,#kt_permissions_table_previous:hover .page-link{
     transform: scale(1.2);
     background-color: transparent;
 }
-#kt_permissions_table_next:hover .page-link i {
-    color: #8854c0fa !important;
+#kt_permissions_table_next:hover .page-link i,#kt_permissions_table_previous:hover .page-link i {
+    fill: #8854c0fa !important;
 
 }
 .page-item .page-link i {
@@ -38242,9 +38242,13 @@ a:hover {
 }
 
 .btn-check:active + .btn.btn-active-light-primary, .btn-check:checked + .btn.btn-active-light-primary, .btn.btn-active-light-primary.active, .btn.btn-active-light-primary.show, .btn.btn-active-light-primary:active:not(.btn-active), .btn.btn-active-light-primary:focus:not(.btn-active), .btn.btn-active-light-primary:hover:not(.btn-active), .show > .btn.btn-active-light-primary {
-    color: #009ef7;
-    border-color: #ecf8ff;
-    background-color: #ecf8ff
+    color: #fff;
+    border-color: rgba(136, 84, 192, 0.98) !important;
+    outline: none !important;
+    background-color: rgba(136, 84, 192, 0.98);
+    box-shadow: 0px 4px 0px #673d90 !important;
+    transition: all 0.2s ease-out;
+    border-radius: 4px;
 }
 
 .btn-check:active + .btn.btn-active-light-primary i, .btn-check:checked + .btn.btn-active-light-primary i, .btn.btn-active-light-primary.active i, .btn.btn-active-light-primary.show i, .btn.btn-active-light-primary:active:not(.btn-active) i, .btn.btn-active-light-primary:focus:not(.btn-active) i, .btn.btn-active-light-primary:hover:not(.btn-active) i, .show > .btn.btn-active-light-primary i {
@@ -38933,7 +38937,10 @@ a:hover {
 .btn.btn-dark {
     color: #fff;
     border-color: #181c32;
-    background-color: #181c32
+    background-color: #181c32;
+    box-shadow: 0px 4px 0px #000 !important;
+    border-radius: 4px !important;
+
 }
 
 .btn.btn-dark i {

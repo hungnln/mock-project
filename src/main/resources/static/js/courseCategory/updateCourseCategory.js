@@ -42,25 +42,26 @@ var KTUsersUpdatePermission = function () {
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
-                })), t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
-                    t.preventDefault(), Swal.fire({
-                        text: "Bạn có chắc chắn muốn hủy bỏ?",
-                        icon: "warning",
-                        showCancelButton: !0,
-                        buttonsStyling: !1,
-                        confirmButtonText: "Có, hủy bỏ!",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
-                    }).then((function (t) {
-                        t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
-                            text: "Your form has not been cancelled!.",
-                            icon: "error",
-                            buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {confirmButton: "btn btn-primary"}
-                        })
-                    }))
-                }));
+                }))
+                //     t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
+                //     t.preventDefault(), Swal.fire({
+                //         text: "Bạn có chắc chắn muốn hủy bỏ?",
+                //         icon: "warning",
+                //         showCancelButton: !0,
+                //         buttonsStyling: !1,
+                //         confirmButtonText: "Có, hủy bỏ!",
+                //         cancelButtonText: "Không, trở lại",
+                //         customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                //     }).then((function (t) {
+                //         t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
+                //             text: "Your form has not been cancelled!.",
+                //             icon: "error",
+                //             buttonsStyling: !1,
+                //             confirmButtonText: "Ok, got it!",
+                //             customClass: {confirmButton: "btn btn-primary"}
+                //         })
+                //     }))
+                // }));
                 const i = t.querySelector('[data-kt-permissions-modal-action="submit"]');
                 i.addEventListener("click", (function (t) {
                     t.preventDefault(), o && o.validate().then((function (t) {
