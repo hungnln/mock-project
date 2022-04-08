@@ -23,13 +23,13 @@ var KTUsersAddResource = function () {
             (() => {
                 t.querySelector('[data-kt-permissions-modal-action="close"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Bạn có muốn tắt cửa sổ này?",
-                        icon: "warning",
+                        text: "Want to quit ?",
+                        title:'Message',
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Có, đóng cửa sổ này!",
-                        cancelButtonText: "Không, trở lại",
-                        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+                        confirmButtonText: "Quit",
+                        cancelButtonText: "Get Back",
+                        customClass: {confirmButton: "btn btn-danger", cancelButton: "btn btn-primary"}
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
