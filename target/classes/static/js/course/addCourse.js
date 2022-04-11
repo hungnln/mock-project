@@ -104,7 +104,7 @@ var KTCareersApply = function () {
                             var description = document.forms[0][9].value;
                             var username = document.getElementById('userLogin').value;
                             var img = document.querySelector('.image-input-wrapper').style.backgroundImage.search('blank') == -1 ? document.querySelector('.image-input-wrapper').style.backgroundImage : null;
-                            console.log(end_date);
+                            console.log(document.forms);
                             var objDT = {
                                 "courseCategory": {
                                     "categoryId": courseCategoryId
