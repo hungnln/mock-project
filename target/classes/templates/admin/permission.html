@@ -23,6 +23,9 @@
             color: rgba(136, 84, 192, 0.98);
             font-size: 14.5px;
         }
+        #kt_permissions_table_length{
+            display: none;
+        }
     </style>
 </head>
 <!--begin::Body-->
@@ -363,14 +366,14 @@
 <div th:replace="~{/layout/footer::footer1}"></div>
 
 <div th:replace="~{/layout/include::script}"></div>
-<!--<script th:src="@{/js/list.js}"></script>-->
+<script th:src="@{/js/permission/list.js}"></script>
 <script th:src="@{/js/permission/update-permission.js}"></script>
-<script>
-    document.getElementById("search").addEventListener("keydown", (e) => {
-        if (e.code === 'Enter') {
-            window.location.href = `/admin/permission?search=${document.getElementById('search').value}`;
-        }
-    })
-</script>
+<!--<script>-->
+<!--    document.getElementById("search").addEventListener("keydown", (e) => {-->
+<!--        if (e.code === 'Enter') {-->
+<!--            window.location.href = `/admin/permission?search=${document.getElementById('search').value}`;-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
 </body>
 </html>
