@@ -58,10 +58,13 @@
                    <div class="topbar-item cursor-pointer symbol px-3 px-lg-5 me-n3 me-lg-n5 symbol-30px symbol-md-35px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
 
                        <th:block th:if="${userLogin.image == null}">
-                           <img style="width: 40px;height: 40px; border-radius: 50%" alt="No Img" th:src="@{/img/blank.png}">
+                           <img style="width: 40px;height: 40px; border-radius: 50%" alt="No Img" th:src="@{/img/avatar.gif}">
+<!--                           <img th:src="@{/img}"  autoplay="autoplay" loop  width="40" height="40" poster="https://cf.quizizz.com/join/img/avatars/tablet_sm/monster36.png"></img>-->
                        </th:block>
                        <th:block th:if="${userLogin.image != null}">
-                           <img style="width: 40px;height: 40px;border-radius: 50%"  alt="Logo" src="/img/blank.png">
+                           <img style="width: 40px;height: 40px; border-radius: 50%" alt="No Img" th:src="@{/img/avatar.gif}">
+
+                           <!--                           <video src="blob:https://quizizz.com/7d3be79a-517e-4630-b57b-cf404257d302"  autoplay="autoplay" loop  width="40" height="40" poster="https://cf.quizizz.com/join/img/avatars/tablet_sm/monster36.png"></video>-->
                        </th:block>
                    </div>
                    <div class="d-flex flex-column w-100" style="margin-left: 10px; text-align: left">

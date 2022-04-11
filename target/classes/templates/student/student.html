@@ -122,9 +122,10 @@
                                                 <!--begin::Row-->
                                                 <div class="row g-5 g-xl-8">
                                                     <th:block th:if="${allC != null}">
-                                                        <div class="col-xl-4" th:each="course, iState : ${allC}">
+                                                        <div class="col-xl-4" th:each="course, iState : ${allC}" th:if="*{course.visible == true}">
                                                             <!--begin:: Widget 1-->
-                                                            <div class="card bgi-no-repeat card-xl-stretch mb-xl-8">
+
+                                                            <div  class="card bgi-no-repeat card-xl-stretch mb-xl-8">
                                                                 <!--begin::Body-->
                                                                 <div class="card-body d-flex flex-column">
                                                                     <div style="min-height: 140px">
@@ -156,7 +157,7 @@
                                                 <!--begin::Row-->
                                                 <div class="row g-5 g-xl-8">
                                                     <th:block th:if="${enrollC != null}">
-                                                        <div class="col-xl-4" th:each="course, iState : ${enrollC}">
+                                                        <div class="col-xl-4" th:each="course, iState : ${enrollC}" th:if="*{course.visible == true}">
                                                             <!--begin::Statistics Widget 1-->
                                                             <div class="card bgi-no-repeat card-xl-stretch mb-xl-8">
                                                                 <!--begin::Body-->
@@ -192,7 +193,7 @@
                                                 <!--begin::Row-->
                                                 <div class="row g-5 g-xl-8">
                                                     <th:block th:if="${nEnrollC != null}">
-                                                        <div class="col-xl-4" th:each="course, iState : ${nEnrollC}">
+                                                        <div class="col-xl-4" th:each="course, iState : ${nEnrollC}" th:if="*{course.visible == true}">
                                                             <!--begin::Statistics Widget 1-->
                                                             <div class="card bgi-no-repeat card-xl-stretch mb-xl-8">
                                                                 <!--begin::Body-->
